@@ -52,28 +52,33 @@
 
     @media (max-width: 880px) {
       body {
-        align-items: flex-start;
+        align-items: stretch;
         justify-content: stretch;
-        padding: 12px 8px;
-        overflow-y: auto;
-        overflow-x: hidden;
+        padding: 8px;
+        overflow: hidden;
       }
 
       .app-shell {
-        grid-template-columns: minmax(0, 1fr);
-        height: auto;
-        row-gap: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        height: calc(100vh - 16px);
       }
 
       .cv-card,
       .chat-card {
-        height: auto;
+        flex: 1;
+        min-height: 0;
       }
 
       .cv-scroll {
-        flex: initial;
-        max-height: none;
-        overflow-y: visible;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .chat-window {
+        flex: 1;
+        min-height: 0;
       }
     }
 
