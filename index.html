@@ -35,9 +35,10 @@
       color: var(--text);
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
-      padding: 32px 16px;
+      padding: 16px;
+      overflow: hidden;
     }
 
     .app-shell {
@@ -47,6 +48,7 @@
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.6fr);
       gap: 24px;
       align-items: stretch;
+      height: calc(100vh - 32px);
     }
 
     @media (max-width: 880px) {
@@ -62,6 +64,8 @@
       box-shadow: var(--shadow-soft);
       padding: 24px 22px;
       position: relative;
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
     }
 
@@ -367,6 +371,31 @@
       max-height: 620px;
     }
 
+    .cv-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cv-scroll {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 6px;
+      padding-right: 2px;
+    }
+
+    .cv-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .cv-scroll::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.7);
+      border-radius: 999px;
+    }
+
+    .cv-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
     .chat-header-row {
       display: flex;
       justify-content: space-between;
@@ -670,7 +699,7 @@
 </head>
 <body>
   <main class="app-shell">
-    <section class="card">
+    <section class="card cv-card">
       <header class="card-header">
         <div class="avatar">
           <!-- Profil fotoğrafı eklemek için kök dizine bir görsel (örn. yigit-profile.jpg) koyabilirsin -->
@@ -688,162 +717,164 @@
         </div>
       </header>
 
-      <div class="pill-row">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Aktif olarak CloudFlex’te Jr. Cloud Engineer
+      <div class="cv-scroll">
+        <div class="pill-row">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Aktif olarak CloudFlex’te Jr. Cloud Engineer
+          </div>
+          <div class="pill pill-ghost">
+            🌍 Work & Travel USA – güçlü İngilizce & adaptasyon
+          </div>
         </div>
-        <div class="pill pill-ghost">
-          🌍 Work & Travel USA – güçlü İngilizce & adaptasyon
-        </div>
+
+        <section class="cv-section">
+          <h2 class="section-title">Özet</h2>
+          <p class="cv-text">
+            Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji
+            tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile
+            ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım
+            oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.
+          </p>
+        </section>
+
+        <section class="cv-section">
+          <h2 class="section-title">Deneyim</h2>
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-item-header">
+                <h3 class="timeline-title">Jr. Cloud Engineer, CloudFlex</h3>
+                <p class="timeline-meta">Eylül 2025 - Halen</p>
+              </div>
+              <ul>
+                <li>AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.</li>
+                <li>Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.</li>
+                <li>Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-item-header">
+                <h3 class="timeline-title">Jr. DevOps &amp; Platform Mühendisi, Eteration</h3>
+                <p class="timeline-meta">Ocak 2025 - Temmuz 2025</p>
+              </div>
+              <ul>
+                <li>GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.</li>
+                <li>Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.</li>
+                <li>Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-item-header">
+                <h3 class="timeline-title">Intern Java Developer, Hitit</h3>
+                <p class="timeline-meta">Temmuz 2023 - Ağustos 2023</p>
+              </div>
+              <ul>
+                <li>Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.</li>
+                <li>Kurumsal Java projelerinde pratik deneyim kazanımı.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-item-header">
+                <h3 class="timeline-title">Intern Full Stack Developer, GET Yazılım</h3>
+                <p class="timeline-meta">Aralık 2022 - Mayıs 2023</p>
+              </div>
+              <ul>
+                <li>Web ve mobil projelere full‑stack geliştirici olarak katkı.</li>
+                <li>React, Android ve backend teknolojileriyle tam yığın geliştirme.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-item-header">
+                <h3 class="timeline-title">IT Asistanı, Muğla Sıtkı Koçman Üniversitesi</h3>
+                <p class="timeline-meta">Kasım 2021 - Haziran 2023</p>
+              </div>
+              <ul>
+                <li>Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.</li>
+                <li>Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h2 class="section-title">Eğitim &amp; Projeler</h2>
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-item-header">
+                <h3 class="timeline-title">Bilişim Sistemleri Mühendisliği, MSKÜ</h3>
+                <p class="timeline-meta">Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00</p>
+              </div>
+              <ul>
+                <li>Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.</li>
+                <li>Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-item-header">
+                <h3 class="timeline-title">Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi</h3>
+                <p class="timeline-meta">2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025</p>
+              </div>
+              <ul>
+                <li>React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.</li>
+                <li>Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h2 class="section-title">Odak Alanları &amp; Beceriler</h2>
+          <div class="stack-grid">
+            <div>
+              <p class="stack-label">Cloud &amp; DevOps</p>
+              <div class="stack-chips">
+                <span class="chip">Kubernetes</span>
+                <span class="chip">Docker</span>
+                <span class="chip">AWS</span>
+                <span class="chip">Azure</span>
+                <span class="chip">GitLab CI/CD</span>
+                <span class="chip">ArgoCD</span>
+                <span class="chip">Terraform</span>
+              </div>
+            </div>
+            <div>
+              <p class="stack-label">Development &amp; AI</p>
+              <div class="stack-chips">
+                <span class="chip">Java</span>
+                <span class="chip">Python</span>
+                <span class="chip">React</span>
+                <span class="chip">ASP.NET</span>
+                <span class="chip">Linux</span>
+                <span class="chip">ComfyUI</span>
+                <span class="chip">LLM Optimization</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-block">
+              <p class="meta-label">Diller</p>
+              <div class="meta-tags">
+                <span class="meta-tag">Türkçe (Ana Dil)</span>
+                <span class="meta-tag">İngilizce (Conversational)</span>
+              </div>
+            </div>
+            <div class="meta-block">
+              <p class="meta-label">Sertifikalar</p>
+              <div class="meta-tags">
+                <span class="meta-tag">AWS Cloud 101</span>
+                <span class="meta-tag">Siber Vatan Etik Hacker</span>
+                <span class="meta-tag">GitLab CI Fundamentals</span>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-
-      <section class="cv-section">
-        <h2 class="section-title">Özet</h2>
-        <p class="cv-text">
-          Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji
-          tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile
-          ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım
-          oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.
-        </p>
-      </section>
-
-      <section class="cv-section">
-        <h2 class="section-title">Deneyim</h2>
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-item-header">
-              <h3 class="timeline-title">Jr. Cloud Engineer, CloudFlex</h3>
-              <p class="timeline-meta">Eylül 2025 - Halen</p>
-            </div>
-            <ul>
-              <li>AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.</li>
-              <li>Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.</li>
-              <li>Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.</li>
-            </ul>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-item-header">
-              <h3 class="timeline-title">Jr. DevOps &amp; Platform Mühendisi, Eteration</h3>
-              <p class="timeline-meta">Ocak 2025 - Temmuz 2025</p>
-            </div>
-            <ul>
-              <li>GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.</li>
-              <li>Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.</li>
-              <li>Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.</li>
-            </ul>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-item-header">
-              <h3 class="timeline-title">Intern Java Developer, Hitit</h3>
-              <p class="timeline-meta">Temmuz 2023 - Ağustos 2023</p>
-            </div>
-            <ul>
-              <li>Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.</li>
-              <li>Kurumsal Java projelerinde pratik deneyim kazanımı.</li>
-            </ul>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-item-header">
-              <h3 class="timeline-title">Intern Full Stack Developer, GET Yazılım</h3>
-              <p class="timeline-meta">Aralık 2022 - Mayıs 2023</p>
-            </div>
-            <ul>
-              <li>Web ve mobil projelere full‑stack geliştirici olarak katkı.</li>
-              <li>React, Android ve backend teknolojileriyle tam yığın geliştirme.</li>
-            </ul>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-item-header">
-              <h3 class="timeline-title">IT Asistanı, Muğla Sıtkı Koçman Üniversitesi</h3>
-              <p class="timeline-meta">Kasım 2021 - Haziran 2023</p>
-            </div>
-            <ul>
-              <li>Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.</li>
-              <li>Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="cv-section">
-        <h2 class="section-title">Eğitim &amp; Projeler</h2>
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-item-header">
-              <h3 class="timeline-title">Bilişim Sistemleri Mühendisliği, MSKÜ</h3>
-              <p class="timeline-meta">Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00</p>
-            </div>
-            <ul>
-              <li>Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.</li>
-              <li>Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.</li>
-            </ul>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-item-header">
-              <h3 class="timeline-title">Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi</h3>
-              <p class="timeline-meta">2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025</p>
-            </div>
-            <ul>
-              <li>React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.</li>
-              <li>Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="cv-section">
-        <h2 class="section-title">Odak Alanları &amp; Beceriler</h2>
-        <div class="stack-grid">
-          <div>
-            <p class="stack-label">Cloud &amp; DevOps</p>
-            <div class="stack-chips">
-              <span class="chip">Kubernetes</span>
-              <span class="chip">Docker</span>
-              <span class="chip">AWS</span>
-              <span class="chip">Azure</span>
-              <span class="chip">GitLab CI/CD</span>
-              <span class="chip">ArgoCD</span>
-              <span class="chip">Terraform</span>
-            </div>
-          </div>
-          <div>
-            <p class="stack-label">Development &amp; AI</p>
-            <div class="stack-chips">
-              <span class="chip">Java</span>
-              <span class="chip">Python</span>
-              <span class="chip">React</span>
-              <span class="chip">ASP.NET</span>
-              <span class="chip">Linux</span>
-              <span class="chip">ComfyUI</span>
-              <span class="chip">LLM Optimization</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="meta-row">
-          <div class="meta-block">
-            <p class="meta-label">Diller</p>
-            <div class="meta-tags">
-              <span class="meta-tag">Türkçe (Ana Dil)</span>
-              <span class="meta-tag">İngilizce (Conversational)</span>
-            </div>
-          </div>
-          <div class="meta-block">
-            <p class="meta-label">Sertifikalar</p>
-            <div class="meta-tags">
-              <span class="meta-tag">AWS Cloud 101</span>
-              <span class="meta-tag">Siber Vatan Etik Hacker</span>
-              <span class="meta-tag">GitLab CI Fundamentals</span>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <footer class="contact-footer">
         <p class="contact-text">
