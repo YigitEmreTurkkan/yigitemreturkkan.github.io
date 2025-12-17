@@ -97,7 +97,10 @@
       justify-content: center;
       font-weight: 700;
       color: #0b1020;
-      box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.7);
+      box-shadow:
+        0 0 0 2px rgba(56, 189, 248, 0.9),
+        0 0 18px rgba(56, 189, 248, 0.55),
+        0 0 28px rgba(147, 51, 234, 0.5);
       flex-shrink: 0;
       overflow: hidden;
     }
@@ -763,11 +766,11 @@
         <div>
           <div class="heading-main">
             Yiğit Emre Türkkan
-            <span class="badge-role">Junior Cloud Engineer</span>
+            <span class="badge-role">Cloud &amp; DevOps Engineer</span>
           </div>
           <p class="subheading">
             Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
-            Junior Cloud Engineer. İstanbul merkezli, İrlanda için relokasyona açık.
+            Cloud &amp; DevOps Engineer.
           </p>
         </div>
       </header>
@@ -779,7 +782,10 @@
             Aktif olarak CloudFlex’te Jr. Cloud Engineer
           </div>
           <div class="pill pill-ghost">
-            🌍 Work & Travel USA – güçlü İngilizce & adaptasyon
+            🌐 Remote &amp; Hybrid Capable
+          </div>
+          <div class="pill pill-ghost">
+            🇬🇧 English C1
           </div>
         </div>
 
@@ -916,7 +922,7 @@
               <p class="meta-label">Diller</p>
               <div class="meta-tags">
                 <span class="meta-tag">Türkçe (Ana Dil)</span>
-                <span class="meta-tag">İngilizce (Conversational)</span>
+                <span class="meta-tag">English C1</span>
               </div>
             </div>
             <div class="meta-block">
@@ -933,7 +939,7 @@
 
       <div class="cv-scroll-indicator">
         <span class="scroll-hint-arrow">↓</span>
-        <span class="scroll-hint">CV detayları için aşağı kaydır</span>
+        <span class="scroll-hint">Scroll down for more</span>
       </div>
 
       <footer class="contact-footer">
@@ -958,8 +964,7 @@
           <div class="chat-title">
             AI Portfolio Chat
             <p class="chat-subtitle">
-              Yiğit’in Cloud & DevOps tecrübesi, öğrenme hızı ve ekip uyumu hakkında sorular sorabilirsiniz.
-              Türkçe veya İngilizce yazabilirsiniz.
+              Hello! This is Yiğit’s AI portfolio interface. Ask about his Cloud Architecture skills or DevOps methodology.
             </p>
           </div>
         </div>
@@ -975,17 +980,17 @@
         <div id="chat-scroll" class="chat-scroll"></div>
 
         <div class="quick-row" id="quick-row">
-          <button class="quick-chip" data-text="Kısaca kendini anlatır mısın?">
-            <span>⚡</span><span>Kısaca kendini anlat</span>
+          <button class="quick-chip" data-text="Tell me about yourself">
+            <span>⚡</span><span>Tell me about yourself</span>
           </button>
-          <button class="quick-chip" data-text="Kubernetes tecrübeni detaylandırır mısın?">
-            <span>☸️</span><span>Kubernetes tecrüben</span>
+          <button class="quick-chip" data-text="Kubernetes Experience">
+            <span>☸️</span><span>Kubernetes Experience</span>
           </button>
-          <button class="quick-chip" data-text="How would you fit into a cloud/devops team in Ireland?">
-            <span>🇮🇪</span><span>Relocation / Ireland</span>
+          <button class="quick-chip" data-text="DevOps Philosophy">
+            <span>🧠</span><span>DevOps Philosophy</span>
           </button>
-          <button class="quick-chip" data-text="DevOps süreçlerinde nasıl değer katarsın?">
-            <span>🚀</span><span>Takıma katkın</span>
+          <button class="quick-chip" data-text="Contact Info">
+            <span>📩</span><span>Contact Info</span>
           </button>
         </div>
       </div>
@@ -1012,7 +1017,9 @@
     </section>
   </main>
 
-  <script>
+  <script type="module">
+    import { sendMessageToGemini } from "./gemini-chat.js";
+
     (function () {
       const chatScroll = document.getElementById("chat-scroll");
       const chatInput = document.getElementById("chat-input");
@@ -1025,7 +1032,7 @@
 
       function detectLanguage(text) {
         const hasTrChars = /[çğıöşüÇĞİÖŞÜ]/.test(text);
-        const hasEnWords = /\b(what|how|why|cloud|devops|experience|team|ireland)\b/i.test(text);
+        const hasEnWords = /\b(what|how|why|cloud|devops|experience|team)\b/i.test(text);
         if (hasTrChars && !hasEnWords) return "tr";
         if (hasEnWords && !hasTrChars) return "en";
         return currentLang;
@@ -1082,168 +1089,6 @@
         scrollToBottom();
       }
 
-      function simulateDelay(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-      }
-
-      function buildAnswer(userText, lang) {
-        const t = userText.toLowerCase();
-        const isRecruiterLike =
-          /role|position|team|fit|culture|relocat|ireland|remote|on-site|adapt/i.test(userText);
-
-        const kubernetesAsked =
-          /kubernetes|k8s/.test(t);
-        const ciAsked =
-          /ci\/cd|pipeline|gitlab|deploy/.test(t);
-        const aboutAsked =
-          /kendini|özgeçmiş|cv|özet|summary|about you|introduce/.test(t);
-        const securityAsked =
-          /security|güvenlik|siber/.test(t);
-        const aiAsked =
-          /ai|yapay zeka|genai|llm|comfyui|stable|flux/.test(t);
-
-        const needsContact =
-          /contact|reach|iletişim|mail|cv|resume|linkedin/.test(t);
-
-        if (lang === "tr") {
-          if (kubernetesAsked) {
-            return (
-              "Evet, Kubernetes günlük işimde aktif olarak kullandığım bir teknoloji.\n\n" +
-              "- **Nerede kullandım?** CloudFlex’te containerize uygulamaların orkestrasyonunda, Azure ve AWS ortamlarında.\n" +
-              "- **Neler yaptım?** Deployment, HPA, Ingress, config/secret yönetimi ve ArgoCD ile GitOps tabanlı deployment kurguları.\n" +
-              "- **Odak noktam:** Stabilite, gözlemlenebilirlik ve sürüm geçişlerinde minimum kesinti.\n\n" +
-              "İstersen iskontrollü rollout, canlıya çıkış stratejileri veya production sorunlarını nasıl ele aldığımı da anlatabilirim."
-            );
-          }
-
-          if (ciAsked) {
-            return (
-              "CI/CD tarafında özellikle GitLab CI ve ArgoCD ile çalıştım.\n\n" +
-              "- **GitLab CI:** Branch stratejilerine göre pipeline’lar, test–build–deploy adımları ve environment bazlı onay mekanizmaları.\n" +
-              "- **ArgoCD:** Kubernetes için declarative GitOps yaklaşımı, rollback senaryoları ve application sync politikaları.\n" +
-              "- **Hedefim:** Geliştiricilerin “push ettim, gerisini sistem hallediyor” diyebileceği güvenilir bir teslimat hattı kurmak.\n\n" +
-              "İstersen sana tipik bir pipeline akışını veya join olacağım ekibe nasıl entegre olacağımı da anlatırım."
-            );
-          }
-
-          if (aboutAsked || isRecruiterLike) {
-            return (
-              "Kısaca kendimi şöyle özetleyebilirim:\n\n" +
-              "- **Profil:** Junior Cloud / DevOps Engineer, İstanbul merkezli, İrlanda’ya relokasyona açık.\n" +
-              "- **Teknik odak:** Kubernetes, Docker, AWS/Azure, GitLab CI/CD, ArgoCD, Terraform + Java & Python ile temel geliştirme deneyimi.\n" +
-              "- **Deneyim:** CloudFlex ve Eteration’da gerçek production ortamlarında altyapı, pipeline ve gözlemlenebilirlik üzerine çalıştım.\n" +
-              "- **Uyum:** Work & Travel USA ile kültürel adaptasyon, GDSC Co-Lead ve Siber Vatan ile topluluk liderliği tecrübesi.\n\n" +
-              "Dilersen sana özel daha nokta atışı bir özet de hazırlayabilirim; örneğin sadece **cloud role**, sadece **DevOps**, ya da **Ireland relocation** odağında."
-            );
-          }
-
-          if (securityAsked) {
-            return (
-              "Güvenlik tarafında özellikle altyapı ve farkındalık düzeyinde katkı sağlayabiliyorum.\n\n" +
-              "- **Eğitim:** 4 aylık yoğun **Siber Vatan Ethical Hacking** programına katıldım.\n" +
-              "- **Pratik katkı:** CI/CD’de secret yönetimi, erişim haklarının kısıtlanması, minimum yetki prensibi ve basic hardening adımlarına dikkat ediyorum.\n" +
-              "- **Amaç:** Güvenlik ekibinin yerini almak değil; DevOps süreçlerini güvenlik ekipleriyle uyumlu ve sorunsuz hale getirmek.\n\n" +
-              "İstersen pipeline ve Kubernetes tarafında nelere dikkat ettiğimi daha detaylı anlatabilirim."
-            );
-          }
-
-          if (aiAsked) {
-            return (
-              "Yapay zekâ tarafında özellikle **generative AI** ve pratik kullanım senaryolarına odaklanıyorum.\n\n" +
-              "- **Araçlar:** ComfyUI, Flux modelleri, lokal LLM’ler ve optimizasyon denemeleri.\n" +
-              "- **Yaklaşım:** AI’ı, klasik DevOps iş akışlarını hızlandıran bir yardımcı gibi kullanıyorum (dokümantasyon, script önerileri, troubleshooting vb.).\n" +
-              "- **Akademik taraf:** AI tabanlı Kişiselleştirilmiş Seyahat Yönetim Sistemi projesiyle uluslararası bir konferansta bildiri sundum.\n\n" +
-              "Eğer istersen, AI’ı ekip içinde nasıl konumlandırabileceğimi ve gerçek iş senaryolarında nasıl kullanabileceğimden bahsedebilirim."
-            );
-          }
-
-          if (needsContact) {
-            return (
-              "Telefon ve adres paylaşmıyorum; ama hızlı şekilde ulaşabileceğiniz kanallar şöyle:\n\n" +
-              "- **E-posta:** yigit.turkkan@gmail.com\n" +
-              "- **LinkedIn:** linkedin.com/in/yigitemreturkkan\n\n" +
-              "Dilersen CV’mi paylaşabileceğim bir e-posta adresi bırakabilirsin ya da doğrudan LinkedIn üzerinden bağlanabilirsin."
-            );
-          }
-
-          return (
-            "Soruna göre odaklı, kısa ve net cevaplar vermeye çalışıyorum.\n\n" +
-            "- Teknik tarafta: Kubernetes, Docker, AWS/Azure, GitLab CI/CD, ArgoCD, Terraform, Java/Python, React gibi alanlarda konuşabiliriz.\n" +
-            "- İş tarafında: Ekip uyumu, uluslararası çalışma deneyimi (Work & Travel USA) ve adaptasyon konularına değinebilirim.\n" +
-            "- Kariyer fit: Junior Cloud / DevOps rolleri, platform ekipleri veya AI destekli otomasyon süreçleri için uygun olduğumu anlatabilirim.\n\n" +
-            "Sorunu biraz daha netleştirirsen (örneğin: ‘seninle bir Ireland cloud rolü için mülakat yapıyorum’ gibi), cevabımı ona göre şekillendirebilirim."
-          );
-        } else {
-          if (kubernetesAsked) {
-            return (
-              "Yes, Kubernetes is one of the tools I’m most comfortable with.\n\n" +
-              "- **Where I used it:** At CloudFlex, orchestrating containerized workloads on Azure and AWS.\n" +
-              "- **What I did:** Deployments, HPA, Ingress, config/secret management and GitOps-style rollouts with ArgoCD.\n" +
-              "- **Focus:** Reliability, observability and safe rollouts with minimal downtime.\n\n" +
-              "If you’d like, I can walk you through how I’d troubleshoot a broken deployment or a failing rollout in a real team setting."
-            );
-          }
-
-          if (ciAsked) {
-            return (
-              "I have hands-on experience with CI/CD, mainly using GitLab CI and ArgoCD.\n\n" +
-              "- **GitLab CI:** Multi-stage pipelines (test–build–deploy), environment-based approvals, and branch-based rules.\n" +
-              "- **ArgoCD:** GitOps for Kubernetes, sync strategies, and rollbacks.\n" +
-              "- **Goal:** Give developers a smooth ‘I just push, and the pipeline takes care of the rest’ experience.\n\n" +
-              "I can adapt this approach to your existing tooling if you’re using something different than GitLab or ArgoCD."
-            );
-          }
-
-          if (aboutAsked || isRecruiterLike) {
-            return (
-              "Here’s a short, recruiter-friendly summary of me:\n\n" +
-              "- **Profile:** Junior Cloud / DevOps Engineer based in Istanbul, open to relocation (especially Ireland).\n" +
-              "- **Stack:** Kubernetes, Docker, AWS/Azure, GitLab CI/CD, ArgoCD, Terraform + Java/Python/React.\n" +
-              "- **Experience:** Production-focused work at CloudFlex and Eteration on infrastructure, CI/CD and observability.\n" +
-              "- **Soft skills:** International experience (Work & Travel USA), GDSC Co-Lead, and ‘Siber Vatan’ cybersecurity initiative member.\n\n" +
-              "If you tell me the role profile (for example: SRE, platform, or pure DevOps), I can tailor a 3–4 line custom summary for your JD."
-            );
-          }
-
-          if (securityAsked) {
-            return (
-              "I’m not a dedicated security engineer, but I do have a solid security awareness.\n\n" +
-              "- **Training:** Completed a 4‑month intensive ‘Siber Vatan Ethical Hacking’ program.\n" +
-              "- **In practice:** I pay attention to secret management, least-privilege access, and basic hardening in CI/CD and Kubernetes.\n" +
-              "- **Goal:** Make DevOps workflows security-friendly and easy to integrate with your existing security team.\n\n" +
-              "I haven’t worked as a full-time security engineer yet, but I’m a quick learner—just ask me about how I learned Kubernetes!"
-            );
-          }
-
-          if (aiAsked) {
-            return (
-              "I’m particularly interested in using AI to make engineering work more efficient.\n\n" +
-              "- **Tools:** ComfyUI, Flux models, and local LLM experimentation and optimization.\n" +
-              "- **Approach:** Use AI as a co-pilot for documentation, scripting help, troubleshooting hints and idea generation.\n" +
-              "- **Academic:** Co-authored a paper on a Personalized Travel Management System (AI‑powered, full‑stack) presented in an international conference.\n\n" +
-              "I’d be happy to discuss how AI could support your DevOps/platform workflows rather than replace engineers."
-            );
-          }
-
-          if (needsContact) {
-            return (
-              "For privacy reasons I don’t share phone or home address, but you can easily reach me here:\n\n" +
-              "- **Email:** yigit.turkkan@gmail.com\n" +
-              "- **LinkedIn:** linkedin.com/in/yigitemreturkkan\n\n" +
-              "If you’d like, you can send me your JD or a brief role description and I’ll tailor my profile to that context."
-            );
-          }
-
-          return (
-            "I try to keep my answers concise and focused on problem‑solving.\n\n" +
-            "- On the technical side: Kubernetes, Docker, AWS/Azure, GitLab CI/CD, ArgoCD, Terraform, Java/Python, React.\n" +
-            "- On the human side: strong adaptability (USA Work & Travel), good communication, and experience in agile teams.\n" +
-            "- On value: I aim to stabilize and streamline cloud environments rather than just ‘use tools’.\n\n" +
-            "If you tell me your perspective (recruiter, hiring manager, or engineer), I can answer in the style that’s most useful for you."
-          );
-        }
-      }
-
       async function handleUserMessage(rawText) {
         const text = rawText.trim();
         if (!text || isBusy) return;
@@ -1276,12 +1121,18 @@
         chatScroll.appendChild(typingRow);
         scrollToBottom();
 
-        const delay = Math.min(1400, Math.max(450, text.length * 15));
-        await simulateDelay(delay);
+        let answer;
+        try {
+          answer = await sendMessageToGemini(text);
+        } catch (e) {
+          console.error("Gemini error", e);
+          answer =
+            lang === "tr"
+              ? "Üzgünüm, şu anda yanıt üretemiyorum. Lütfen daha sonra tekrar dener misin veya LinkedIn üzerinden iletişime geçer misin?"
+              : "Sorry, I can’t generate a reply right now. Please try again later or reach out via LinkedIn.";
+        }
 
         typingRow.remove();
-
-        const answer = buildAnswer(text, lang);
         const meta =
           lang === "tr"
             ? "Profesyonel ama samimi, çözüm odaklı yanıt."
@@ -1319,12 +1170,12 @@
       });
 
       window.addEventListener("load", () => {
-        const introTr =
-          "Merhaba, ben Yiğit Emre Türkkan’ın yapay zeka kişiliğiyim.\n\n" +
-          "- Junior Cloud / DevOps Engineer olarak; Kubernetes, Docker, AWS/Azure ve GitLab CI/CD ile çalışıyorum.\n" +
-          "- Bana bir recruiter, işe alımcı ya da takım arkadaşı gibi soru sorabilirsin.\n\n" +
-          "İstersen önce kısaca kendimi anlatmamı, ardından da rolüne göre daha hedefli bir özet yapmamı isteyebilirsin.";
-        addMessage("ai", introTr, "TR/EN otomatik algılarım; sen nasıl yazarsan o dilde cevaplarım.");
+        const intro =
+          "Hello! I am Yiğit’s AI persona.\n\n" +
+          "- Cloud & DevOps Engineer with experience in Kubernetes, Docker, AWS/Azure and GitLab CI/CD.\n" +
+          "- You can ask about his cloud architecture decisions, DevOps methodology, or how he collaborates with teams.\n\n" +
+          "Try one of the suggestions below or start with a custom question.";
+        addMessage("ai", intro, "Ask in English or Turkish; I’ll adapt to your language.");
       });
     })();
   </script>
