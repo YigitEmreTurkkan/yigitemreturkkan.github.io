@@ -51,8 +51,29 @@
     }
 
     @media (max-width: 880px) {
+      body {
+        align-items: flex-start;
+        justify-content: stretch;
+        padding: 12px 8px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
       .app-shell {
         grid-template-columns: minmax(0, 1fr);
+        height: auto;
+        row-gap: 16px;
+      }
+
+      .cv-card,
+      .chat-card {
+        height: auto;
+      }
+
+      .cv-scroll {
+        flex: initial;
+        max-height: none;
+        overflow-y: visible;
       }
     }
 
@@ -866,7 +887,7 @@
           <div class="timeline">
             <article class="timeline-item">
               <div class="timeline-item-header">
-                <h3 class="timeline-title">Bilişim Sistemleri Mühendisliği, MSKÜ</h3>
+                <h3 class="timeline-title">Bilişim Sistemleri Mühendisliği, Muğla Sıtkı Koçman Üniversitesi</h3>
                 <p class="timeline-meta">Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00</p>
               </div>
               <ul>
@@ -900,7 +921,6 @@
                 <span class="chip">Azure</span>
                 <span class="chip">GitLab CI/CD</span>
                 <span class="chip">ArgoCD</span>
-                <span class="chip">Terraform</span>
               </div>
             </div>
             <div>
@@ -911,7 +931,6 @@
                 <span class="chip">React</span>
                 <span class="chip">ASP.NET</span>
                 <span class="chip">Linux</span>
-                <span class="chip">ComfyUI</span>
                 <span class="chip">LLM Optimization</span>
               </div>
             </div>
@@ -922,7 +941,7 @@
               <p class="meta-label">Diller</p>
               <div class="meta-tags">
                 <span class="meta-tag">Türkçe (Ana Dil)</span>
-                <span class="meta-tag">English C1</span>
+                <span class="meta-tag">English</span>
               </div>
             </div>
             <div class="meta-block">
