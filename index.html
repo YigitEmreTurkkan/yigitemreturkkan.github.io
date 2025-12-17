@@ -44,7 +44,7 @@
     .app-shell {
       width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.6fr);
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
       gap: 24px;
       align-items: stretch;
       height: calc(100vh - 32px);
@@ -387,13 +387,13 @@
     .chat-card {
       display: flex;
       flex-direction: column;
-      min-height: 420px;
-      max-height: 620px;
+      height: 100%;
     }
 
     .cv-card {
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .cv-scroll {
@@ -697,7 +697,6 @@
       gap: 6px;
       font-size: 0.74rem;
       color: rgba(156, 163, 175, 0.9);
-      margin-top: 6px;
       opacity: 0.9;
     }
 
@@ -709,6 +708,18 @@
     @keyframes bounce-down {
       0%, 100% { transform: translateY(0); opacity: 0.6; }
       50% { transform: translateY(3px); opacity: 1; }
+    }
+
+    .cv-scroll-indicator {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      pointer-events: none;
     }
 
     .pill-status {
@@ -754,10 +765,6 @@
             Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
             Junior Cloud Engineer. İstanbul merkezli, İrlanda için relokasyona açık.
           </p>
-          <div class="scroll-hint">
-            <span class="scroll-hint-arrow">↓</span>
-            <span>CV detayları için aşağı kaydır</span>
-          </div>
         </div>
       </header>
 
@@ -918,6 +925,11 @@
             </div>
           </div>
         </section>
+      </div>
+
+      <div class="cv-scroll-indicator">
+        <span class="scroll-hint-arrow">↓</span>
+        <span class="scroll-hint">CV detayları için aşağı kaydır</span>
       </div>
 
       <footer class="contact-footer">
