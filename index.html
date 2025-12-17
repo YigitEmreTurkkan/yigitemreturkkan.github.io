@@ -799,7 +799,7 @@
       <div class="cv-scroll">
         <div class="pill-row">
           <div class="pill">
-            <span class="pill-dot"></span>
+            <span class="pill-dot"></span>r
             Aktif olarak CloudFlex’te Jr. Cloud Engineer
           </div>
           <div class="pill pill-ghost">
@@ -977,9 +977,9 @@
       <header class="chat-header-row">
         <div>
           <div class="chat-title">
-            AI Portfolio Chat
+            Yiğit Emre Türkkan'ın AI CV Asistanı
             <p class="chat-subtitle">
-              Hello! This is Yiğit’s AI portfolio interface. Ask about his Cloud Architecture skills or DevOps methodology.
+              Yiğit'in deneyimi, becerileri ve pozisyona uygunluğu hakkında soru sorabilirsin. Aşağıdaki hazır sorulardan birine tıkla ya da kendi sorunuzu yaz.
             </p>
           </div>
         </div>
@@ -995,17 +995,17 @@
         <div id="chat-scroll" class="chat-scroll"></div>
 
         <div class="quick-row" id="quick-row">
-          <button class="quick-chip" data-text="Tell me about yourself">
-            <span>⚡</span><span>Tell me about yourself</span>
+          <button class="quick-chip" data-text="Kendini kısaca tanıtır mısın?">
+            <span>⚡</span><span>Kısaca kendini tanıt</span>
           </button>
-          <button class="quick-chip" data-text="Kubernetes Experience">
-            <span>☸️</span><span>Kubernetes Experience</span>
+          <button class="quick-chip" data-text="Kubernetes deneyimin nedir?">
+            <span>☸️</span><span>Kubernetes deneyimin</span>
           </button>
-          <button class="quick-chip" data-text="DevOps Philosophy">
-            <span>🧠</span><span>DevOps Philosophy</span>
+          <button class="quick-chip" data-text="DevOps yaklaşımını nasıl tarif edersin?">
+            <span>🧠</span><span>DevOps yaklaşımın</span>
           </button>
-          <button class="quick-chip" data-text="Contact Info">
-            <span>📩</span><span>Contact Info</span>
+          <button class="quick-chip" data-text="İletişim bilgilerini paylaşır mısın?">
+            <span>📩</span><span>İletişim bilgilerin</span>
           </button>
         </div>
       </div>
@@ -1016,13 +1016,13 @@
             id="chat-input"
             class="chat-input"
             rows="1"
-            placeholder="Bir recruiter gibi soru sorabilirsin: Örneğin &quot;Kubernetes deneyimin nedir?&quot; ya da &quot;Takıma nasıl değer katarsın?&quot;"
+            placeholder="Sorunu buraya yaz: Örn. &quot;Kendini kısaca tanıtır mısın?&quot; veya &quot;Kubernetes deneyimin nedir?&quot;"
           ></textarea>
           <button id="lang-toggle" class="chat-lang-toggle" type="button">
             <span>TR</span> / EN
           </button>
           <p class="chat-hint">
-            Telefon veya adres paylaşmam; e-posta ve LinkedIn üzerinden yönlendiririm.
+            Telefon veya adres paylaşmam; seni e-posta veya LinkedIn'e yönlendiririm.
           </p>
         </div>
         <button id="send-btn" class="chat-send-btn" type="button" aria-label="Send message">
@@ -1186,11 +1186,11 @@
 
       window.addEventListener("load", () => {
         const intro =
-          "Hello! I am Yiğit’s AI persona.\n\n" +
-          "- Cloud & DevOps Engineer with experience in Kubernetes, Docker, AWS/Azure and GitLab CI/CD.\n" +
-          "- You can ask about his cloud architecture decisions, DevOps methodology, or how he collaborates with teams.\n\n" +
-          "Try one of the suggestions below or start with a custom question.";
-        addMessage("ai", intro, "Ask in English or Turkish; I’ll adapt to your language.");
+          "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
+          "- Yiğit'in Cloud & DevOps deneyimi, projeleri veya ekip uyumu hakkında sorular sorabilirsin.\n" +
+          "- Aşağıdaki hazır sorulardan birine tıklayabilir ya da kendi sorunuzu yazabilirsin.\n\n" +
+          "Kısa ve net cevaplar vermeye çalışacağım.";
+        addMessage("ai", intro, "Türkçe veya İngilizce yazabilirsin; ikisini de anlayabilirim.");
       });
     })();
   </script>
