@@ -167,6 +167,105 @@
       margin-bottom: 6px;
     }
 
+    .cv-section {
+      margin-top: 18px;
+    }
+
+    .cv-text {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .timeline-item {
+      padding: 8px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.92);
+    }
+
+    .timeline-item-header {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .timeline-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .timeline-item ul {
+      margin-top: 4px;
+      padding-left: 18px;
+      list-style: disc;
+    }
+
+    .timeline-item li {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .meta-block {
+      flex: 1 1 140px;
+      min-width: 0;
+    }
+
+    .meta-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .meta-tag {
+      font-size: 0.74rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      white-space: nowrap;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.7);
+    }
+
     .stack-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -573,7 +672,10 @@
   <main class="app-shell">
     <section class="card">
       <header class="card-header">
-        <div class="avatar">YT</div>
+        <div class="avatar">
+          <!-- Profil fotoğrafı eklemek için kök dizine bir görsel (örn. yigit-profile.jpg) koyabilirsin -->
+          <img src="yigit-profile.jpg" alt="Yiğit Emre Türkkan" onerror="this.style.display='none'; this.parentElement.textContent='YT';" />
+        </div>
         <div>
           <div class="heading-main">
             Yiğit Emre Türkkan
@@ -596,33 +698,152 @@
         </div>
       </div>
 
-      <h2 class="section-title">Odak Alanları</h2>
-      <div class="stack-grid">
-        <div>
-          <p class="stack-label">Cloud & DevOps</p>
-          <div class="stack-chips">
-            <span class="chip">Kubernetes</span>
-            <span class="chip">Docker</span>
-            <span class="chip">AWS</span>
-            <span class="chip">Azure</span>
-            <span class="chip">GitLab CI/CD</span>
-            <span class="chip">ArgoCD</span>
-            <span class="chip">Terraform</span>
+      <section class="cv-section">
+        <h2 class="section-title">Özet</h2>
+        <p class="cv-text">
+          Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji
+          tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile
+          ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım
+          oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.
+        </p>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="section-title">Deneyim</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-item-header">
+              <h3 class="timeline-title">Jr. Cloud Engineer, CloudFlex</h3>
+              <p class="timeline-meta">Eylül 2025 - Halen</p>
+            </div>
+            <ul>
+              <li>AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.</li>
+              <li>Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.</li>
+              <li>Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-item-header">
+              <h3 class="timeline-title">Jr. DevOps &amp; Platform Mühendisi, Eteration</h3>
+              <p class="timeline-meta">Ocak 2025 - Temmuz 2025</p>
+            </div>
+            <ul>
+              <li>GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.</li>
+              <li>Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.</li>
+              <li>Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-item-header">
+              <h3 class="timeline-title">Intern Java Developer, Hitit</h3>
+              <p class="timeline-meta">Temmuz 2023 - Ağustos 2023</p>
+            </div>
+            <ul>
+              <li>Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.</li>
+              <li>Kurumsal Java projelerinde pratik deneyim kazanımı.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-item-header">
+              <h3 class="timeline-title">Intern Full Stack Developer, GET Yazılım</h3>
+              <p class="timeline-meta">Aralık 2022 - Mayıs 2023</p>
+            </div>
+            <ul>
+              <li>Web ve mobil projelere full‑stack geliştirici olarak katkı.</li>
+              <li>React, Android ve backend teknolojileriyle tam yığın geliştirme.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-item-header">
+              <h3 class="timeline-title">IT Asistanı, Muğla Sıtkı Koçman Üniversitesi</h3>
+              <p class="timeline-meta">Kasım 2021 - Haziran 2023</p>
+            </div>
+            <ul>
+              <li>Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.</li>
+              <li>Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="section-title">Eğitim &amp; Projeler</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-item-header">
+              <h3 class="timeline-title">Bilişim Sistemleri Mühendisliği, MSKÜ</h3>
+              <p class="timeline-meta">Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00</p>
+            </div>
+            <ul>
+              <li>Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.</li>
+              <li>Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-item-header">
+              <h3 class="timeline-title">Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi</h3>
+              <p class="timeline-meta">2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025</p>
+            </div>
+            <ul>
+              <li>React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.</li>
+              <li>Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="section-title">Odak Alanları &amp; Beceriler</h2>
+        <div class="stack-grid">
+          <div>
+            <p class="stack-label">Cloud &amp; DevOps</p>
+            <div class="stack-chips">
+              <span class="chip">Kubernetes</span>
+              <span class="chip">Docker</span>
+              <span class="chip">AWS</span>
+              <span class="chip">Azure</span>
+              <span class="chip">GitLab CI/CD</span>
+              <span class="chip">ArgoCD</span>
+              <span class="chip">Terraform</span>
+            </div>
+          </div>
+          <div>
+            <p class="stack-label">Development &amp; AI</p>
+            <div class="stack-chips">
+              <span class="chip">Java</span>
+              <span class="chip">Python</span>
+              <span class="chip">React</span>
+              <span class="chip">ASP.NET</span>
+              <span class="chip">Linux</span>
+              <span class="chip">ComfyUI</span>
+              <span class="chip">LLM Optimization</span>
+            </div>
           </div>
         </div>
-        <div>
-          <p class="stack-label">Development & AI</p>
-          <div class="stack-chips">
-            <span class="chip">Java</span>
-            <span class="chip">Python</span>
-            <span class="chip">React</span>
-            <span class="chip">ASP.NET</span>
-            <span class="chip">Linux</span>
-            <span class="chip">ComfyUI</span>
-            <span class="chip">LLM Optimization</span>
+
+        <div class="meta-row">
+          <div class="meta-block">
+            <p class="meta-label">Diller</p>
+            <div class="meta-tags">
+              <span class="meta-tag">Türkçe (Ana Dil)</span>
+              <span class="meta-tag">İngilizce (Conversational)</span>
+            </div>
+          </div>
+          <div class="meta-block">
+            <p class="meta-label">Sertifikalar</p>
+            <div class="meta-tags">
+              <span class="meta-tag">AWS Cloud 101</span>
+              <span class="meta-tag">Siber Vatan Etik Hacker</span>
+              <span class="meta-tag">GitLab CI Fundamentals</span>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <footer class="contact-footer">
         <p class="contact-text">
