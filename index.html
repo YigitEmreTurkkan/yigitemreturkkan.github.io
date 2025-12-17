@@ -91,33 +91,37 @@
       }
 
       .mobile-tabs {
-        display: flex;
+        display: none;
+      }
+
+      .mobile-expand-btn {
+        display: inline-flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
         gap: 8px;
         margin-bottom: 8px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(191, 219, 254, 0.85);
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: #f9fafb;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(79, 70, 229, 0.7);
       }
 
-      /* Tab: Profil & İletişim aktif */
-      body[data-mobile-tab="profile"] .cv-card {
-        display: flex;
-      }
-
-      body[data-mobile-tab="profile"] .chat-card {
+      body[data-mobile-expanded="false"] .cv-scroll,
+      body[data-mobile-expanded="false"] .contact-footer,
+      body[data-mobile-expanded="false"] .cv-scroll-indicator,
+      body[data-mobile-expanded="false"] .chat-card {
         display: none;
       }
 
-      /* Tab: AI Asistanı aktif */
-      body[data-mobile-tab="assistant"] .cv-card {
-        display: flex;
-      }
-
-      body[data-mobile-tab="assistant"] .cv-scroll,
-      body[data-mobile-tab="assistant"] .contact-footer,
-      body[data-mobile-tab="assistant"] .cv-scroll-indicator {
+      body[data-mobile-expanded="true"] .mobile-expand-btn {
         display: none;
-      }
-
-      body[data-mobile-tab="assistant"] .chat-card {
-        display: flex;
       }
     }
 
@@ -508,6 +512,10 @@
       display: none;
     }
 
+    .mobile-expand-btn {
+      display: none;
+    }
+
     .mobile-tab {
       flex: 1;
       padding: 8px 10px;
@@ -865,10 +873,10 @@
         </div>
       </header>
 
-      <div class="mobile-tabs">
-        <button id="tab-profile" class="mobile-tab mobile-tab-active">Profil &amp; İletişim</button>
-        <button id="tab-assistant" class="mobile-tab">AI Asistanı</button>
-      </div>
+      <button id="mobile-expand" class="mobile-expand-btn">
+        <span>▼</span>
+        <span>CV Detaylarını ve AI Asistanı Göster</span>
+      </button>
 
       <div class="cv-scroll">
         <div class="pill-row">
@@ -1112,8 +1120,7 @@
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
       const langToggle = document.getElementById("lang-toggle");
-      const tabProfile = document.getElementById("tab-profile");
-      const tabAssistant = document.getElementById("tab-assistant");
+      const mobileExpandBtn = document.getElementById("mobile-expand");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1129,18 +1136,6 @@
       function setLang(lang) {
         currentLang = lang;
         langToggle.innerHTML = lang === "tr" ? "<span>TR</span> / EN" : "TR / <span>EN</span>";
-      }
-
-      function setMobileTab(tab) {
-        document.body.setAttribute("data-mobile-tab", tab);
-        if (!tabProfile || !tabAssistant) return;
-        if (tab === "assistant") {
-          tabAssistant.classList.add("mobile-tab-active");
-          tabProfile.classList.remove("mobile-tab-active");
-        } else {
-          tabProfile.classList.add("mobile-tab-active");
-          tabAssistant.classList.remove("mobile-tab-active");
-        }
       }
 
       function scrollToBottom() {
@@ -1270,8 +1265,8 @@
       });
 
       window.addEventListener("load", () => {
-        // Varsayılan mobil tab: Profil & İletişim
-        setMobileTab("profile");
+        // Mobilde başlangıçta içerik kapalı
+        document.body.setAttribute("data-mobile-expanded", "false");
 
         const intro =
           "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
@@ -1281,9 +1276,10 @@
         addMessage("ai", intro, "Türkçe veya İngilizce yazabilirsin; ikisini de anlayabilirim.");
       });
 
-      if (tabProfile && tabAssistant) {
-        tabProfile.addEventListener("click", () => setMobileTab("profile"));
-        tabAssistant.addEventListener("click", () => setMobileTab("assistant"));
+      if (mobileExpandBtn) {
+        mobileExpandBtn.addEventListener("click", () => {
+          document.body.setAttribute("data-mobile-expanded", "true");
+        });
       }
     })();
   </script>
