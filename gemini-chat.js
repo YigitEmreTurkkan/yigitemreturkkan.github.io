@@ -24,10 +24,9 @@ DAVRANIŞ KURALLARI:
 
 // Model Ayarları
 const genAI = new GoogleGenerativeAI(API_KEY);
-// Not: Bazı istemciler için "gemini-1.5-flash" modeli v1beta altında 404 verebiliyor.
-// Bu yüzden "-latest" uzantılı ismi kullanıyoruz.
+// Google'ın v1beta endpoint'inde çalışan güncel model ismi
 const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+    model: "gemini-2.0-flash",
     systemInstruction: SYSTEM_INSTRUCTION
 });
 
