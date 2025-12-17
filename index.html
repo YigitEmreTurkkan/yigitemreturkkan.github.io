@@ -80,6 +80,45 @@
         flex: 1;
         min-height: 0;
       }
+
+      .card-header {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
+      }
+
+      .mobile-tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      /* Tab: Profil & İletişim aktif */
+      body[data-mobile-tab="profile"] .cv-card {
+        display: flex;
+      }
+
+      body[data-mobile-tab="profile"] .chat-card {
+        display: none;
+      }
+
+      /* Tab: AI Asistanı aktif */
+      body[data-mobile-tab="assistant"] .cv-card {
+        display: flex;
+      }
+
+      body[data-mobile-tab="assistant"] .cv-scroll,
+      body[data-mobile-tab="assistant"] .contact-footer,
+      body[data-mobile-tab="assistant"] .cv-scroll-indicator {
+        display: none;
+      }
+
+      body[data-mobile-tab="assistant"] .chat-card {
+        display: flex;
+      }
     }
 
     .card {
@@ -465,6 +504,33 @@
       color: var(--muted);
     }
 
+    .mobile-tabs {
+      display: none;
+    }
+
+    .mobile-tab {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.16s ease-out;
+    }
+
+    .mobile-tab-active {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #f9fafb;
+      border-color: rgba(191, 219, 254, 0.9);
+      box-shadow: 0 10px 22px rgba(79, 70, 229, 0.6);
+    }
+
     .chat-badge {
       font-size: 0.7rem;
       padding: 5px 10px;
@@ -799,6 +865,11 @@
         </div>
       </header>
 
+      <div class="mobile-tabs">
+        <button id="tab-profile" class="mobile-tab mobile-tab-active">Profil &amp; İletişim</button>
+        <button id="tab-assistant" class="mobile-tab">AI Asistanı</button>
+      </div>
+
       <div class="cv-scroll">
         <div class="pill-row">
           <div class="pill">
@@ -1041,6 +1112,8 @@
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
       const langToggle = document.getElementById("lang-toggle");
+      const tabProfile = document.getElementById("tab-profile");
+      const tabAssistant = document.getElementById("tab-assistant");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1056,6 +1129,18 @@
       function setLang(lang) {
         currentLang = lang;
         langToggle.innerHTML = lang === "tr" ? "<span>TR</span> / EN" : "TR / <span>EN</span>";
+      }
+
+      function setMobileTab(tab) {
+        document.body.setAttribute("data-mobile-tab", tab);
+        if (!tabProfile || !tabAssistant) return;
+        if (tab === "assistant") {
+          tabAssistant.classList.add("mobile-tab-active");
+          tabProfile.classList.remove("mobile-tab-active");
+        } else {
+          tabProfile.classList.add("mobile-tab-active");
+          tabAssistant.classList.remove("mobile-tab-active");
+        }
       }
 
       function scrollToBottom() {
@@ -1185,6 +1270,9 @@
       });
 
       window.addEventListener("load", () => {
+        // Varsayılan mobil tab: Profil & İletişim
+        setMobileTab("profile");
+
         const intro =
           "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
           "- Yiğit'in Cloud & DevOps deneyimi, projeleri veya ekip uyumu hakkında sorular sorabilirsin.\n" +
@@ -1192,6 +1280,11 @@
           "Kısa ve net cevaplar vermeye çalışacağım.";
         addMessage("ai", intro, "Türkçe veya İngilizce yazabilirsin; ikisini de anlayabilirim.");
       });
+
+      if (tabProfile && tabAssistant) {
+        tabProfile.addEventListener("click", () => setMobileTab("profile"));
+        tabAssistant.addEventListener("click", () => setMobileTab("assistant"));
+      }
     })();
   </script>
 </body>
