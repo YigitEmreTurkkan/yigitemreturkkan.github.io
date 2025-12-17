@@ -119,10 +119,6 @@
       body[data-mobile-expanded="false"] .chat-card {
         display: none;
       }
-
-      body[data-mobile-expanded="true"] .mobile-expand-btn {
-        display: none;
-      }
     }
 
     .card {
@@ -1138,6 +1134,14 @@
         langToggle.innerHTML = lang === "tr" ? "<span>TR</span> / EN" : "TR / <span>EN</span>";
       }
 
+      function updateMobileExpandButton() {
+        if (!mobileExpandBtn) return;
+        const expanded = document.body.getAttribute("data-mobile-expanded") === "true";
+        mobileExpandBtn.innerHTML = expanded
+          ? '<span>▲</span><span>CV Detaylarını ve AI Asistanını Gizle</span>'
+          : '<span>▼</span><span>CV Detaylarını ve AI Asistanını Göster</span>';
+      }
+
       function scrollToBottom() {
         requestAnimationFrame(() => {
           chatScroll.scrollTop = chatScroll.scrollHeight;
@@ -1267,6 +1271,7 @@
       window.addEventListener("load", () => {
         // Mobilde başlangıçta içerik kapalı
         document.body.setAttribute("data-mobile-expanded", "false");
+        updateMobileExpandButton();
 
         const intro =
           "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
@@ -1278,7 +1283,9 @@
 
       if (mobileExpandBtn) {
         mobileExpandBtn.addEventListener("click", () => {
-          document.body.setAttribute("data-mobile-expanded", "true");
+          const current = document.body.getAttribute("data-mobile-expanded") === "true";
+          document.body.setAttribute("data-mobile-expanded", current ? "false" : "true");
+          updateMobileExpandButton();
         });
       }
     })();
