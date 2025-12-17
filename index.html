@@ -88,8 +88,8 @@
     }
 
     .avatar {
-      width: 40px;
-      height: 40px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: radial-gradient(circle at 30% 20%, #fef3c7, #4f46e5);
       display: flex;
@@ -99,6 +99,7 @@
       color: #0b1020;
       box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.7);
       flex-shrink: 0;
+      overflow: hidden;
     }
 
     .heading-main {
@@ -267,6 +268,26 @@
       object-fit: cover;
       display: block;
       box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.7);
+    }
+
+    .scroll-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      color: rgba(156, 163, 175, 0.9);
+      margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    .scroll-hint-arrow {
+      font-size: 0.9rem;
+      animation: bounce-down 1.2s infinite ease-in-out;
+    }
+
+    @keyframes bounce-down {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(3px); opacity: 1; }
     }
 
     .stack-grid {
@@ -670,6 +691,26 @@
       margin-top: 3px;
     }
 
+    .scroll-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      color: rgba(156, 163, 175, 0.9);
+      margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    .scroll-hint-arrow {
+      font-size: 0.9rem;
+      animation: bounce-down 1.2s infinite ease-in-out;
+    }
+
+    @keyframes bounce-down {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(3px); opacity: 1; }
+    }
+
     .pill-status {
       display: inline-flex;
       align-items: center;
@@ -701,7 +742,7 @@
     <section class="card cv-card">
       <header class="card-header">
         <div class="avatar">
-          <!-- Profil fotoğrafı eklemek için kök dizine bir görsel (örn. yigit-profile.jpg) koyabilirsin -->
+          <!-- Profil fotoğrafı eklemek için kök dizine bir görsel (örn. yigit-profile.jpeg) koyabilirsin -->
           <img src="yigit-profile.jpeg" alt="Yiğit Emre Türkkan" onerror="this.style.display='none'; this.parentElement.textContent='YT';" />
         </div>
         <div>
@@ -713,6 +754,10 @@
             Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
             Junior Cloud Engineer. İstanbul merkezli, İrlanda için relokasyona açık.
           </p>
+          <div class="scroll-hint">
+            <span class="scroll-hint-arrow">↓</span>
+            <span>CV detayları için aşağı kaydır</span>
+          </div>
         </div>
       </header>
 
