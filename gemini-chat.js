@@ -1,7 +1,8 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // 1. ADIM: API Anahtarını buraya yapıştır
-const API_KEY = "REMOVED_API_KEY";
+const AI_API = "REPLACE_WITH_SECRET_KEY"; 
+const genAI = new GoogleGenerativeAI(AI_API);
 
 // 2. ADIM: Kişilik Tanımlaması (System Instruction)
 const SYSTEM_INSTRUCTION = `
