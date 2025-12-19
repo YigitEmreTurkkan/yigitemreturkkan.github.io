@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
-// 1. ADIM: API Anahtarını buraya yapıştır
+// 1. ADIM: Değişkeni tek bir kez tanımlıyoruz
 const AI_API = "REPLACE_WITH_SECRET_KEY"; 
 const genAI = new GoogleGenerativeAI(AI_API);
 
@@ -23,9 +23,7 @@ DAVRANIŞ KURALLARI:
 - Türkçe sorulursa Türkçe, İngilizce sorulursa İngilizce cevap ver.
 `;
 
-// Model Ayarları
-const genAI = new GoogleGenerativeAI(API_KEY);
-// Google'ın v1beta endpoint'inde çalışan güncel model ismi
+// Model Ayarları (Hatalı olan ikinci 'const genAI' satırını sildik)
 const model = genAI.getGenerativeModel({
     model: "gemini-2.0-flash",
     systemInstruction: SYSTEM_INSTRUCTION
