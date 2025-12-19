@@ -2,8 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"] # Sadece main'e push yapınca çalışır
-  workflow_dispatch: # Manuel çalıştırmak istersen
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -12,6 +12,10 @@ permissions:
 
 jobs:
   deploy:
+    # Hatanın çözümü buradaki environment bloğudur
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,8 +23,8 @@ jobs:
 
       - name: Inject API Key
         run: |
-          # gemini-chat.js içindeki placeholder'ı Secret ile değiştiriyoruz
-          sed -i "s/REPLACE_WITH_SECRET_KEY/${{ secrets.AI_API }}/g" gemini-chat.js
+          # Proje içindeki tüm .js dosyalarında yer tutucuyu değiştirir
+          find . -name "*.js" -exec sed -i "s/REPLACE_WITH_SECRET_KEY/${{ secrets.AI_API }}/g" {} +
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -28,7 +32,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # Tüm dosyaları paketle
+          path: '.' 
 
       - name: Deploy to GitHub Pages
         id: deployment
