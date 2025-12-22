@@ -254,6 +254,76 @@
                                                                                                                                                                                                                                 text-align: justify;
                                                                                                                                                                                                                               }
 
+.cv-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-contact {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+}
+
+.btn-contact .btn-icon {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.btn-contact-linkedin {
+  background: rgba(15, 23, 42, 0.96);
+  border-color: rgba(56, 189, 248, 0.7);
+  color: #e0f2fe;
+}
+
+.btn-contact-linkedin .btn-icon {
+  background: #0a66c2;
+  color: #e5f2ff;
+}
+
+.btn-contact-email {
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(129, 140, 248, 0.8);
+  color: #e5e7eb;
+}
+
+.btn-contact-email .btn-icon {
+  background: #4f46e5;
+  color: #eef2ff;
+}
+
+.btn-contact-github {
+  background: rgba(15, 23, 42, 0.94);
+  border-color: rgba(148, 163, 184, 0.85);
+  color: #e5e7eb;
+}
+
+.btn-contact-github .btn-icon {
+  background: #111827;
+  color: #f9fafb;
+}
+
+.btn-contact:hover {
+  transform: translateY(-1px);
+}
+
                                                                                                                                                                                                                               .pill-row {
                                                                                                                                                                                                                                 display: flex;
                                                                                                                                                                                                                                 flex-wrap: wrap;
@@ -936,6 +1006,16 @@
                                                                                                                                                                                                                                           <span class="btn-icon">in</span>
                                                                                                                                                                                                                                           <span>LinkedIn</span>
                                                                                                                                                                                                                                         </a>
+
+                                                                                                                                                                                                                                         <a
+                                                                                                                                                                                                                                           class="btn-contact btn-contact-github"
+                                                                                                                                                                                                                                           href="https://github.com/YigitEmreTurkkan"
+                                                                                                                                                                                                                                           target="_blank"
+                                                                                                                                                                                                                                           rel="noreferrer"
+                                                                                                                                                                                                                                         >
+                                                                                                                                                                                                                                           <span class="btn-icon">GH</span>
+                                                                                                                                                                                                                                           <span>GitHub</span>
+                                                                                                                                                                                                                                         </a>
 
                                                                                                                                                                                                                                         <a
                                                                                                                                                                                                                                           class="btn-contact btn-contact-email"
