@@ -93,34 +93,6 @@
       .mobile-tabs {
         display: none;
       }
-
-      .mobile-nav-btn {
-        display: inline-flex;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin: 10px 0;
-        padding: 10px 14px;
-        border-radius: 14px;
-        border: 1px solid rgba(191, 219, 254, 0.85);
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        color: #f9fafb;
-        font-size: 0.82rem;
-        font-weight: 600;
-        text-align: center;
-        cursor: pointer;
-        box-shadow: 0 10px 24px rgba(79, 70, 229, 0.7);
-      }
-
-      /* Mobilde: başlangıçta AI görünür, CV gizli */
-      body[data-mobile-view="ai"] .cv-card {
-        display: none;
-      }
-
-      body[data-mobile-view="cv"] .chat-card {
-        display: none;
-      }
     }
 
     .card {
@@ -1075,7 +1047,6 @@
         </div>
       </footer>
 
-      <button id="nav-to-ai" class="mobile-nav-btn">AI Asistanına Git</button>
     </section>
 
     <section class="card chat-card">
@@ -1132,7 +1103,6 @@
         </button>
       </div>
 
-      <button id="nav-to-cv" class="mobile-nav-btn">CV’ye Git</button>
     </section>
   </main>
 
@@ -1144,8 +1114,6 @@
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
-      const btnNavToCv = document.getElementById("nav-to-cv");
-      const btnNavToAi = document.getElementById("nav-to-ai");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1294,14 +1262,7 @@
         addMessage("ai", intro, "Kısa ve net cevaplar vereceğim.");
       });
 
-      if (btnNavToCv && btnNavToAi) {
-        btnNavToCv.addEventListener("click", () => {
-          document.body.setAttribute("data-mobile-view", "cv");
-        });
-        btnNavToAi.addEventListener("click", () => {
-          document.body.setAttribute("data-mobile-view", "ai");
-        });
-      }
+      // Mobil / masaüstü için özel görünüm geçişi yok; iki kart da her zaman görünür.
     })();
   </script>
 </body>
