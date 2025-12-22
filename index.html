@@ -55,7 +55,8 @@
         align-items: stretch;
         justify-content: stretch;
         padding: 8px;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
 
       .app-shell {
@@ -94,55 +95,7 @@
         display: none;
       }
 
-      .mobile-expand-btn {
-        display: inline-flex;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 8px;
-        padding: 10px 14px;
-        border-radius: 14px;
-        border: 1px solid rgba(191, 219, 254, 0.85);
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        color: #f9fafb;
-        font-size: 0.82rem;
-        font-weight: 600;
-        text-align: center;
-        cursor: pointer;
-        box-shadow: 0 10px 24px rgba(79, 70, 229, 0.7);
-      }
-
-      body[data-mobile-expanded="false"] .cv-scroll,
-      body[data-mobile-expanded="false"] .contact-footer,
-      body[data-mobile-expanded="false"] .cv-scroll-indicator,
-      body[data-mobile-expanded="false"] .chat-card {
-        display: none;
-      }
-
-      /* Genişletilmiş durumda tüm içerik sayfa yüksekliğine göre açılsın */
-      body[data-mobile-expanded="true"] {
-        overflow-y: auto;
-      }
-
-      body[data-mobile-expanded="true"] .app-shell {
-        height: auto;
-      }
-
-      body[data-mobile-expanded="true"] .cv-card,
-      body[data-mobile-expanded="true"] .chat-card {
-        flex: initial;
-        min-height: auto;
-      }
-
-      body[data-mobile-expanded="true"] .cv-scroll {
-        flex: initial;
-        overflow-y: visible;
-      }
-
-      body[data-mobile-expanded="true"] .chat-card {
-        display: flex;
-      }
+      /* Akordeon davranışı global tanımlı; burada ekstra düzen yok */
     }
 
     .card {
@@ -533,7 +486,44 @@
     }
 
     .mobile-expand-btn {
+      display: inline-flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(191, 219, 254, 0.85);
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #f9fafb;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.7);
+    }
+
+    body[data-mobile-expanded="false"] .cv-scroll,
+    body[data-mobile-expanded="false"] .contact-footer,
+    body[data-mobile-expanded="false"] .cv-scroll-indicator,
+    body[data-mobile-expanded="false"] .chat-card {
       display: none;
+    }
+
+    body[data-mobile-expanded="true"] .cv-card,
+    body[data-mobile-expanded="true"] .chat-card {
+      flex: initial;
+      min-height: auto;
+    }
+
+    body[data-mobile-expanded="true"] .cv-scroll {
+      flex: initial;
+      overflow-y: visible;
+    }
+
+    body[data-mobile-expanded="true"] .chat-card {
+      display: flex;
     }
 
     .mobile-tab {
