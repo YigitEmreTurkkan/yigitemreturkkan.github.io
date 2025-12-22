@@ -70,8 +70,8 @@
                                                                                                                                                                                                                                   justify-content: flex-start;
                                                                                                                                                                                                                                   padding-top: calc(8px + env(safe-area-inset-top, 0px));
                                                                                                                                                                                                                                   padding-right: calc(8px + env(safe-area-inset-right, 0px));
-                                                                                                                                                                                                                                  /* extra bottom space ~= 2x mobile nav bar height */
-                                                                                                                                                                                                                                  padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px) + 112px);
+                                                                                                                                                                                                                                  /* bottom safe area only (container'lar içinde ekstra boşluk vereceğiz) */
+                                                                                                                                                                                                                                  padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
                                                                                                                                                                                                                                   padding-left: calc(8px + env(safe-area-inset-left, 0px));
                                                                                                                                                                                                                                   overflow-y: hidden; /* dışarıda scroll olmasın */
                                                                                                                                                                                                                                   overflow-x: hidden;
@@ -513,12 +513,18 @@
                                                                                                                                                                                                                                 position: relative;
                                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                                              .cv-scroll {
-                                                                                                                                                                                                                                flex: 1;
-                                                                                                                                                                                                                                overflow-y: auto;
-                                                                                                                                                                                                                                margin-top: 6px;
-                                                                                                                                                                                                                                padding-right: 2px;
-                                                                                                                                                                                                                              }
+.cv-scroll {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 6px;
+  padding-right: 2px;
+}
+
+@media (max-width: 880px) {
+  .cv-scroll {
+    padding-bottom: 96px; /* CV son satırı ve butonlar nav bar'dan yukarıda kalsın */
+  }
+}
 
                                                                                                                                                                                                                               .cv-scroll::-webkit-scrollbar {
                                                                                                                                                                                                                                 width: 6px;
@@ -611,15 +617,21 @@
                                                                                                                                                                                                                                 position: relative;
                                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                                              .chat-scroll {
-                                                                                                                                                                                                                                flex: 1;
-                                                                                                                                                                                                                                overflow-y: auto;
-                                                                                                                                                                                                                                padding-right: 2px;
-                                                                                                                                                                                                                                display: flex;
-                                                                                                                                                                                                                                flex-direction: column;
-                                                                                                                                                                                                                                gap: 8px;
-                                                                                                                                                                                                                                scroll-behavior: smooth;
-                                                                                                                                                                                                                              }
+.chat-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 880px) {
+  .chat-scroll {
+    padding-bottom: 96px; /* Son mesajlar ve input nav bar'ın üstünde kalsın */
+  }
+}
 
                                                                                                                                                                                                                               .chat-scroll::-webkit-scrollbar {
                                                                                                                                                                                                                                 width: 6px;
