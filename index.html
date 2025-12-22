@@ -84,7 +84,7 @@
                                 .app-shell {
                                   display: flex;
                                   flex-direction: column;
-                                  gap: 8px;
+                                  gap: 6px;
                                   height: 100dvh !important; /* tek ekran */
                                 }
 
@@ -95,20 +95,36 @@
                                 }
 
                                 .cv-card .card {
-                                  padding: 12px 16px; /* kompakt padding */
+                                  padding: 10px 14px; /* ultra kompakt padding */
                                 }
 
                                 .header-top-row {
                                   flex-wrap: wrap; /* küçük ekranlarda wrap olsun */
+                                  gap: 8px;
                                 }
 
                                 .cv-name {
-                                  font-size: 1rem; /* mobilde biraz küçült */
+                                  font-size: 0.95rem; /* mobilde daha küçük */
+                                }
+
+                                .badge-role {
+                                  font-size: 0.6rem; /* mobilde daha küçük */
+                                  padding: 2px 7px;
+                                }
+
+                                .subheading {
+                                  font-size: 0.7rem; /* mobilde daha küçük */
+                                  line-height: 1.35;
                                 }
 
                                 .avatar {
-                                  width: 80px; /* mobilde biraz küçült */
-                                  height: 80px;
+                                  width: 64px; /* mobilde daha küçük */
+                                  height: 64px;
+                                }
+
+                                .cv-contact-row {
+                                  gap: 8px;
+                                  margin-top: 2px;
                                 }
 
                                 .cv-card .card-inner {
@@ -124,7 +140,7 @@
                                 }
 
                                 #ai-card .card {
-                                  padding: 12px 16px; /* kompakt padding */
+                                  padding: 10px 14px; /* ultra kompakt padding */
                                 }
 
                                 #ai-card .card-inner {
@@ -139,18 +155,18 @@
                                   align-items: center;
                                   justify-content: center;
                                   gap: 6px;
-                                  margin-top: 4px;
-                                  margin-bottom: 4px; /* minimal gap */
-                                  padding: 6px 12px; /* çok daha ince */
-                                  border-radius: 10px;
+                                  margin-top: 2px;
+                                  margin-bottom: 2px; /* minimal gap */
+                                  padding: 5px 10px; /* daha da ince */
+                                  border-radius: 8px;
                                   border: 1px solid rgba(191, 219, 254, 0.85);
                                   background: linear-gradient(135deg, #4f46e5, #7c3aed);
                                   color: #f9fafb;
-                                  font-size: 0.75rem;
+                                  font-size: 0.7rem;
                                   font-weight: 600;
                                   text-align: center;
                                   cursor: pointer;
-                                  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.5);
+                                  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
                                 }
 
                                                                                                                                                                                                                                 .cv-content {
@@ -222,21 +238,21 @@
                               .card-header {
                                 display: flex;
                                 flex-direction: column;
-                                gap: 10px;
-                                margin-bottom: 8px;
+                                gap: 6px;
+                                margin-bottom: 4px;
                               }
 
                               /* Top Row: Avatar + Name + Badge (3-way alignment) */
                               .header-top-row {
                                 display: flex;
                                 align-items: center;
-                                gap: 12px;
+                                gap: 10px;
                                 width: 100%;
                               }
 
                               .avatar {
-                                width: 88px;
-                                height: 88px;
+                                width: 72px;
+                                height: 72px;
                                 border-radius: 50%;
                                 background: radial-gradient(circle at 30% 20%, #fef3c7, #4f46e5);
                                 display: flex;
@@ -246,8 +262,8 @@
                                 color: #0b1020;
                                 box-shadow:
                                   0 0 0 2px rgba(56, 189, 248, 0.9),
-                                  0 0 18px rgba(56, 189, 248, 0.55),
-                                  0 0 28px rgba(147, 51, 234, 0.5);
+                                  0 0 12px rgba(56, 189, 248, 0.45),
+                                  0 0 20px rgba(147, 51, 234, 0.4);
                                 flex-shrink: 0;
                                 overflow: hidden;
                               }
@@ -255,27 +271,27 @@
                               .header-name-badge {
                                 display: flex;
                                 align-items: center;
-                                gap: 8px;
+                                gap: 6px;
                                 flex: 1;
                                 min-width: 0;
                                 flex-wrap: wrap;
                               }
 
                               .cv-name {
-                                font-size: 1.1rem;
+                                font-size: 1rem;
                                 font-weight: 600;
-                                letter-spacing: 0.02em;
+                                letter-spacing: 0.01em;
                                 white-space: nowrap;
                               }
 
                               .badge-role {
-                                font-size: 0.7rem;
+                                font-size: 0.65rem;
                                 text-transform: uppercase;
-                                letter-spacing: 0.12em;
+                                letter-spacing: 0.1em;
                                 color: var(--muted);
                                 background: rgba(15, 23, 42, 0.9);
                                 border-radius: var(--radius-pill);
-                                padding: 4px 10px;
+                                padding: 3px 8px;
                                 border: 1px solid rgba(148, 163, 184, 0.4);
                                 display: inline-flex;
                                 align-items: center;
@@ -285,19 +301,19 @@
                               }
 
                               .subheading {
-                                font-size: 0.8rem;
+                                font-size: 0.75rem;
                                 color: var(--muted);
                                 margin-top: 0;
                                 text-align: justify;
-                                line-height: 1.5;
+                                line-height: 1.4;
                               }
 
 .cv-contact-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-top: 6px;
+  gap: 10px;
+  margin-top: 4px;
 }
 
 .btn-contact-icon {
@@ -1505,14 +1521,12 @@
                                                                                                                                                                                                                                   applyMobileCvState();
                                                                                                                                                                                                                                   updateCvToggleLabel();
 
-                                                                                                                                                                                                                                  // 1 sn sonra ilk karşılama mesajını göster
-                                                                                                                                                                                                                                  setTimeout(() => {
-                                                                                                                                                                                                                                    const intro =
-                                                                                                                                                                                                                                      "Merhaba! Ben Yiğit'in dijital asistanıyım. Cloud & DevOps deneyimim, projelerim ve teknik yaklaşımım hakkında sorularınızı yanıtlayabilirim.\n\n" +
-                                                                                                                                                                                                                                      "Güvenlik gereği kişisel iletişim bilgilerimi burada paylaşamam; ancak detaylı sorularınız için sizi LinkedIn profilime yönlendirebilirim.\n\n" +
-                                                                                                                                                                                                                                      "Nasıl yardımcı olabilirim?";
-                                                                                                                                                                                                                                    addMessage("ai", intro, "Hoş geldiniz.");
-                                                                                                                                                                                                                                  }, 1000);
+                                  // 1 sn sonra ilk karşılama mesajını göster
+                                  setTimeout(() => {
+                                    const intro =
+                                      "Merhaba! Ben Yiğit'in dijital asistanıyım. Deneyimi, projeleri, teknik becerileri ve donanımımla ilgili merak ettiklerinizi sorabilirsiniz. Tüm bilgilerime erişebilirim, nasıl yardımcı olabilirim?";
+                                    addMessage("ai", intro, "Hoş geldiniz.");
+                                  }, 1000);
                                                                                                                                                                                                                                 });
 
                                                                                                                                                                                                                                 // Mobil / masaüstü için özel görünüm geçişi yok; kart görünümü CSS ile yönetiliyor.
