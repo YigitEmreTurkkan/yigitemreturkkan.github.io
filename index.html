@@ -157,11 +157,20 @@
       border-radius: 24px;
       border: 1px solid rgba(148, 163, 184, 0.18);
       box-shadow: var(--shadow-soft);
-      padding: 24px 22px;
+      padding: 20px 18px;
       position: relative;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+    }
+
+    .card-inner {
+      max-width: 440px;
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .card::before {
@@ -917,29 +926,30 @@
     </div>
 
     <section class="card cv-card" id="cv-card">
-      <header class="card-header">
-        <div class="avatar">
-          <!-- Profil fotoğrafı eklemek için kök dizine bir görsel (örn. yigit-profile.jpeg) koyabilirsin -->
-          <img src="yigit-profile.jpeg" alt="Yiğit Emre Türkkan" onerror="this.style.display='none'; this.parentElement.textContent='YT';" />
-        </div>
-        <div>
-          <div class="heading-main">
-            Yiğit Emre Türkkan
-            <span class="badge-role">Cloud &amp; DevOps Engineer</span>
+      <div class="card-inner">
+        <header class="card-header">
+          <div class="avatar">
+            <!-- Profil fotoğrafı eklemek için kök dizine bir görsel (örn. yigit-profile.jpeg) koyabilirsin -->
+            <img src="yigit-profile.jpeg" alt="Yiğit Emre Türkkan" onerror="this.style.display='none'; this.parentElement.textContent='YT';" />
           </div>
-          <p class="subheading">
-            Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
-            Cloud &amp; DevOps Engineer.
-          </p>
-        </div>
-      </header>
+          <div>
+            <div class="heading-main">
+              Yiğit Emre Türkkan
+              <span class="badge-role">Cloud &amp; DevOps Engineer</span>
+            </div>
+            <p class="subheading">
+              Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
+              Cloud &amp; DevOps Engineer.
+            </p>
+          </div>
+        </header>
 
-      <button id="mobile-expand" class="mobile-expand-btn">
-        <span>▼</span>
-        <span>CV Detaylarını ve AI Asistanı Göster</span>
-      </button>
+        <button id="mobile-expand" class="mobile-expand-btn">
+          <span>▼</span>
+          <span>CV Detaylarını ve AI Asistanı Göster</span>
+        </button>
 
-      <div class="cv-scroll">
+        <div class="cv-scroll">
         <div class="pill-row">
           <div class="pill">
             <span class="pill-dot"></span>
@@ -1094,80 +1104,81 @@
             </div>
           </div>
         </section>
-      </div>
-
-      <div class="cv-scroll-indicator">
-        <span class="scroll-hint-arrow">↓</span>
-        <span class="scroll-hint">Scroll down for more</span>
-      </div>
-
-      <footer class="contact-footer">
-        <div class="cta-row">
-          <a class="btn btn-outline" href="https://linkedin.com/in/yigitemreturkkan" target="_blank" rel="noreferrer">
-            LinkedIn
-          </a>
-          <a class="btn btn-primary" href="mailto:yigit.turkkan@gmail.com">
-            E-posta ile iletişim
-          </a>
         </div>
-      </footer>
 
+        <div class="cv-scroll-indicator">
+          <span class="scroll-hint-arrow">↓</span>
+          <span class="scroll-hint">Scroll down for more</span>
+        </div>
+
+        <footer class="contact-footer">
+          <div class="cta-row">
+            <a class="btn btn-outline" href="https://linkedin.com/in/yigitemreturkkan" target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a class="btn btn-primary" href="mailto:yigit.turkkan@gmail.com">
+              E-posta ile iletişim
+            </a>
+          </div>
+        </footer>
+      </div>
     </section>
 
     <section class="card chat-card" id="ai-card">
-      <header class="chat-header-row">
-        <div>
-          <div class="chat-title">
-            Yiğit Emre Türkkan'ın AI CV Asistanı
-            <p class="chat-subtitle">
-              Yiğit'in deneyimi ve pozisyona uygunluğu hakkında soru sorabilirsin. Hazır soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.
-            </p>
+      <div class="card-inner">
+        <header class="chat-header-row">
+          <div>
+            <div class="chat-title">
+              Yiğit Emre Türkkan'ın AI CV Asistanı
+              <p class="chat-subtitle">
+                Yiğit'in deneyimi ve pozisyona uygunluğu hakkında soru sorabilirsin. Hazır soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.
+              </p>
+            </div>
+          </div>
+          <div class="chat-badge">
+            <span>Persona: Yiğit</span>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </header>
+
+        <div class="chat-window">
+          <div id="chat-scroll" class="chat-scroll"></div>
+
+          <div class="quick-row" id="quick-row">
+            <button class="quick-chip" data-text="Kendini kısaca tanıtır mısın?">
+              <span>⚡</span><span>Kısaca tanıt</span>
+            </button>
+            <button class="quick-chip" data-text="Kubernetes deneyimin nedir?">
+              <span>☸️</span><span>Kubernetes</span>
+            </button>
+            <button class="quick-chip" data-text="DevOps yaklaşımını nasıl tarif edersin?">
+              <span>🧠</span><span>DevOps yaklaşımın</span>
+            </button>
+            <button class="quick-chip" data-text="İletişim bilgilerini paylaşır mısın?">
+              <span>📩</span><span>İletişim</span>
+            </button>
           </div>
         </div>
-        <div class="chat-badge">
-          <span>Persona: Yiğit</span>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        </div>
-      </header>
 
-      <div class="chat-window">
-        <div id="chat-scroll" class="chat-scroll"></div>
-
-        <div class="quick-row" id="quick-row">
-          <button class="quick-chip" data-text="Kendini kısaca tanıtır mısın?">
-            <span>⚡</span><span>Kısaca tanıt</span>
-          </button>
-          <button class="quick-chip" data-text="Kubernetes deneyimin nedir?">
-            <span>☸️</span><span>Kubernetes</span>
-          </button>
-          <button class="quick-chip" data-text="DevOps yaklaşımını nasıl tarif edersin?">
-            <span>🧠</span><span>DevOps yaklaşımın</span>
-          </button>
-          <button class="quick-chip" data-text="İletişim bilgilerini paylaşır mısın?">
-            <span>📩</span><span>İletişim</span>
+        <div class="chat-input-row">
+          <div class="chat-input-wrap">
+            <textarea
+              id="chat-input"
+              class="chat-input"
+              rows="1"
+              placeholder="Sorunu yaz: Örn. &quot;Kendini kısaca tanıtır mısın?&quot; ya da &quot;Kubernetes deneyimin?&quot;"
+            ></textarea>
+            <p class="chat-hint">
+              Kişisel bilgi vermem; gerekirse LinkedIn veya e‑posta yönlendirmesi yaparım.
+            </p>
+          </div>
+          <button id="send-btn" class="chat-send-btn" type="button" aria-label="Send message">
+            ➤
           </button>
         </div>
       </div>
-
-      <div class="chat-input-row">
-        <div class="chat-input-wrap">
-          <textarea
-            id="chat-input"
-            class="chat-input"
-            rows="1"
-            placeholder="Sorunu yaz: Örn. &quot;Kendini kısaca tanıtır mısın?&quot; ya da &quot;Kubernetes deneyimin?&quot;"
-          ></textarea>
-          <p class="chat-hint">
-            Kişisel bilgi vermem; gerekirse LinkedIn veya e‑posta yönlendirmesi yaparım.
-          </p>
-        </div>
-        <button id="send-btn" class="chat-send-btn" type="button" aria-label="Send message">
-          ➤
-        </button>
-      </div>
-
     </section>
   </main>
 
