@@ -69,11 +69,13 @@
   body {
     align-items: center;
     justify-content: center;
+    padding: 32px 32px; /* Üst-alt ve sağ-sol eşit boşluk */
   }
 
   .app-shell {
     max-width: 1280px;
     margin: 0 auto;
+    height: calc(100vh - 64px); /* Üst 32px + alt 32px = 64px */
   }
     }
 
@@ -339,7 +341,7 @@
 @media (min-width: 881px) {
   /* Desktop: avatar + metin solda, ikonlar sağ üstte */
   .cv-card .card-header {
-    padding-right: 64px;
+    padding-right: 80px; /* 64px'den 80px'e artırıldı */
     position: relative;
   }
 
@@ -844,7 +846,7 @@
     }
     .msg-row.user {
       justify-content: flex-end;
-      padding-right: 8px; /* Sağa çok yaslı olmasın */
+      padding-right: 24px; /* Sağdan padding - sağa yaslı olmasın */
     }
 
     .msg-bubble {
