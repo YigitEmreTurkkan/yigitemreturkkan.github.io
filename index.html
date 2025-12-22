@@ -66,11 +66,6 @@
         height: auto;
       }
 
-      .cv-card,
-      .chat-card {
-        width: 100%;
-      }
-
       .mobile-expand-btn {
         display: inline-flex;
         width: 100%;
@@ -92,6 +87,20 @@
 
       .cv-content {
         transition: max-height 0.25s ease;
+      }
+
+      /* Mobile: only show CV header + toggle by default */
+      .cv-card .cv-content {
+        overflow: hidden;
+        max-height: 0;
+      }
+
+      body[data-cv-expanded="true"] .cv-card .cv-content {
+        max-height: 1000px; /* large enough, internal scroll handles overflow */
+      }
+
+      body[data-cv-expanded="true"] #ai-card {
+        display: none;
       }
     }
 
@@ -492,61 +501,6 @@
 
     .mobile-tabs {
       display: none;
-    }
-
-    .mobile-expand-btn {
-      display: none;
-    }
-
-    .mobile-nav-btn,
-    .mobile-scroll-btn,
-    .mobile-toggle-btn {
-      display: none;
-    }
-
-    body[data-mobile-expanded="false"] .cv-scroll,
-    body[data-mobile-expanded="false"] .contact-footer,
-    body[data-mobile-expanded="false"] .cv-scroll-indicator,
-    body[data-mobile-expanded="false"] .chat-card {
-      display: none;
-    }
-
-    body[data-mobile-expanded="true"] .cv-card,
-    body[data-mobile-expanded="true"] .chat-card {
-      flex: initial;
-      min-height: auto;
-    }
-
-    body[data-mobile-expanded="true"] .cv-scroll {
-      flex: initial;
-      overflow-y: visible;
-    }
-
-    body[data-mobile-expanded="true"] .chat-card {
-      display: flex;
-    }
-
-    .mobile-tab {
-      flex: 1;
-      padding: 8px 10px;
-      font-size: 0.78rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--muted);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.16s ease-out;
-    }
-
-    .mobile-tab-active {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: #f9fafb;
-      border-color: rgba(191, 219, 254, 0.9);
-      box-shadow: 0 10px 22px rgba(79, 70, 229, 0.6);
     }
 
     .chat-badge {
@@ -1074,9 +1028,6 @@
           <div>
             <div class="chat-title">
               Yiğit Emre Türkkan'ın AI CV Asistanı
-              <p class="chat-subtitle">
-                Yiğit'in deneyimi ve pozisyona uygunluğu hakkında soru sorabilirsin. Hazır soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.
-              </p>
             </div>
           </div>
           <div class="chat-badge">
@@ -1089,21 +1040,6 @@
 
         <div class="chat-window">
           <div id="chat-scroll" class="chat-scroll"></div>
-
-          <div class="quick-row" id="quick-row">
-            <button class="quick-chip" data-text="Kendini kısaca tanıtır mısın?">
-              <span>⚡</span><span>Kısaca tanıt</span>
-            </button>
-            <button class="quick-chip" data-text="Kubernetes deneyimin nedir?">
-              <span>☸️</span><span>Kubernetes</span>
-            </button>
-            <button class="quick-chip" data-text="DevOps yaklaşımını nasıl tarif edersin?">
-              <span>🧠</span><span>DevOps yaklaşımın</span>
-            </button>
-            <button class="quick-chip" data-text="İletişim bilgilerini paylaşır mısın?">
-              <span>📩</span><span>İletişim</span>
-            </button>
-          </div>
         </div>
 
         <div class="chat-input-row">
@@ -1112,11 +1048,8 @@
               id="chat-input"
               class="chat-input"
               rows="1"
-              placeholder="Sorunu yaz: Örn. &quot;Kendini kısaca tanıtır mısın?&quot; ya da &quot;Kubernetes deneyimin?&quot;"
+              placeholder="Mesajınızı buraya yazın..."
             ></textarea>
-            <p class="chat-hint">
-              Kişisel bilgi vermem; gerekirse LinkedIn veya e‑posta yönlendirmesi yaparım.
-            </p>
           </div>
           <button id="send-btn" class="chat-send-btn" type="button" aria-label="Send message">
             ➤
@@ -1267,12 +1200,14 @@
         }
       });
 
-      quickRow.addEventListener("click", (e) => {
-        const btn = e.target.closest("[data-text]");
-        if (!btn) return;
-        const txt = btn.getAttribute("data-text") || "";
-        handleUserMessage(txt);
-      });
+      if (quickRow) {
+        quickRow.addEventListener("click", (e) => {
+          const btn = e.target.closest("[data-text]");
+          if (!btn) return;
+          const txt = btn.getAttribute("data-text") || "";
+          handleUserMessage(txt);
+        });
+      }
 
       function applyMobileCvState() {
         const isMobile = window.matchMedia("(max-width: 880px)").matches;
@@ -1320,11 +1255,14 @@
         applyMobileCvState();
         updateCvToggleLabel();
 
-        const intro =
-          "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
-          "- Cloud & DevOps deneyimi, projeleri ve ekip uyumu hakkında soru sorabilirsin.\n" +
-          "- Aşağıdaki hızlı soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.";
-        addMessage("ai", intro, "Kısa, net ve profesyonel cevaplar vereceğim.");
+        // 1 sn sonra ilk karşılama mesajını göster
+        setTimeout(() => {
+          const intro =
+            "Merhaba! Ben Yiğit'in dijital asistanıyım. Cloud & DevOps deneyimim, projelerim ve teknik yaklaşımım hakkında sorularınızı yanıtlayabilirim.\n\n" +
+            "Güvenlik gereği kişisel iletişim bilgilerimi burada paylaşamam; ancak detaylı sorularınız için sizi LinkedIn profilime yönlendirebilirim.\n\n" +
+            "Nasıl yardımcı olabilirim?";
+          addMessage("ai", intro, "Hoş geldiniz.");
+        }, 1000);
       });
 
       // Mobil / masaüstü için özel görünüm geçişi yok; kart görünümü CSS ile yönetiliyor.
