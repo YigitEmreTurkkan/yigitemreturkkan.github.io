@@ -55,8 +55,7 @@
         align-items: stretch;
         justify-content: stretch;
         padding: 8px;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: hidden;
       }
 
       .app-shell {
@@ -116,8 +115,29 @@
 
       body[data-mobile-expanded="false"] .cv-scroll,
       body[data-mobile-expanded="false"] .contact-footer,
-      body[data-mobile-expanded="false"] .cv-scroll-indicator {
+      body[data-mobile-expanded="false"] .cv-scroll-indicator,
+      body[data-mobile-expanded="false"] .chat-card {
         display: none;
+      }
+
+      /* Genişletilmiş durumda tüm içerik sayfa yüksekliğine göre açılsın */
+      body[data-mobile-expanded="true"] {
+        overflow-y: auto;
+      }
+
+      body[data-mobile-expanded="true"] .app-shell {
+        height: auto;
+      }
+
+      body[data-mobile-expanded="true"] .cv-card,
+      body[data-mobile-expanded="true"] .chat-card {
+        flex: initial;
+        min-height: auto;
+      }
+
+      body[data-mobile-expanded="true"] .cv-scroll {
+        flex: initial;
+        overflow-y: visible;
       }
     }
 
