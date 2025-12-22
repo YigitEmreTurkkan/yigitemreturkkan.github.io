@@ -95,11 +95,21 @@
         max-height: 0;
       }
 
-      body[data-cv-expanded="true"] .cv-card .cv-content {
-        max-height: 1000px; /* large enough, internal scroll handles overflow */
+      /* Expanded state handled via body class */
+      body.is-cv-expanded {
+        overflow: hidden; /* lock page scroll */
       }
 
-      body[data-cv-expanded="true"] #ai-card {
+      body.is-cv-expanded .app-shell {
+        height: 100vh;
+      }
+
+      body.is-cv-expanded .cv-card .cv-content {
+        max-height: calc(100vh - 120px);
+        overflow-y: auto; /* only CV scrolls */
+      }
+
+      body.is-cv-expanded #ai-card {
         display: none;
       }
     }
@@ -497,6 +507,10 @@
     .chat-subtitle {
       font-size: 0.78rem;
       color: var(--muted);
+    }
+
+    .mobile-expand-btn {
+      display: none;
     }
 
     .mobile-tabs {
@@ -1213,9 +1227,10 @@
 
       function applyMobileCvState() {
         const isMobile = window.matchMedia("(max-width: 880px)").matches;
-        const expanded = document.body.getAttribute("data-cv-expanded") === "true";
+        const expanded = document.body.classList.contains("is-cv-expanded");
 
         if (!isMobile) {
+          document.body.classList.remove("is-cv-expanded");
           if (cvContent) cvContent.style.display = "";
           if (aiCard) aiCard.style.display = "";
           return;
@@ -1227,7 +1242,7 @@
 
       function updateCvToggleLabel() {
         if (!cvToggleBtn) return;
-        const expanded = document.body.getAttribute("data-cv-expanded") === "true";
+        const expanded = document.body.classList.contains("is-cv-expanded");
         const arrow = cvToggleBtn.querySelector(".toggle-arrow");
         const label = cvToggleBtn.querySelector(".toggle-text");
         if (arrow) arrow.textContent = expanded ? "▲" : "▼";
@@ -1237,8 +1252,12 @@
 
       if (cvToggleBtn) {
         cvToggleBtn.addEventListener("click", () => {
-          const expanded = document.body.getAttribute("data-cv-expanded") === "true";
-          document.body.setAttribute("data-cv-expanded", expanded ? "false" : "true");
+          const expanded = document.body.classList.contains("is-cv-expanded");
+          if (expanded) {
+            document.body.classList.remove("is-cv-expanded");
+          } else {
+            document.body.classList.add("is-cv-expanded");
+          }
           applyMobileCvState();
           updateCvToggleLabel();
         });
@@ -1252,7 +1271,7 @@
       window.addEventListener("load", () => {
         // Mobil varsayılan: CV kapalı, chat açık
         if (window.matchMedia("(max-width: 880px)").matches) {
-          document.body.setAttribute("data-cv-expanded", "false");
+          document.body.classList.remove("is-cv-expanded");
         }
         applyMobileCvState();
         updateCvToggleLabel();
