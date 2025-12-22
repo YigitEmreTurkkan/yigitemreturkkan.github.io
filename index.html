@@ -53,92 +53,30 @@
     @media (max-width: 880px) {
       body {
         align-items: stretch;
-        justify-content: stretch;
+        justify-content: flex-start;
         padding: 8px;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
 
       .app-shell {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        height: calc(100vh - 16px);
-      }
-
-      /* Üst kart (CV) daha küçük, alt kart (AI) daha büyük olsun */
-      .cv-card {
-        flex: 0 0 auto;
-      }
-
-      .chat-card {
-        flex: 1 1 auto;
-        min-height: 0;
+        display: block;
+        height: auto;
       }
 
       .cv-scroll {
-        max-height: 38vh;
-        overflow-y: auto;
+        max-height: none;
+        overflow-y: visible;
       }
 
       .chat-window {
-        flex: 1;
-        min-height: 0;
+        min-height: 260px;
       }
 
       .card-header {
-        position: sticky;
-        top: 0;
-        z-index: 5;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
-      }
-
-      .mobile-tabs {
-        display: none;
-      }
-
-      .mobile-toggle-btn {
-        display: inline-flex;
-        padding: 6px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.75);
-        background: rgba(15, 23, 42, 0.94);
-        color: #e5e7eb;
-        font-size: 0.75rem;
-        align-items: center;
-        gap: 6px;
-        cursor: pointer;
-      }
-
-      /* CV tam ekran modunda: üst kart büyür, AI gizlenir */
-      body[data-mobile-focus="cv"] .cv-card {
-        flex: 1 1 auto;
-      }
-
-      body[data-mobile-focus="cv"] .cv-scroll {
-        max-height: none;
-      }
-
-      body[data-mobile-focus="cv"] .chat-card {
-        display: none;
-      }
-
-      /* Toggle buton metinleri */
-      body[data-mobile-focus="cv"] .mobile-toggle-btn .label-default {
-        display: none;
-      }
-
-      body[data-mobile-focus="cv"] .mobile-toggle-btn .label-expanded {
-        display: inline;
-      }
-
-      body:not([data-mobile-focus="cv"]) .mobile-toggle-btn .label-default {
-        display: inline;
-      }
-
-      body:not([data-mobile-focus="cv"]) .mobile-toggle-btn .label-expanded {
-        display: none;
+        position: static;
+        margin-bottom: 16px;
+        background: transparent;
       }
     }
 
@@ -1094,10 +1032,6 @@
             E-posta ile iletişim
           </a>
         </div>
-        <button id="btn-toggle-cv" class="mobile-toggle-btn" type="button">
-          <span class="label-default">CV’yi büyüt</span>
-          <span class="label-expanded">AI Asistanını göster</span>
-        </button>
       </footer>
 
     </section>
@@ -1167,7 +1101,6 @@
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
-      const btnToggleCv = document.getElementById("btn-toggle-cv");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1304,17 +1237,6 @@
         const txt = btn.getAttribute("data-text") || "";
         handleUserMessage(txt);
       });
-
-      if (btnToggleCv) {
-        btnToggleCv.addEventListener("click", () => {
-          const isExpanded = document.body.getAttribute("data-mobile-focus") === "cv";
-          if (isExpanded) {
-            document.body.removeAttribute("data-mobile-focus");
-          } else {
-            document.body.setAttribute("data-mobile-focus", "cv");
-          }
-        });
-      }
 
       window.addEventListener("load", () => {
         const intro =
