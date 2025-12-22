@@ -28,7 +28,6 @@
       padding: 0;
     }
 
-                                                                                                                                                                                                                              html,
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
@@ -36,11 +35,11 @@
       color: var(--text);
       min-height: 100vh;
       display: flex;
-                                                                                                                                                                                                                                align-items: stretch;
-                                                                                                                                                                                                                                justify-content: stretch;
-  padding: 16px;
-                                                                                                                                                                                                                                overflow: hidden;
-                                                                                                                                                                                                                              }
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 16px;
+      overflow: hidden;
+    }
 
                                                                                                                                                                                                                               /* CV container layout (desktop baseline) */
                                                                                                                                                                                                                               .cv-card {
@@ -59,36 +58,35 @@
     .app-shell {
       width: 100%;
       display: grid;
-                                                                                                                                                                                                                                grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
       gap: 24px;
       align-items: stretch;
-                                                                                                                                                                                                                                height: calc(100vh - 32px);
-                                                                                                                                                                                                                              }
+      height: calc(100vh - 32px);
+    }
 
-@media (min-width: 881px) {
-  body {
-    align-items: center;
-    justify-content: center;
-    padding: 32px 32px; /* Üst-alt ve sağ-sol eşit boşluk */
-  }
+    @media (min-width: 881px) {
+      body {
+        align-items: center;
+        justify-content: center;
+        padding: 32px 32px;
+      }
 
-  .app-shell {
-    max-width: 1280px;
-    margin: 0 auto;
-    height: calc(100vh - 64px); /* Üst 32px + alt 32px = 64px */
-  }
+      .app-shell {
+        max-width: 1280px;
+        margin: 0 auto;
+        height: calc(100vh - 64px);
+      }
     }
 
     @media (max-width: 880px) {
-                                                                                                                                                                                                                                html,
-                                                                                                                                                                                                                                body {
-                                                                                                                                                                                                                                  align-items: stretch;
-                                                                                                                                                                                                                                  justify-content: flex-start;
-                                                                                                                                                                                                                                  padding-top: calc(8px + env(safe-area-inset-top, 0px));
-                                                                                                                                                                                                                                  padding-right: calc(8px + env(safe-area-inset-right, 0px));
-                                                                                                                                                                                                                                  padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
-                                                                                                                                                                                                                                  padding-left: calc(8px + env(safe-area-inset-left, 0px));
-                                                                                                                                                                                                                                  height: 100dvh !important;
+      body {
+        align-items: stretch;
+        justify-content: flex-start;
+        padding-top: calc(8px + env(safe-area-inset-top, 0px));
+        padding-right: calc(8px + env(safe-area-inset-right, 0px));
+        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+        padding-left: calc(8px + env(safe-area-inset-left, 0px));
+        height: 100dvh !important;
                                                                                                                                                                                                                                   overflow: hidden !important; /* dışarıda scroll tamamen kapalı */
                                                                                                                                                                                                                                   position: fixed;
                                                                                                                                                                                                                                   width: 100%;
