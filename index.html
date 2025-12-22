@@ -202,7 +202,7 @@
     }
 
     .heading-main {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: 0.02em;
       display: flex;
@@ -222,7 +222,7 @@
     }
 
     .subheading {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--muted);
       margin-top: 4px;
     }
@@ -274,7 +274,7 @@
     }
 
     .cv-text {
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       color: var(--muted);
       line-height: 1.6;
     }
@@ -523,7 +523,7 @@
     }
 
     .chat-title {
-      font-size: 1rem;
+      font-size: 0.96rem;
       font-weight: 600;
       display: flex;
       flex-direction: column;
@@ -531,7 +531,7 @@
     }
 
     .chat-subtitle {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
     }
 
@@ -1120,7 +1120,7 @@
           <div class="chat-title">
             Yiğit Emre Türkkan'ın AI CV Asistanı
             <p class="chat-subtitle">
-              Yiğit'in deneyimi ve pozisyona uygunluğu hakkında soru sorabilirsin. Hazır sorulara tıkla ya da kendi sorunuzu yaz.
+              Yiğit'in deneyimi ve pozisyona uygunluğu hakkında soru sorabilirsin. Hazır soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.
             </p>
           </div>
         </div>
@@ -1160,7 +1160,7 @@
             placeholder="Sorunu yaz: Örn. &quot;Kendini kısaca tanıtır mısın?&quot; ya da &quot;Kubernetes deneyimin?&quot;"
           ></textarea>
           <p class="chat-hint">
-            Telefon/adres paylaşmam; seni e-posta veya LinkedIn'e yönlendiririm.
+            Kişisel bilgi vermem; gerekirse LinkedIn veya e‑posta yönlendirmesi yaparım.
           </p>
         </div>
         <button id="send-btn" class="chat-send-btn" type="button" aria-label="Send message">
@@ -1339,9 +1339,9 @@
 
         const intro =
           "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
-          "- Cloud & DevOps deneyimi ve projeleri hakkında soru sorabilirsin.\n" +
-          "- Hazır soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.";
-        addMessage("ai", intro, "Kısa ve net cevaplar vereceğim.");
+          "- Cloud & DevOps deneyimi, projeleri ve ekip uyumu hakkında soru sorabilirsin.\n" +
+          "- Aşağıdaki hızlı soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.";
+        addMessage("ai", intro, "Kısa, net ve profesyonel cevaplar vereceğim.");
 
         updateMobileFocusButton();
       });
