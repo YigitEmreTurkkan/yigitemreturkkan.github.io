@@ -1162,14 +1162,6 @@
         currentLang = lang;
       }
 
-      function updateMobileExpandButton() {
-        if (!mobileExpandBtn) return;
-        const expanded = document.body.getAttribute("data-mobile-expanded") === "true";
-        mobileExpandBtn.innerHTML = expanded
-          ? '<span>▲</span><span>CV Detaylarını ve AI Asistanını Gizle</span>'
-          : '<span>▼</span><span>CV Detaylarını ve AI Asistanını Göster</span>';
-      }
-
       function scrollToBottom() {
         requestAnimationFrame(() => {
           chatScroll.scrollTop = chatScroll.scrollHeight;
