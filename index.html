@@ -85,13 +85,12 @@
 
       .mobile-focus-bar {
         display: flex;
-        gap: 8px;
-        margin-bottom: 8px;
+        justify-content: center;
+        margin-bottom: 10px;
       }
 
       .mobile-focus-btn {
-        flex: 1;
-        padding: 6px 10px;
+        padding: 6px 14px;
         border-radius: 999px;
         border: 1px solid rgba(148, 163, 184, 0.55);
         background: rgba(15, 23, 42, 0.9);
@@ -911,14 +910,11 @@
 </head>
 <body>
   <main class="app-shell">
-      <div class="mobile-focus-bar">
-        <button id="btn-focus-cv" class="mobile-focus-btn">
-          CV'yi genişlet
-        </button>
-        <button id="btn-focus-ai" class="mobile-focus-btn">
-          AI'yı genişlet
-        </button>
-      </div>
+    <div class="mobile-focus-bar">
+      <button id="btn-focus-toggle" class="mobile-focus-btn">
+        CV'yi genişlet
+      </button>
+    </div>
 
     <section class="card cv-card" id="cv-card">
       <header class="card-header">
@@ -1183,8 +1179,7 @@
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
-      const btnFocusCv = document.getElementById("btn-focus-cv");
-      const btnFocusAi = document.getElementById("btn-focus-ai");
+      const btnFocusToggle = document.getElementById("btn-focus-toggle");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1322,29 +1317,31 @@
         handleUserMessage(txt);
       });
 
-      function updateMobileFocusButtons() {
+      function updateMobileFocusButton() {
+        if (!btnFocusToggle) return;
         const focus = document.body.getAttribute("data-mobile-focus");
-        if (btnFocusCv) btnFocusCv.classList.toggle("active", focus === "cv");
-        if (btnFocusAi) btnFocusAi.classList.toggle("active", focus === "ai");
+        btnFocusToggle.classList.toggle("active", !!focus);
+        if (!focus) {
+          btnFocusToggle.textContent = "CV'yi genişlet";
+        } else if (focus === "cv") {
+          btnFocusToggle.textContent = "AI'yı genişlet";
+        } else {
+          btnFocusToggle.textContent = "İkisini de göster";
+        }
       }
 
-      if (btnFocusCv) {
-        btnFocusCv.addEventListener("click", () => {
+      if (btnFocusToggle) {
+        btnFocusToggle.addEventListener("click", () => {
           const focus = document.body.getAttribute("data-mobile-focus");
-          const next = focus === "cv" ? null : "cv";
-          if (next) document.body.setAttribute("data-mobile-focus", next);
-          else document.body.removeAttribute("data-mobile-focus");
-          updateMobileFocusButtons();
-        });
-      }
+          let next;
+          if (!focus) next = "cv";
+          else if (focus === "cv") next = "ai";
+          else next = null;
 
-      if (btnFocusAi) {
-        btnFocusAi.addEventListener("click", () => {
-          const focus = document.body.getAttribute("data-mobile-focus");
-          const next = focus === "ai" ? null : "ai";
           if (next) document.body.setAttribute("data-mobile-focus", next);
           else document.body.removeAttribute("data-mobile-focus");
-          updateMobileFocusButtons();
+
+          updateMobileFocusButton();
         });
       }
 
@@ -1355,7 +1352,7 @@
           "- Hazır soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.";
         addMessage("ai", intro, "Kısa ve net cevaplar vereceğim.");
 
-        updateMobileFocusButtons();
+        updateMobileFocusButton();
       });
 
       // Mobil / masaüstü için özel görünüm geçişi yok; iki kart da her zaman görünür.
