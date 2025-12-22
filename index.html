@@ -81,55 +81,77 @@
                                                                                                                                                                                                                                   inset: 0;
                                                                                                                                                                                                                                 }
 
-                                                                                                                                                                                                                                .app-shell {
-                                                                                                                                                                                                                                  display: flex;
-                                                                                                                                                                                                                                  flex-direction: column;
-                                                                                                                                                                                                                                  gap: 12px;
-                                                                                                                                                                                                                                  height: 100dvh !important; /* tek ekran */
-                                                                                                                                                                                                                                }
+                                .app-shell {
+                                  display: flex;
+                                  flex-direction: column;
+                                  gap: 8px;
+                                  height: 100dvh !important; /* tek ekran */
+                                }
 
-                                                                                                                                                                                                                                /* Mobile: collapsed CV sadece header + buton kadar yer kaplasın */
-                                                                                                                                                                                                                                .cv-card {
-                                                                                                                                                                                                                                  flex: 0 0 auto; /* header + expand butonu sıkışmasın */
-                                                                                                                                                                                                                                  height: auto;
-                                                                                                                                                                                                                                }
+                                /* Mobile: collapsed CV sadece header + buton kadar yer kaplasın */
+                                .cv-card {
+                                  flex: 0 0 auto; /* header + expand butonu sıkışmasın */
+                                  height: auto;
+                                }
 
-                                                                                                                                                                                                                                .cv-card .card-inner {
-                                                                                                                                                                                                                                  height: auto;
-                                                                                                                                                                                                                                }
+                                .cv-card .card {
+                                  padding: 12px 16px; /* kompakt padding */
+                                }
 
-                                                                                                                                                                                                                                /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
-                                                                                                                                                                                                                                #ai-card {
-                                                                                                                                                                                                                                  flex: 1 1 auto;
-                                                                                                                                                                                                                                  min-height: 0; /* kendi çocuğu scroll olabilsin */
-                                                                                                                                                                                                                                  display: flex;
-                                                                                                                                                                                                                                  flex-direction: column;
-                                                                                                                                                                                                                                }
+                                .header-top-row {
+                                  flex-wrap: wrap; /* küçük ekranlarda wrap olsun */
+                                }
 
-                                                                                                                                                                                                                                #ai-card .card-inner {
-                                                                                                                                                                                                                                  height: 100%;
-                                                                                                                                                                                                                                  display: flex;
-                                                                                                                                                                                                                                  flex-direction: column;
-                                                                                                                                                                                                                                }
+                                .cv-name {
+                                  font-size: 1rem; /* mobilde biraz küçült */
+                                }
 
-                                                                                                                                                                                                                                .mobile-expand-btn {
-                                                                                                                                                                                                                                  display: inline-flex;
-                                                                                                                                                                                                                                  width: 100%;
-                                                                                                                                                                                                                                  align-items: center;
-                                                                                                                                                                                                                                  justify-content: center;
-                                                                                                                                                                                                                                  gap: 8px;
-                                                                                                                                                                                                                                  margin-bottom: 12px; /* tam 12px */
-                                                                                                                                                                                                                                  padding: 10px 14px;
-                                                                                                                                                                                                                                  border-radius: 14px;
-                                                                                                                                                                                                                                  border: 1px solid rgba(191, 219, 254, 0.85);
-                                                                                                                                                                                                                                  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-                                                                                                                                                                                                                                  color: #f9fafb;
-                                                                                                                                                                                                                                  font-size: 0.8rem;
-                                                                                                                                                                                                                                  font-weight: 600;
-                                                                                                                                                                                                                                  text-align: center;
-                                                                                                                                                                                                                                  cursor: pointer;
-                                                                                                                                                                                                                                  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.7);
-                                                                                                                                                                                                                                }
+                                .avatar {
+                                  width: 80px; /* mobilde biraz küçült */
+                                  height: 80px;
+                                }
+
+                                .cv-card .card-inner {
+                                  height: auto;
+                                }
+
+                                /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
+                                #ai-card {
+                                  flex: 1 1 auto;
+                                  min-height: 0; /* kendi çocuğu scroll olabilsin */
+                                  display: flex;
+                                  flex-direction: column;
+                                }
+
+                                #ai-card .card {
+                                  padding: 12px 16px; /* kompakt padding */
+                                }
+
+                                #ai-card .card-inner {
+                                  height: 100%;
+                                  display: flex;
+                                  flex-direction: column;
+                                }
+
+                                .mobile-expand-btn {
+                                  display: inline-flex;
+                                  width: 100%;
+                                  align-items: center;
+                                  justify-content: center;
+                                  gap: 6px;
+                                  margin-top: 4px;
+                                  margin-bottom: 4px; /* minimal gap */
+                                  padding: 6px 12px; /* çok daha ince */
+                                  border-radius: 10px;
+                                  border: 1px solid rgba(191, 219, 254, 0.85);
+                                  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+                                  color: #f9fafb;
+                                  font-size: 0.75rem;
+                                  font-weight: 600;
+                                  text-align: center;
+                                  cursor: pointer;
+                                  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.5);
+                                }
 
                                                                                                                                                                                                                                 .cv-content {
                                                                                                                                                                                                                                   transition: max-height 0.25s ease;
@@ -197,94 +219,104 @@
                                                                                                                                                                                                                                 z-index: -1;
                                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                                              .card-header {
-                                                                                                                                                                                                                                display: flex;
-                                                                                                                                                                                                                                align-items: center;
-                                                                                                                                                                                                                                gap: 14px;
-                                                                                                                                                                                                                                margin-bottom: 18px;
-                                                                                                                                                                                                                              }
+                              .card-header {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 10px;
+                                margin-bottom: 8px;
+                              }
 
-                                                                                                                                                                                                                              .avatar {
-                                                                                                                                                                                                                                width: 72px;
-                                                                                                                                                                                                                                height: 72px;
-                                                                                                                                                                                                                                border-radius: 50%;
-                                                                                                                                                                                                                                background: radial-gradient(circle at 30% 20%, #fef3c7, #4f46e5);
-                                                                                                                                                                                                                                display: flex;
-                                                                                                                                                                                                                                align-items: center;
-                                                                                                                                                                                                                                justify-content: center;
-                                                                                                                                                                                                                                font-weight: 700;
-                                                                                                                                                                                                                                color: #0b1020;
-                                                                                                                                                                                                                                box-shadow:
-                                                                                                                                                                                                                                  0 0 0 2px rgba(56, 189, 248, 0.9),
-                                                                                                                                                                                                                                  0 0 18px rgba(56, 189, 248, 0.55),
-                                                                                                                                                                                                                                  0 0 28px rgba(147, 51, 234, 0.5);
-                                                                                                                                                                                                                                flex-shrink: 0;
-                                                                                                                                                                                                                                overflow: hidden;
-                                                                                                                                                                                                                              }
+                              /* Top Row: Avatar + Name + Badge (3-way alignment) */
+                              .header-top-row {
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                width: 100%;
+                              }
 
-                                                                                                                                                                                                                              .heading-main {
-                                                                                                                                                                                                                                font-size: 1.1rem;
-                                                                                                                                                                                                                                font-weight: 600;
-                                                                                                                                                                                                                                letter-spacing: 0.02em;
-                                                                                                                                                                                                                                display: flex;
-                                                                                                                                                                                                                                align-items: center;
-                                                                                                                                                                                                                                justify-content: space-between;
-                                                                                                                                                                                                                                gap: 6px;
-                                                                                                                                                                                                                              }
+                              .avatar {
+                                width: 88px;
+                                height: 88px;
+                                border-radius: 50%;
+                                background: radial-gradient(circle at 30% 20%, #fef3c7, #4f46e5);
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-weight: 700;
+                                color: #0b1020;
+                                box-shadow:
+                                  0 0 0 2px rgba(56, 189, 248, 0.9),
+                                  0 0 18px rgba(56, 189, 248, 0.55),
+                                  0 0 28px rgba(147, 51, 234, 0.5);
+                                flex-shrink: 0;
+                                overflow: hidden;
+                              }
 
-                                                                                                                                                                                                                              .badge-role {
-                                                                                                                                                                                                                                font-size: 0.7rem;
-                                                                                                                                                                                                                                text-transform: uppercase;
-                                                                                                                                                                                                                                letter-spacing: 0.12em;
-                                                                                                                                                                                                                                color: var(--muted);
-                                                                                                                                                                                                                                background: rgba(15, 23, 42, 0.9);
-                                                                                                                                                                                                                                border-radius: var(--radius-pill);
-                                                                                                                                                                                                                                padding: 4px 10px;
-                                                                                                                                                                                                                                border: 1px solid rgba(148, 163, 184, 0.4);
-                                                                                                                                                                                                                                display: inline-flex;
-                                                                                                                                                                                                                                align-items: center;
-                                                                                                                                                                                                                                justify-content: center;
-                                                                                                                                                                                                                                text-align: center;
-                                                                                                                                                                                                                              }
+                              .header-name-badge {
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                                flex: 1;
+                                min-width: 0;
+                                flex-wrap: wrap;
+                              }
 
-                                                                                                                                                                                                                              .subheading {
-                                                                                                                                                                                                                                font-size: 0.8rem;
-                                                                                                                                                                                                                                color: var(--muted);
-                                                                                                                                                                                                                                margin-top: 4px;
-                                                                                                                                                                                                                                text-align: justify;
-                                                                                                                                                                                                                              }
+                              .cv-name {
+                                font-size: 1.1rem;
+                                font-weight: 600;
+                                letter-spacing: 0.02em;
+                                white-space: nowrap;
+                              }
+
+                              .badge-role {
+                                font-size: 0.7rem;
+                                text-transform: uppercase;
+                                letter-spacing: 0.12em;
+                                color: var(--muted);
+                                background: rgba(15, 23, 42, 0.9);
+                                border-radius: var(--radius-pill);
+                                padding: 4px 10px;
+                                border: 1px solid rgba(148, 163, 184, 0.4);
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+                                white-space: nowrap;
+                              }
+
+                              .subheading {
+                                font-size: 0.8rem;
+                                color: var(--muted);
+                                margin-top: 0;
+                                text-align: justify;
+                                line-height: 1.5;
+                              }
 
 .cv-contact-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
 }
 
-.btn-contact {
-  flex: 1 1 0;
+.btn-contact-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 6px 8px; /* daha küçük butonlar */
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 500;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
   transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+  flex-shrink: 0;
 }
 
-.btn-contact .btn-icon {
-  display: inline-flex;
-  width: 16px;
-  height: 16px;
-  border-radius: 999px;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
+.btn-contact-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .btn-contact-linkedin {
@@ -293,9 +325,9 @@
   color: #e0f2fe;
 }
 
-.btn-contact-linkedin .btn-icon {
-  background: #0a66c2;
-  color: #e5f2ff;
+.btn-contact-linkedin:hover {
+  background: rgba(10, 102, 194, 0.2);
+  transform: translateY(-1px);
 }
 
 .btn-contact-email {
@@ -304,29 +336,25 @@
   color: #e5e7eb;
 }
 
-.btn-contact-email .btn-icon {
-  background: #4f46e5;
-  color: #eef2ff;
-}
-
 .btn-contact-github {
   background: rgba(15, 23, 42, 0.94);
   border-color: rgba(148, 163, 184, 0.85);
   color: #e5e7eb;
 }
 
-.btn-contact-github .btn-icon {
-  background: #111827;
-  color: #f9fafb;
+.btn-contact-github:hover {
+  background: rgba(17, 24, 39, 0.3);
+  transform: translateY(-1px);
 }
 
-.btn-contact-github .btn-icon svg {
-  width: 12px;
-  height: 12px;
-  display: block;
+.btn-contact-email {
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(129, 140, 248, 0.8);
+  color: #e5e7eb;
 }
 
-.btn-contact:hover {
+.btn-contact-email:hover {
+  background: rgba(79, 70, 229, 0.2);
   transform: translateY(-1px);
 }
 
@@ -987,64 +1015,69 @@
                                                                                                                                                                                                                             <main class="app-shell">
                                                                                                                                                                                                                               <section class="card cv-card" id="cv-card">
                                                                                                                                                                                                                                 <div class="card-inner">
-                                                                                                                                                                                                                                  <header class="card-header">
-                                                                                                                                                                                                                                    <div class="avatar">
-                                                                                                                                                                                                                                      <!-- Profil fotoğrafı eklemek için kök dizine bir görsel (örn. yigit-profile.jpeg) koyabilirsin -->
-                                                                                                                                                                                                                                      <img src="yigit-profile.jpeg" alt="Yiğit Emre Türkkan" onerror="this.style.display='none'; this.parentElement.textContent='YT';" />
-                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                    <div>
-                                                                                                                                                                                                                                      <div class="heading-main">
-                                                                                                                                                                                                                                        Yiğit Emre Türkkan
-                                                                                                                                                                                                                                        <span class="badge-role">Cloud &amp; DevOps Engineer</span>
-                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                      <p class="subheading">
-                                                                                                                                                                                                                                        Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
-                                                                                                                                                                                                                                        Cloud &amp; DevOps Engineer.
-                                                                                                                                                                                                                                      </p>
+                                  <header class="card-header">
+                                    <!-- Top Row: Avatar + Name + Badge (3-way alignment) -->
+                                    <div class="header-top-row">
+                                      <div class="avatar">
+                                        <img src="yigit-profile.jpeg" alt="Yiğit Emre Türkkan" onerror="this.style.display='none'; this.parentElement.textContent='YT';" />
+                                      </div>
+                                      <div class="header-name-badge">
+                                        <span class="cv-name">Yiğit Emre Türkkan</span>
+                                        <span class="badge-role">Cloud &amp; DevOps Engineer</span>
+                                      </div>
+                                    </div>
 
-                                                                                                                                                                                                                                      <div class="cv-contact-row">
-                                                                                                                                                                                                                                        <a
-                                                                                                                                                                                                                                          class="btn-contact btn-contact-linkedin"
-                                                                                                                                                                                                                                          href="https://linkedin.com/in/yigitemreturkkan"
-                                                                                                                                                                                                                                          target="_blank"
-                                                                                                                                                                                                                                          rel="noreferrer"
-                                                                                                                                                                                                                                        >
-                                                                                                                                                                                                                                          <span class="btn-icon">in</span>
-                                                                                                                                                                                                                                          <span>LinkedIn</span>
-                                                                                                                                                                                                                                        </a>
+                                    <!-- Middle Row: Description -->
+                                    <p class="subheading">
+                                      Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
+                                      Cloud &amp; DevOps Engineer.
+                                    </p>
 
-                                                                                                                                                                                                                                         <a
-                                                                                                                                                                                                                                           class="btn-contact btn-contact-github"
-                                                                                                                                                                                                                                           href="https://github.com/YigitEmreTurkkan"
-                                                                                                                                                                                                                                           target="_blank"
-                                                                                                                                                                                                                                           rel="noreferrer"
-                                                                                                                                                                                                                                         >
-                                                                                                                                                                                                                                           <span class="btn-icon">
-                                                                                                                                                                                                                                             <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                                                                                                                                                                                                                                               <path
-                                                                                                                                                                                                                                                 fill="currentColor"
-                                                                                                                                                                                                                                                 d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-                                                                                                                                                                                                                                                 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
-                                                                                                                                                                                                                                                 0-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
-                                                                                                                                                                                                                                                 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2
-                                                                                                                                                                                                                                                 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65
-                                                                                                                                                                                                                                                 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
-                                                                                                                                                                                                                                               />
-                                                                                                                                                                                                                                             </svg>
-                                                                                                                                                                                                                                           </span>
-                                                                                                                                                                                                                                           <span>GitHub</span>
-                                                                                                                                                                                                                                         </a>
+                                    <!-- Bottom Row: Social Icons Only -->
+                                    <div class="cv-contact-row">
+                                      <a
+                                        class="btn-contact-icon btn-contact-linkedin"
+                                        href="https://linkedin.com/in/yigitemreturkkan"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label="LinkedIn"
+                                      >
+                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                          <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                      </a>
 
-                                                                                                                                                                                                                                        <a
-                                                                                                                                                                                                                                          class="btn-contact btn-contact-email"
-                                                                                                                                                                                                                                          href="mailto:yigit.turkkan@gmail.com"
-                                                                                                                                                                                                                                        >
-                                                                                                                                                                                                                                          <span class="btn-icon">@</span>
-                                                                                                                                                                                                                                          <span>E-posta</span>
-                                                                                                                                                                                                                                        </a>
-                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                  </header>
+                                      <a
+                                        class="btn-contact-icon btn-contact-github"
+                                        href="https://github.com/YigitEmreTurkkan"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label="GitHub"
+                                      >
+                                        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                          <path
+                                            fill="currentColor"
+                                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+                                            0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+                                            0-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+                                            0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2
+                                            .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65
+                                            3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+                                          />
+                                        </svg>
+                                      </a>
+
+                                      <a
+                                        class="btn-contact-icon btn-contact-email"
+                                        href="mailto:yigit.turkkan@gmail.com"
+                                        aria-label="E-posta"
+                                      >
+                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                          <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                        </svg>
+                                      </a>
+                                    </div>
+                                  </header>
 
                                                                                                                                                                                                                                   <button id="mobile-expand" class="mobile-expand-btn">
                                                                                                                                                                                                                                     <span class="toggle-arrow">▼</span>
