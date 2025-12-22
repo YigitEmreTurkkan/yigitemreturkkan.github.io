@@ -282,11 +282,18 @@
     }
 
                               .header-name-badge {
-      display: flex;
-      align-items: center;
-      gap: 6px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                gap: 4px;
                                 flex: 1;
                                 min-width: 0;
+                              }
+
+                              .name-row {
+                                display: flex;
+                                align-items: center;
+                                gap: 6px;
                                 flex-wrap: wrap;
                               }
 
@@ -544,13 +551,25 @@
                                                                                                                                                                                                                                 box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.7);
                                                                                                                                                                                                                               }
 
+                                                                                                                                                                                                                              .cv-scroll-hint {
+                                                                                                                                                                                                                                display: none; /* Mobilde gizli */
+                                                                                                                                                                                                                                text-align: center;
+                                                                                                                                                                                                                                padding: 16px 0;
+                                                                                                                                                                                                                                margin-top: 12px;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              @media (min-width: 881px) {
+                                                                                                                                                                                                                                .cv-scroll-hint {
+                                                                                                                                                                                                                                  display: block; /* Sadece web/desktop'ta görünür */
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                              }
+
                                                                                                                                                                                                                               .scroll-hint {
                                                                                                                                                                                                                                 display: inline-flex;
                                                                                                                                                                                                                                 align-items: center;
                                                                                                                                                                                                                                 gap: 6px;
                                                                                                                                                                                                                                 font-size: 0.74rem;
                                                                                                                                                                                                                                 color: rgba(156, 163, 175, 0.9);
-                                                                                                                                                                                                                                margin-top: 6px;
                                                                                                                                                                                                                                 opacity: 0.9;
                                                                                                                                                                                                                               }
 
@@ -830,6 +849,7 @@
       white-space: pre-line;
                                                                                                                                                                                                                                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
                                                                                                                                                                                                                                 transition: transform 0.2s ease;
+  text-align: center;
     }
 
     .msg-ai {
@@ -1073,16 +1093,16 @@
                                         <img src="yigit-profile.jpeg" alt="Yiğit Emre Türkkan" onerror="this.style.display='none'; this.parentElement.textContent='YT';" />
           </div>
                                       <div class="header-name-badge">
-                                        <span class="cv-name">Yiğit Emre Türkkan</span>
-                                        <span class="badge-role">Cloud &amp; DevOps Engineer</span>
+                                        <div class="name-row">
+                                          <span class="cv-name">Yiğit Emre Türkkan</span>
+                                          <span class="badge-role">Cloud &amp; DevOps Engineer</span>
+                                        </div>
+                                        <p class="subheading">
+                                          Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
+                                          Cloud &amp; DevOps Engineer.
+                                        </p>
                                       </div>
                                     </div>
-
-                                    <!-- Middle Row: Description -->
-          <p class="subheading">
-            Cloud / DevOps odaklı, üretken yapay zeka meraklısı ve problem çözmeyi seven bir
-                                      Cloud &amp; DevOps Engineer.
-                                    </p>
 
                                     <!-- Bottom Row: Social Icons Only -->
                                     <div class="cv-contact-row">
@@ -1291,6 +1311,14 @@
                                                                                                                                                                                                                                       </div>
                                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                                     </section>
+
+                                    <!-- Scroll Hint (sadece web/desktop için) -->
+                                    <div class="cv-scroll-hint">
+                                      <span class="scroll-hint">
+                                        <span>CV detayları için aşağı kaydır</span>
+                                        <span class="scroll-hint-arrow">↓</span>
+                                      </span>
+                                    </div>
       </div>
 
       <footer class="contact-footer">
