@@ -98,17 +98,47 @@
         display: none;
       }
 
-      .mobile-scroll-btn {
+      .mobile-toggle-btn {
         display: inline-flex;
-        padding: 6px 10px;
+        padding: 6px 12px;
         border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.7);
-        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.75);
+        background: rgba(15, 23, 42, 0.94);
         color: #e5e7eb;
         font-size: 0.75rem;
         align-items: center;
         gap: 6px;
         cursor: pointer;
+      }
+
+      /* CV tam ekran modunda: üst kart büyür, AI gizlenir */
+      body[data-mobile-focus="cv"] .cv-card {
+        flex: 1 1 auto;
+      }
+
+      body[data-mobile-focus="cv"] .cv-scroll {
+        max-height: none;
+      }
+
+      body[data-mobile-focus="cv"] .chat-card {
+        display: none;
+      }
+
+      /* Toggle buton metinleri */
+      body[data-mobile-focus="cv"] .mobile-toggle-btn .label-default {
+        display: none;
+      }
+
+      body[data-mobile-focus="cv"] .mobile-toggle-btn .label-expanded {
+        display: inline;
+      }
+
+      body:not([data-mobile-focus="cv"]) .mobile-toggle-btn .label-default {
+        display: inline;
+      }
+
+      body:not([data-mobile-focus="cv"]) .mobile-toggle-btn .label-expanded {
+        display: none;
       }
     }
 
@@ -504,7 +534,8 @@
     }
 
     .mobile-nav-btn,
-    .mobile-scroll-btn {
+    .mobile-scroll-btn,
+    .mobile-toggle-btn {
       display: none;
     }
 
@@ -1063,8 +1094,9 @@
             E-posta ile iletişim
           </a>
         </div>
-        <button id="btn-scroll-ai" class="mobile-scroll-btn" type="button">
-          ↓ AI Asistanına in
+        <button id="btn-toggle-cv" class="mobile-toggle-btn" type="button">
+          <span class="label-default">CV’yi büyüt</span>
+          <span class="label-expanded">AI Asistanını göster</span>
         </button>
       </footer>
 
@@ -1124,12 +1156,6 @@
         </button>
       </div>
 
-      <div style="margin-top: 8px;">
-        <button id="btn-scroll-cv" class="mobile-scroll-btn" type="button">
-          ↑ CV bölümüne çık
-        </button>
-      </div>
-
     </section>
   </main>
 
@@ -1141,8 +1167,7 @@
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
-      const btnScrollCv = document.getElementById("btn-scroll-cv");
-      const btnScrollAi = document.getElementById("btn-scroll-ai");
+      const btnToggleCv = document.getElementById("btn-toggle-cv");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1280,17 +1305,14 @@
         handleUserMessage(txt);
       });
 
-      if (btnScrollCv) {
-        btnScrollCv.addEventListener("click", () => {
-          const cv = document.getElementById("cv-card");
-          if (cv) cv.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
-
-      if (btnScrollAi) {
-        btnScrollAi.addEventListener("click", () => {
-          const ai = document.getElementById("ai-card");
-          if (ai) ai.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (btnToggleCv) {
+        btnToggleCv.addEventListener("click", () => {
+          const isExpanded = document.body.getAttribute("data-mobile-focus") === "cv";
+          if (isExpanded) {
+            document.body.removeAttribute("data-mobile-focus");
+          } else {
+            document.body.setAttribute("data-mobile-focus", "cv");
+          }
         });
       }
 
