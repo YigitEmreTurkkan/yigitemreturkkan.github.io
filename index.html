@@ -1084,7 +1084,7 @@
           <div class="chat-title">
             Yiğit Emre Türkkan'ın AI CV Asistanı
             <p class="chat-subtitle">
-              Yiğit'in deneyimi, becerileri ve pozisyona uygunluğu hakkında soru sorabilirsin. Aşağıdaki hazır sorulardan birine tıkla ya da kendi sorunuzu yaz.
+              Yiğit'in deneyimi ve pozisyona uygunluğu hakkında soru sorabilirsin. Hazır sorulara tıkla ya da kendi sorunuzu yaz.
             </p>
           </div>
         </div>
@@ -1101,16 +1101,16 @@
 
         <div class="quick-row" id="quick-row">
           <button class="quick-chip" data-text="Kendini kısaca tanıtır mısın?">
-            <span>⚡</span><span>Kısaca kendini tanıt</span>
+            <span>⚡</span><span>Kısaca tanıt</span>
           </button>
           <button class="quick-chip" data-text="Kubernetes deneyimin nedir?">
-            <span>☸️</span><span>Kubernetes deneyimin</span>
+            <span>☸️</span><span>Kubernetes</span>
           </button>
           <button class="quick-chip" data-text="DevOps yaklaşımını nasıl tarif edersin?">
             <span>🧠</span><span>DevOps yaklaşımın</span>
           </button>
           <button class="quick-chip" data-text="İletişim bilgilerini paylaşır mısın?">
-            <span>📩</span><span>İletişim bilgilerin</span>
+            <span>📩</span><span>İletişim</span>
           </button>
         </div>
       </div>
@@ -1121,13 +1121,10 @@
             id="chat-input"
             class="chat-input"
             rows="1"
-            placeholder="Sorunu buraya yaz: Örn. &quot;Kendini kısaca tanıtır mısın?&quot; veya &quot;Kubernetes deneyimin nedir?&quot;"
+            placeholder="Sorunu yaz: Örn. &quot;Kendini kısaca tanıtır mısın?&quot; ya da &quot;Kubernetes deneyimin?&quot;"
           ></textarea>
-          <button id="lang-toggle" class="chat-lang-toggle" type="button">
-            <span>TR</span> / EN
-          </button>
           <p class="chat-hint">
-            Telefon veya adres paylaşmam; seni e-posta veya LinkedIn'e yönlendiririm.
+            Telefon/adres paylaşmam; seni e-posta veya LinkedIn'e yönlendiririm.
           </p>
         </div>
         <button id="send-btn" class="chat-send-btn" type="button" aria-label="Send message">
@@ -1147,7 +1144,6 @@
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
-      const langToggle = document.getElementById("lang-toggle");
       const btnNavToCv = document.getElementById("nav-to-cv");
       const btnNavToAi = document.getElementById("nav-to-ai");
 
@@ -1164,7 +1160,6 @@
 
       function setLang(lang) {
         currentLang = lang;
-        langToggle.innerHTML = lang === "tr" ? "<span>TR</span> / EN" : "TR / <span>EN</span>";
       }
 
       function updateMobileExpandButton() {
@@ -1296,21 +1291,15 @@
         handleUserMessage(txt);
       });
 
-      langToggle.addEventListener("click", () => {
-        setLang(currentLang === "tr" ? "en" : "tr");
-        chatInput.focus();
-      });
-
       window.addEventListener("load", () => {
         // Mobilde varsayılan görünüm: AI açık, CV kapalı
         document.body.setAttribute("data-mobile-view", "ai");
 
         const intro =
           "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
-          "- Yiğit'in Cloud & DevOps deneyimi, projeleri veya ekip uyumu hakkında sorular sorabilirsin.\n" +
-          "- Aşağıdaki hazır sorulardan birine tıklayabilir ya da kendi sorunuzu yazabilirsin.\n\n" +
-          "Kısa ve net cevaplar vermeye çalışacağım.";
-        addMessage("ai", intro, "Türkçe veya İngilizce yazabilirsin; ikisini de anlayabilirim.");
+          "- Cloud & DevOps deneyimi ve projeleri hakkında soru sorabilirsin.\n" +
+          "- Hazır soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.";
+        addMessage("ai", intro, "Kısa ve net cevaplar vereceğim.");
       });
 
       if (btnNavToCv && btnNavToAi) {
