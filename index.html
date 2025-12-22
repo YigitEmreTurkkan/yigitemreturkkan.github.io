@@ -340,6 +340,11 @@
   /* Desktop: avatar + metin solda, ikonlar sağ üstte */
   .cv-card .card-header {
     padding-right: 64px;
+    position: relative;
+  }
+
+  .header-name-badge {
+    max-width: calc(100% - 120px); /* Logoların altına taşmasın */
   }
 
   .cv-contact-row {
@@ -554,8 +559,9 @@
                                                                                                                                                                                                                               .cv-scroll-hint {
                                                                                                                                                                                                                                 display: none; /* Mobilde gizli */
                                                                                                                                                                                                                                 text-align: center;
-                                                                                                                                                                                                                                padding: 16px 0;
-                                                                                                                                                                                                                                margin-top: 12px;
+                                                                                                                                                                                                                                padding: 24px 0;
+                                                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                                                                margin-bottom: 20px;
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               @media (min-width: 881px) {
@@ -838,6 +844,7 @@
     }
     .msg-row.user {
       justify-content: flex-end;
+      padding-right: 8px; /* Sağa çok yaslı olmasın */
     }
 
     .msg-bubble {
@@ -849,7 +856,7 @@
       white-space: pre-line;
                                                                                                                                                                                                                                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
                                                                                                                                                                                                                                 transition: transform 0.2s ease;
-  text-align: center;
+      text-align: left;
     }
 
     .msg-ai {
