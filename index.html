@@ -28,6 +28,7 @@
                                                                                                                                                                                                                                 padding: 0;
                                                                                                                                                                                                                               }
 
+                                                                                                                                                                                                                              html,
                                                                                                                                                                                                                               body {
                                                                                                                                                                                                                                 font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
                                                                                                                                                                                                                                   "Segoe UI", sans-serif;
@@ -65,28 +66,31 @@
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               @media (max-width: 880px) {
+                                                                                                                                                                                                                                html,
                                                                                                                                                                                                                                 body {
                                                                                                                                                                                                                                   align-items: stretch;
                                                                                                                                                                                                                                   justify-content: flex-start;
                                                                                                                                                                                                                                   padding-top: calc(8px + env(safe-area-inset-top, 0px));
                                                                                                                                                                                                                                   padding-right: calc(8px + env(safe-area-inset-right, 0px));
-                                                                                                                                                                                                                                  /* bottom safe area only (container'lar içinde ekstra boşluk vereceğiz) */
                                                                                                                                                                                                                                   padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
                                                                                                                                                                                                                                   padding-left: calc(8px + env(safe-area-inset-left, 0px));
-                                                                                                                                                                                                                                  overflow-y: hidden; /* dışarıda scroll olmasın */
-                                                                                                                                                                                                                                  overflow-x: hidden;
+                                                                                                                                                                                                                                  height: 100dvh !important;
+                                                                                                                                                                                                                                  overflow: hidden !important; /* dışarıda scroll tamamen kapalı */
+                                                                                                                                                                                                                                  position: fixed;
+                                                                                                                                                                                                                                  width: 100%;
+                                                                                                                                                                                                                                  inset: 0;
                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                 .app-shell {
                                                                                                                                                                                                                                   display: flex;
                                                                                                                                                                                                                                   flex-direction: column;
                                                                                                                                                                                                                                   gap: 12px;
-                                                                                                                                                                                                                                  height: calc(100vh - 16px); /* ekranı doldur, iç scroll container'larda */
+                                                                                                                                                                                                                                  height: 100dvh !important; /* tek ekran */
                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                 /* Mobile: collapsed CV sadece header + buton kadar yer kaplasın */
                                                                                                                                                                                                                                 .cv-card {
-                                                                                                                                                                                                                                  flex: 0 0 auto;
+                                                                                                                                                                                                                                  flex: 0 0 auto; /* header + expand butonu sıkışmasın */
                                                                                                                                                                                                                                   height: auto;
                                                                                                                                                                                                                                 }
 
@@ -94,14 +98,18 @@
                                                                                                                                                                                                                                   height: auto;
                                                                                                                                                                                                                                 }
 
-                                                                                                                                                                                                                                /* Chat kartı kalan alanı kapsasın; mesajlar kart içinde scroll olsun */
+                                                                                                                                                                                                                                /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
                                                                                                                                                                                                                                 #ai-card {
                                                                                                                                                                                                                                   flex: 1 1 auto;
-                                                                                                                                                                                                                                  min-height: 0;
+                                                                                                                                                                                                                                  min-height: 0; /* kendi çocuğu scroll olabilsin */
+                                                                                                                                                                                                                                  display: flex;
+                                                                                                                                                                                                                                  flex-direction: column;
                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                 #ai-card .card-inner {
                                                                                                                                                                                                                                   height: 100%;
+                                                                                                                                                                                                                                  display: flex;
+                                                                                                                                                                                                                                  flex-direction: column;
                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                 .mobile-expand-btn {
@@ -110,7 +118,7 @@
                                                                                                                                                                                                                                   align-items: center;
                                                                                                                                                                                                                                   justify-content: center;
                                                                                                                                                                                                                                   gap: 8px;
-                                                                                                                                                                                                                                  margin-bottom: 8px;
+                                                                                                                                                                                                                                  margin-bottom: 12px; /* tam 12px */
                                                                                                                                                                                                                                   padding: 10px 14px;
                                                                                                                                                                                                                                   border-radius: 14px;
                                                                                                                                                                                                                                   border: 1px solid rgba(191, 219, 254, 0.85);
@@ -769,6 +777,12 @@
                                                                                                                                                                                                                                 line-height: 1.4;
                                                                                                                                                                                                                                 outline: none;
                                                                                                                                                                                                                               }
+
+@media (max-width: 880px) {
+  .chat-input-row {
+    padding-bottom: env(safe-area-inset-bottom, 0px); /* gesture bar altında kalmasın */
+  }
+}
 
                                                                                                                                                                                                                               .chat-input::placeholder {
                                                                                                                                                                                                                                 color: rgba(148, 163, 184, 0.9);
