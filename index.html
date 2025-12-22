@@ -1004,11 +1004,6 @@
           </section>
         </div>
 
-        <div class="cv-scroll-indicator">
-          <span class="scroll-hint-arrow">↓</span>
-          <span class="scroll-hint">Scroll down for more</span>
-        </div>
-
         <footer class="contact-footer">
           <div class="cta-row">
             <a class="btn btn-outline" href="https://linkedin.com/in/yigitemreturkkan" target="_blank" rel="noreferrer">
@@ -1092,13 +1087,20 @@
         });
       }
 
+      const userEmojis = ["🙂", "👋", "💬", "🧑‍💻"];
+
       function createMessageEl(role, text, meta) {
         const row = document.createElement("div");
         row.className = "msg-row " + role;
 
         const avatar = document.createElement("div");
         avatar.className = "msg-avatar " + role;
-        avatar.textContent = role === "ai" ? "YT" : "You";
+        if (role === "ai") {
+          avatar.textContent = "YT";
+        } else {
+          const idx = Math.floor(Math.random() * userEmojis.length);
+          avatar.textContent = userEmojis[idx];
+        }
 
         const bubble = document.createElement("div");
         bubble.className = "msg-bubble " + (role === "ai" ? "msg-ai" : "msg-user");

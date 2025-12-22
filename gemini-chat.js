@@ -4,12 +4,25 @@ import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 const AI_API = "REPLACE_WITH_SECRET_KEY";
 const genAI = new GoogleGenerativeAI(AI_API);
 
-// CV verisini JSON'dan oku (tek gerçek kaynak)
-const cvData = await fetch("./cv-data.json").then((r) => r.json());
-const cvDataString = JSON.stringify(cvData, null, 2);
+// Chat oturumunu asenkron olarak başlat
+let chatHistoryPromise = initChat();
 
-// Sistem talimatını JSON ile dinamik kur
-const SYSTEM_INSTRUCTION = `
+async function initChat() {
+  let cvDataString = "{}";
+
+  try {
+    const res = await fetch("./cv-data.json");
+    if (res.ok) {
+      const cvData = await res.json();
+      cvDataString = JSON.stringify(cvData, null, 2);
+    } else {
+      console.warn("cv-data.json yüklenemedi:", res.status);
+    }
+  } catch (err) {
+    console.warn("cv-data.json okunurken hata:", err);
+  }
+
+  const SYSTEM_INSTRUCTION = `
 Sen Yiğit Emre Türkkan'ın resmi AI asistanısın.
 
 KİMLİK:
@@ -28,34 +41,34 @@ KURALLAR:
 5. Markdown kullanma, düz metin ver; emoji kullanabilirsin ama abartma.
 `;
 
-// Model ayarları
-const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
-  systemInstruction: SYSTEM_INSTRUCTION,
-});
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.0-flash",
+    systemInstruction: SYSTEM_INSTRUCTION,
+  });
 
-// Sohbet geçmişini başlat
-let chatHistory = model.startChat({
-  history: [
-    {
-      role: "user",
-      parts: [{ text: "Merhaba, sen kimsin?" }],
-    },
-    {
-      role: "model",
-      parts: [
-        {
-          text:
-            "Merhaba! Ben Yiğit Emre Türkkan'ın yapay zeka asistanıyım. Yiğit'in Cloud & DevOps deneyimi, projeleri ve teknik yaklaşımı hakkında sorularını yanıtlamak için buradayım.",
-        },
-      ],
-    },
-  ],
-});
+  return model.startChat({
+    history: [
+      {
+        role: "user",
+        parts: [{ text: "Merhaba, sen kimsin?" }],
+      },
+      {
+        role: "model",
+        parts: [
+          {
+            text:
+              "Merhaba! Ben Yiğit Emre Türkkan'ın yapay zeka asistanıyım. Yiğit'in Cloud & DevOps deneyimi, projeleri ve teknik yaklaşımı hakkında sorularını yanıtlamak için buradayım.",
+          },
+        ],
+      },
+    ],
+  });
+}
 
 // Mesaj gönderme fonksiyonu
 export async function sendMessageToGemini(userMessage) {
   try {
+    const chatHistory = await chatHistoryPromise;
     const result = await chatHistory.sendMessage(userMessage);
     const response = await result.response;
     return response.text();
@@ -64,4 +77,5 @@ export async function sendMessageToGemini(userMessage) {
     return "Üzgünüm, şu an bağlantıda bir sorun yaşıyorum. Lütfen daha sonra tekrar dene veya LinkedIn üzerinden Yiğit'e ulaş.";
   }
 }
+
 
