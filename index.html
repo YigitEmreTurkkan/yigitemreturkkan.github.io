@@ -83,6 +83,62 @@
         min-height: 0;
       }
 
+      .mobile-focus-bar {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .mobile-focus-btn {
+        flex: 1;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.55);
+        background: rgba(15, 23, 42, 0.9);
+        color: #e5e7eb;
+        font-size: 0.72rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        cursor: pointer;
+      }
+
+      .mobile-focus-btn.active {
+        border-color: rgba(96, 165, 250, 0.95);
+        background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.98), rgba(37, 99, 235, 0.98));
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.7);
+      }
+
+      /* CV genişletildiğinde: CV kartı tam, AI kartı sadece header olarak kalsın */
+      body[data-mobile-focus="cv"] .cv-card {
+        flex: 1 1 0;
+      }
+
+      body[data-mobile-focus="cv"] .chat-card {
+        flex: 0 0 72px;
+      }
+
+      body[data-mobile-focus="cv"] .chat-window,
+      body[data-mobile-focus="cv"] .chat-input-row {
+        display: none;
+      }
+
+      /* AI genişletildiğinde: AI kartı tam, CV kartı sadece header olarak kalsın */
+      body[data-mobile-focus="ai"] .chat-card {
+        flex: 1 1 0;
+      }
+
+      body[data-mobile-focus="ai"] .cv-card {
+        flex: 0 0 100px;
+      }
+
+      body[data-mobile-focus="ai"] .cv-scroll,
+      body[data-mobile-focus="ai"] .cv-scroll-indicator,
+      body[data-mobile-focus="ai"] .contact-footer {
+        display: none;
+      }
+
       .card-header {
         position: sticky;
         top: 0;
@@ -855,6 +911,15 @@
 </head>
 <body>
   <main class="app-shell">
+      <div class="mobile-focus-bar">
+        <button id="btn-focus-cv" class="mobile-focus-btn">
+          CV'yi genişlet
+        </button>
+        <button id="btn-focus-ai" class="mobile-focus-btn">
+          AI'yı genişlet
+        </button>
+      </div>
+
     <section class="card cv-card" id="cv-card">
       <header class="card-header">
         <div class="avatar">
@@ -1118,6 +1183,8 @@
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
+      const btnFocusCv = document.getElementById("btn-focus-cv");
+      const btnFocusAi = document.getElementById("btn-focus-ai");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1255,12 +1322,40 @@
         handleUserMessage(txt);
       });
 
+      function updateMobileFocusButtons() {
+        const focus = document.body.getAttribute("data-mobile-focus");
+        if (btnFocusCv) btnFocusCv.classList.toggle("active", focus === "cv");
+        if (btnFocusAi) btnFocusAi.classList.toggle("active", focus === "ai");
+      }
+
+      if (btnFocusCv) {
+        btnFocusCv.addEventListener("click", () => {
+          const focus = document.body.getAttribute("data-mobile-focus");
+          const next = focus === "cv" ? null : "cv";
+          if (next) document.body.setAttribute("data-mobile-focus", next);
+          else document.body.removeAttribute("data-mobile-focus");
+          updateMobileFocusButtons();
+        });
+      }
+
+      if (btnFocusAi) {
+        btnFocusAi.addEventListener("click", () => {
+          const focus = document.body.getAttribute("data-mobile-focus");
+          const next = focus === "ai" ? null : "ai";
+          if (next) document.body.setAttribute("data-mobile-focus", next);
+          else document.body.removeAttribute("data-mobile-focus");
+          updateMobileFocusButtons();
+        });
+      }
+
       window.addEventListener("load", () => {
         const intro =
           "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
           "- Cloud & DevOps deneyimi ve projeleri hakkında soru sorabilirsin.\n" +
           "- Hazır soruları kullanabilir ya da kendi sorunuzu yazabilirsiniz.";
         addMessage("ai", intro, "Kısa ve net cevaplar vereceğim.");
+
+        updateMobileFocusButtons();
       });
 
       // Mobil / masaüstü için özel görünüm geçişi yok; iki kart da her zaman görünür.
