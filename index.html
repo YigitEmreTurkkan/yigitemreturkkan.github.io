@@ -65,14 +65,18 @@
         height: calc(100vh - 16px);
       }
 
-      .cv-card,
+      /* Üst kart (CV) daha küçük, alt kart (AI) daha büyük olsun */
+      .cv-card {
+        flex: 0 0 auto;
+      }
+
       .chat-card {
-        flex: 1;
+        flex: 1 1 auto;
         min-height: 0;
       }
 
       .cv-scroll {
-        flex: 1;
+        max-height: 38vh;
         overflow-y: auto;
       }
 
@@ -92,6 +96,19 @@
 
       .mobile-tabs {
         display: none;
+      }
+
+      .mobile-scroll-btn {
+        display: inline-flex;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        background: rgba(15, 23, 42, 0.9);
+        color: #e5e7eb;
+        font-size: 0.75rem;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
       }
     }
 
@@ -486,7 +503,8 @@
       display: none;
     }
 
-    .mobile-nav-btn {
+    .mobile-nav-btn,
+    .mobile-scroll-btn {
       display: none;
     }
 
@@ -851,7 +869,7 @@
 </head>
 <body>
   <main class="app-shell">
-    <section class="card cv-card">
+    <section class="card cv-card" id="cv-card">
       <header class="card-header">
         <div class="avatar">
           <!-- Profil fotoğrafı eklemek için kök dizine bir görsel (örn. yigit-profile.jpeg) koyabilirsin -->
@@ -1045,11 +1063,14 @@
             E-posta ile iletişim
           </a>
         </div>
+        <button id="btn-scroll-ai" class="mobile-scroll-btn" type="button">
+          ↓ AI Asistanına in
+        </button>
       </footer>
 
     </section>
 
-    <section class="card chat-card">
+    <section class="card chat-card" id="ai-card">
       <header class="chat-header-row">
         <div>
           <div class="chat-title">
@@ -1103,6 +1124,12 @@
         </button>
       </div>
 
+      <div style="margin-top: 8px;">
+        <button id="btn-scroll-cv" class="mobile-scroll-btn" type="button">
+          ↑ CV bölümüne çık
+        </button>
+      </div>
+
     </section>
   </main>
 
@@ -1114,6 +1141,8 @@
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
+      const btnScrollCv = document.getElementById("btn-scroll-cv");
+      const btnScrollAi = document.getElementById("btn-scroll-ai");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1251,10 +1280,21 @@
         handleUserMessage(txt);
       });
 
-      window.addEventListener("load", () => {
-        // Mobilde varsayılan görünüm: AI açık, CV kapalı
-        document.body.setAttribute("data-mobile-view", "ai");
+      if (btnScrollCv) {
+        btnScrollCv.addEventListener("click", () => {
+          const cv = document.getElementById("cv-card");
+          if (cv) cv.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
 
+      if (btnScrollAi) {
+        btnScrollAi.addEventListener("click", () => {
+          const ai = document.getElementById("ai-card");
+          if (ai) ai.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+
+      window.addEventListener("load", () => {
         const intro =
           "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
           "- Cloud & DevOps deneyimi ve projeleri hakkında soru sorabilirsin.\n" +
