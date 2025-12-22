@@ -79,15 +79,18 @@
       border-radius: 24px;
       border: 1px solid rgba(148, 163, 184, 0.18);
       box-shadow: var(--shadow-soft);
-      padding: 20px 18px;
+      padding: 24px 22px;
       position: relative;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-color: rgba(255, 255, 255, 0.08);
     }
 
     .card-inner {
-      max-width: 440px;
+      max-width: 960px;
       margin: 0 auto;
       width: 100%;
       height: 100%;
@@ -610,15 +613,18 @@
     .msg-bubble {
       border-radius: 16px;
       padding: 8px 11px 9px;
-      font-size: 0.82rem;
-      line-height: 1.45;
+      font-size: 0.9rem;
+      line-height: 1.55;
       max-width: 82%;
       white-space: pre-line;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
     }
 
     .msg-ai {
       background: rgba(15, 23, 42, 0.98);
       border: 1px solid rgba(148, 163, 184, 0.7);
+      border-left: 4px solid var(--accent);
     }
 
     .msg-user {

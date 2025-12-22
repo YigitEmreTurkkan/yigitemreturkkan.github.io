@@ -1,0 +1,50 @@
+{
+  "profile": {
+    "name": "Yiğit Emre Türkkan",
+    "title": "Cloud & DevOps Engineer",
+    "location": "Remote / Hybrid / Global",
+    "education": "Muğla Sıtkı Koçman Üniversitesi, AGNO: 3.09",
+    "summary": "Mühendislik altyapısına sahip, Cloud & DevOps odaklı, ölçeklenebilir ve güvenilir sistemler inşa eden teknoloji tutkunu."
+  },
+  "experience": [
+    {
+      "role": "Jr. Cloud Engineer",
+      "company": "CloudFlex",
+      "date": "Eylül 2025 - Halen",
+      "highlights": [
+        "AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu",
+        "Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine katkı",
+        "İzleme, yedekleme ve güvenilirlik odaklı operasyonlar"
+      ]
+    },
+    {
+      "role": "Jr. DevOps & Platform Mühendisi",
+      "company": "Eteration",
+      "date": "Ocak 2025 - Temmuz 2025",
+      "highlights": [
+        "GitLab CI ile pipeline tasarımı ve optimizasyonu",
+        "Docker ve Kubernetes ile konteynerleşme ve orkestrasyon"
+      ]
+    },
+    {
+      "role": "Intern Java Developer",
+      "company": "Hitit",
+      "date": "Temmuz 2023 - Ağustos 2023"
+    }
+  ],
+  "skills": [
+    "Kubernetes",
+    "Docker",
+    "AWS",
+    "Azure",
+    "GitLab CI/CD",
+    "Terraform",
+    "ArgoCD",
+    "Python",
+    "Java",
+    "React",
+    "Linux"
+  ]
+}
+
+
