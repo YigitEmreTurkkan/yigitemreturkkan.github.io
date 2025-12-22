@@ -1,56 +1,67 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
-// 1. ADIM: Değişkeni tek bir kez tanımlıyoruz
-const AI_API = "REPLACE_WITH_SECRET_KEY"; 
+// API anahtarını tek bir yerde tut
+const AI_API = "REPLACE_WITH_SECRET_KEY";
 const genAI = new GoogleGenerativeAI(AI_API);
 
-// 2. ADIM: Kişilik Tanımlaması (System Instruction)
+// CV verisini JSON'dan oku (tek gerçek kaynak)
+const cvData = await fetch("./cv-data.json").then((r) => r.json());
+const cvDataString = JSON.stringify(cvData, null, 2);
+
+// Sistem talimatını JSON ile dinamik kur
 const SYSTEM_INSTRUCTION = `
-Sen Yiğit Emre Türkkan'ın AI asistanısın. Asla kendi kimliğinden çıkma.
-Sen bir Junior Cloud & DevOps Engineer uzmanısın.
-İsmim Yiğit, senin görevin benim portfolyomda ziyaretçilerin sorularını yanıtlamak.
+Sen Yiğit Emre Türkkan'ın resmi AI asistanısın.
 
-BİLGİLERİM:
-- Rol: Junior Cloud Engineer @ CloudFlex (Eylül 2025 - Halen)
-- Önceki: Jr. DevOps Müh @ Eteration, Intern Java Dev @ Hitit.
-- Yetkinlikler: Kubernetes, Docker, AWS, Azure, GitLab CI/CD, Terraform.
-- Eğitim: Muğla Sıtkı Koçman Üniversitesi.
-- Konum Tercihi: Remote & Hybrid çalışmaya uygunum. Global projelere açığım.
+KİMLİK:
+- Rol: Cloud & DevOps Engineer.
+- Tarzın: Profesyonel, sakin, çözüm odaklı ve net.
 
-DAVRANIŞ KURALLARI:
-- Cevapların kısa, profesyonel ve "tech-savvy" olsun.
-- Sadece Yiğit'in profesyonel hayatı hakkında konuş. Özel hayat sorulursa kibarca LinkedIn'e yönlendir.
-- Türkçe sorulursa Türkçe, İngilizce sorulursa İngilizce cevap ver.
+VERİ KAYNAĞI:
+Aşağıdaki JSON Yiğit hakkındaki tek güvenilir kaynaktır. Tüm cevaplarını bu veriye dayandır:
+${cvDataString}
+
+KURALLAR:
+1. Sadece bu JSON'da bulunan veya ondan mantıklı şekilde türetilebilen bilgiler hakkında konuş.
+2. Bilmediğin bir şey sorulursa "Bu konuda elimde net veri yok, Yiğit’e LinkedIn üzerinden sorabilirsiniz." de.
+3. Cevapların 2–4 cümle uzunluğunda, kısa ve odaklı olsun.
+4. Türkçe sorulara Türkçe, İngilizce sorulara İngilizce cevap ver.
+5. Markdown kullanma, düz metin ver; emoji kullanabilirsin ama abartma.
 `;
 
-// Model Ayarları (Hatalı olan ikinci 'const genAI' satırını sildik)
+// Model ayarları
 const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
-    systemInstruction: SYSTEM_INSTRUCTION
+  model: "gemini-2.0-flash",
+  systemInstruction: SYSTEM_INSTRUCTION,
 });
 
-// Sohbet Geçmişini Başlat
+// Sohbet geçmişini başlat
 let chatHistory = model.startChat({
-    history: [
+  history: [
+    {
+      role: "user",
+      parts: [{ text: "Merhaba, sen kimsin?" }],
+    },
+    {
+      role: "model",
+      parts: [
         {
-            role: "user",
-            parts: [{ text: "Merhaba, sen kimsin?" }],
+          text:
+            "Merhaba! Ben Yiğit Emre Türkkan'ın yapay zeka asistanıyım. Yiğit'in Cloud & DevOps deneyimi, projeleri ve teknik yaklaşımı hakkında sorularını yanıtlamak için buradayım.",
         },
-        {
-            role: "model",
-            parts: [{ text: "Merhaba! Ben Yiğit Emre Türkkan'ın yapay zeka asistanıyım. Yiğit'in Cloud mimarileri, DevOps süreçleri veya projeleri hakkındaki sorularınızı yanıtlamak için buradayım." }],
-        },
-    ],
+      ],
+    },
+  ],
 });
 
-// Mesaj Gönderme Fonksiyonu
+// Mesaj gönderme fonksiyonu
 export async function sendMessageToGemini(userMessage) {
-    try {
-        const result = await chatHistory.sendMessage(userMessage);
-        const response = await result.response;
-        return response.text();
-    } catch (error) {
-        console.error("Gemini Hatası:", error);
-        return "Üzgünüm, şu an bağlantıda bir sorun yaşıyorum. Lütfen LinkedIn üzerinden Yiğit'e ulaşın.";
-    }
+  try {
+    const result = await chatHistory.sendMessage(userMessage);
+    const response = await result.response;
+    return response.text();
+  } catch (error) {
+    console.error("Gemini Hatası:", error);
+    return "Üzgünüm, şu an bağlantıda bir sorun yaşıyorum. Lütfen daha sonra tekrar dene veya LinkedIn üzerinden Yiğit'e ulaş.";
+  }
 }
+
