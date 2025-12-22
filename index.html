@@ -60,17 +60,38 @@
       }
 
       .app-shell {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
         height: auto;
       }
 
-      /* Mobilde sadece AI kartını göster, CV kartını gizle */
-      .cv-card {
-        display: none;
-      }
-
+      .cv-card,
       .chat-card {
-        height: auto;
+        width: 100%;
+      }
+
+      .mobile-expand-btn {
+        display: inline-flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(191, 219, 254, 0.85);
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: #f9fafb;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(79, 70, 229, 0.7);
+      }
+
+      .cv-content {
+        transition: max-height 0.25s ease;
       }
     }
 
@@ -867,22 +888,23 @@
         </header>
 
         <button id="mobile-expand" class="mobile-expand-btn">
-          <span>▼</span>
-          <span>CV Detaylarını ve AI Asistanı Göster</span>
+          <span class="toggle-arrow">▼</span>
+          <span class="toggle-text">Expand Full CV</span>
         </button>
 
+      <div id="cv-content" class="cv-content">
         <div class="cv-scroll">
-        <div class="pill-row">
-          <div class="pill">
-            <span class="pill-dot"></span>
-            Aktif olarak CloudFlex’te Jr. Cloud Engineer
+          <div class="pill-row">
+            <div class="pill">
+              <span class="pill-dot"></span>
+              Aktif olarak CloudFlex’te Jr. Cloud Engineer
+            </div>
+            <div class="pill pill-ghost">
+              🌐 Remote &amp; Hybrid Capable
+            </div>
           </div>
-          <div class="pill pill-ghost">
-            🌐 Remote &amp; Hybrid Capable
-          </div>
-        </div>
 
-        <section class="cv-section">
+          <section class="cv-section">
           <h2 class="section-title">Özet</h2>
           <p class="cv-text">
             Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji
@@ -1025,7 +1047,7 @@
               </div>
             </div>
           </div>
-        </section>
+          </section>
         </div>
 
         <div class="cv-scroll-indicator">
@@ -1112,6 +1134,9 @@
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
       const quickRow = document.getElementById("quick-row");
+      const cvToggleBtn = document.getElementById("mobile-expand");
+      const cvContent = document.getElementById("cv-content");
+      const aiCard = document.getElementById("ai-card");
 
       let currentLang = "tr"; // "tr" | "en"
       let isBusy = false;
@@ -1249,7 +1274,52 @@
         handleUserMessage(txt);
       });
 
+      function applyMobileCvState() {
+        const isMobile = window.matchMedia("(max-width: 880px)").matches;
+        const expanded = document.body.getAttribute("data-cv-expanded") === "true";
+
+        if (!isMobile) {
+          if (cvContent) cvContent.style.display = "";
+          if (aiCard) aiCard.style.display = "";
+          return;
+        }
+
+        if (cvContent) cvContent.style.display = expanded ? "" : "none";
+        if (aiCard) aiCard.style.display = expanded ? "none" : "";
+      }
+
+      function updateCvToggleLabel() {
+        if (!cvToggleBtn) return;
+        const expanded = document.body.getAttribute("data-cv-expanded") === "true";
+        const arrow = cvToggleBtn.querySelector(".toggle-arrow");
+        const label = cvToggleBtn.querySelector(".toggle-text");
+        if (arrow) arrow.textContent = expanded ? "▲" : "▼";
+        if (label)
+          label.textContent = expanded ? "Collapse CV & Return to Chat" : "Expand Full CV";
+      }
+
+      if (cvToggleBtn) {
+        cvToggleBtn.addEventListener("click", () => {
+          const expanded = document.body.getAttribute("data-cv-expanded") === "true";
+          document.body.setAttribute("data-cv-expanded", expanded ? "false" : "true");
+          applyMobileCvState();
+          updateCvToggleLabel();
+        });
+      }
+
+      window.addEventListener("resize", () => {
+        applyMobileCvState();
+        updateCvToggleLabel();
+      });
+
       window.addEventListener("load", () => {
+        // Mobil varsayılan: CV kapalı, chat açık
+        if (window.matchMedia("(max-width: 880px)").matches) {
+          document.body.setAttribute("data-cv-expanded", "false");
+        }
+        applyMobileCvState();
+        updateCvToggleLabel();
+
         const intro =
           "Merhaba, ben Yiğit’in yapay zeka CV asistanıyım.\n\n" +
           "- Cloud & DevOps deneyimi, projeleri ve ekip uyumu hakkında soru sorabilirsin.\n" +
