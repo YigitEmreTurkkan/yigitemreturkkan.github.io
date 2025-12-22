@@ -22,7 +22,7 @@ async function initChat() {
     console.warn("cv-data.json okunurken hata:", err);
   }
 
-  const SYSTEM_INSTRUCTION = `
+const SYSTEM_INSTRUCTION = `
 Sen Yiğit Emre Türkkan'ın resmi AI asistanısın.
 
 KİMLİK:
@@ -41,41 +41,41 @@ KURALLAR:
 5. Markdown kullanma, düz metin ver; emoji kullanabilirsin ama abartma.
 `;
 
-  const model = genAI.getGenerativeModel({
+const model = genAI.getGenerativeModel({
     model: "gemini-2.0-flash",
     systemInstruction: SYSTEM_INSTRUCTION,
-  });
+});
 
   return model.startChat({
     history: [
-      {
-        role: "user",
-        parts: [{ text: "Merhaba, sen kimsin?" }],
-      },
-      {
-        role: "model",
+        {
+            role: "user",
+            parts: [{ text: "Merhaba, sen kimsin?" }],
+        },
+        {
+            role: "model",
         parts: [
           {
             text:
               "Merhaba! Ben Yiğit Emre Türkkan'ın yapay zeka asistanıyım. Yiğit'in Cloud & DevOps deneyimi, projeleri ve teknik yaklaşımı hakkında sorularını yanıtlamak için buradayım.",
           },
         ],
-      },
+        },
     ],
-  });
+});
 }
 
 // Mesaj gönderme fonksiyonu
 export async function sendMessageToGemini(userMessage) {
-  try {
+    try {
     const chatHistory = await chatHistoryPromise;
-    const result = await chatHistory.sendMessage(userMessage);
-    const response = await result.response;
-    return response.text();
-  } catch (error) {
-    console.error("Gemini Hatası:", error);
+        const result = await chatHistory.sendMessage(userMessage);
+        const response = await result.response;
+        return response.text();
+    } catch (error) {
+        console.error("Gemini Hatası:", error);
     return "Üzgünüm, şu an bağlantıda bir sorun yaşıyorum. Lütfen daha sonra tekrar dene veya LinkedIn üzerinden Yiğit'e ulaş.";
-  }
+    }
 }
 
 
