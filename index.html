@@ -64,6 +64,32 @@
       height: calc(100vh - 32px);
     }
 
+    .lang-switch {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .lang-btn {
+      padding: 6px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    }
+
     @media (min-width: 881px) {
       body {
         align-items: center;
@@ -99,6 +125,10 @@
                                   gap: 6px;
                                   height: 100dvh !important; /* tek ekran */
                                 }
+
+      .lang-switch {
+        justify-content: center;
+      }
 
                                 /* Mobile: collapsed CV sadece header + buton kadar yer kaplasın */
                                 .cv-card {
@@ -1091,6 +1121,10 @@
 </head>
 <body>
   <main class="app-shell">
+    <div class="lang-switch" aria-label="Dil seçici / Language selector">
+      <button class="lang-btn active" type="button" data-lang="tr">TR</button>
+      <button class="lang-btn" type="button" data-lang="en">EN</button>
+    </div>
                                                                                                                                                                                                                               <section class="card cv-card" id="cv-card">
                                                                                                                                                                                                                                 <div class="card-inner">
       <header class="card-header">
@@ -1102,11 +1136,11 @@
                                       <div class="header-name-badge">
                                         <div class="name-row">
                                           <span class="cv-name">Yiğit Emre Türkkan</span>
-                                          <span class="badge-role">Cloud &amp; DevOps Engineer</span>
+                                          <span class="badge-role" id="badge-role">Cloud &amp; DevOps Engineer</span>
                                         </div>
-                                        <p class="subheading">
-                                          Üretken yapay zeka meraklısı ve problem çözmeyi seven bir
-                                          Cloud &amp; DevOps Engineer.
+                                        <p class="subheading" id="subheading">
+                                          Üretken yapay zeka meraklısı ve problem çözmeyi seven bir Cloud &amp; DevOps
+                                          Engineer.
                                         </p>
                                       </div>
                                     </div>
@@ -1159,7 +1193,7 @@
 
                                                                                                                                                                                                                                   <button id="mobile-expand" class="mobile-expand-btn">
                                                                                                                                                                                                                                     <span class="toggle-arrow">▼</span>
-                                                                                                                                                                                                                                    <span class="toggle-text">Expand Full CV</span>
+                                                                                                                                                                                                                                   <span class="toggle-text" id="cv-toggle-text">Expand Full CV</span>
                                                                                                                                                                                                                                   </button>
 
                                                                                                                                                                                                                                 <div id="cv-content" class="cv-content">
@@ -1167,114 +1201,111 @@
       <div class="pill-row">
         <div class="pill">
           <span class="pill-dot"></span>
-          Aktif olarak CloudFlex’te Jr. Cloud Engineer
+          <span id="pill-active">Aktif olarak CloudFlex’te Jr. Cloud Engineer</span>
         </div>
         <div class="pill pill-ghost">
-                                                                                                                                                                                                                                        🌐 Remote &amp; Hybrid Capable
+                                                                                                                                                                                                                                        <span id="pill-remote">🌐 Remote &amp; Hybrid Capable</span>
         </div>
       </div>
 
                                                                                                                                                                                                                                     <section class="cv-section">
-                                                                                                                                                                                                                                    <h2 class="section-title">Özet</h2>
-                                                                                                                                                                                                                                    <p class="cv-text">
-                                                                                                                                                                                                                                      Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji
-                                                                                                                                                                                                                                      tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile
-                                                                                                                                                                                                                                      ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım
-                                                                                                                                                                                                                                      oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.
+                                                                                                                                                                                                                                    <h2 class="section-title" id="title-summary">Özet</h2>
+                                                                                                                                                                                                                                    <p class="cv-text" id="summary-body">
+                                                                                                                                                                                                                                      Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.
                                                                                                                                                                                                                                     </p>
                                                                                                                                                                                                                                   </section>
 
                                                                                                                                                                                                                                   <section class="cv-section">
-                                                                                                                                                                                                                                    <h2 class="section-title">Deneyim</h2>
+                                                                                                                                                                                                                                    <h2 class="section-title" id="title-experience">Deneyim</h2>
                                                                                                                                                                                                                                     <div class="timeline">
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title">Jr. Cloud Engineer, CloudFlex</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta">Eylül 2025 - Halen</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp1-title">Jr. Cloud Engineer, CloudFlex</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp1-meta">Eylül 2025 - Halen</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li>AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.</li>
-                                                                                                                                                                                                                                          <li>Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.</li>
-                                                                                                                                                                                                                                          <li>Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.</li>
+                                                                                                                                                                                                                                          <li id="exp1-li1">AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.</li>
+                                                                                                                                                                                                                                          <li id="exp1-li2">Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.</li>
+                                                                                                                                                                                                                                          <li id="exp1-li3">Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title">Jr. DevOps &amp; Platform Mühendisi, Eteration</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta">Ocak 2025 - Temmuz 2025</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp2-title">Jr. DevOps &amp; Platform Mühendisi, Eteration</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp2-meta">Ocak 2025 - Temmuz 2025</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li>GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.</li>
-                                                                                                                                                                                                                                          <li>Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.</li>
-                                                                                                                                                                                                                                          <li>Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.</li>
+                                                                                                                                                                                                                                          <li id="exp2-li1">GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.</li>
+                                                                                                                                                                                                                                          <li id="exp2-li2">Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.</li>
+                                                                                                                                                                                                                                          <li id="exp2-li3">Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title">Intern Java Developer, Hitit</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta">Temmuz 2023 - Ağustos 2023</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp3-title">Intern Java Developer, Hitit</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp3-meta">Temmuz 2023 - Ağustos 2023</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li>Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.</li>
-                                                                                                                                                                                                                                          <li>Kurumsal Java projelerinde pratik deneyim kazanımı.</li>
+                                                                                                                                                                                                                                          <li id="exp3-li1">Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.</li>
+                                                                                                                                                                                                                                          <li id="exp3-li2">Kurumsal Java projelerinde pratik deneyim kazanımı.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title">Intern Full Stack Developer, GET Yazılım</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta">Aralık 2022 - Mayıs 2023</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp4-title">Intern Full Stack Developer, GET Yazılım</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp4-meta">Aralık 2022 - Mayıs 2023</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li>Web ve mobil projelere full‑stack geliştirici olarak katkı.</li>
-                                                                                                                                                                                                                                          <li>React, Android ve backend teknolojileriyle tam yığın geliştirme.</li>
+                                                                                                                                                                                                                                          <li id="exp4-li1">Web ve mobil projelere full‑stack geliştirici olarak katkı.</li>
+                                                                                                                                                                                                                                          <li id="exp4-li2">React, Android ve backend teknolojileriyle tam yığın geliştirme.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title">IT Asistanı, Muğla Sıtkı Koçman Üniversitesi</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta">Kasım 2021 - Haziran 2023</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp5-title">IT Asistanı, Muğla Sıtkı Koçman Üniversitesi</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp5-meta">Kasım 2021 - Haziran 2023</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li>Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.</li>
-                                                                                                                                                                                                                                          <li>Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.</li>
+                                                                                                                                                                                                                                          <li id="exp5-li1">Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.</li>
+                                                                                                                                                                                                                                          <li id="exp5-li2">Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
                                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                                   </section>
 
                                                                                                                                                                                                                                   <section class="cv-section">
-                                                                                                                                                                                                                                    <h2 class="section-title">Eğitim &amp; Projeler</h2>
+                                                                                                                                                                                                                                    <h2 class="section-title" id="title-education">Eğitim &amp; Projeler</h2>
                                                                                                                                                                                                                                     <div class="timeline">
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title">Bilişim Sistemleri Mühendisliği, Muğla Sıtkı Koçman Üniversitesi</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta">Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title" id="edu1-title">Bilişim Sistemleri Mühendisliği, Muğla Sıtkı Koçman Üniversitesi</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta" id="edu1-meta">Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li>Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.</li>
-                                                                                                                                                                                                                                          <li>Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.</li>
+                                                                                                                                                                                                                                          <li id="edu1-li1">Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.</li>
+                                                                                                                                                                                                                                          <li id="edu1-li2">Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title">Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta">2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title" id="edu2-title">Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta" id="edu2-meta">2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li>React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.</li>
-                                                                                                                                                                                                                                          <li>Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.</li>
+                                                                                                                                                                                                                                          <li id="edu2-li1">React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.</li>
+                                                                                                                                                                                                                                          <li id="edu2-li2">Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
                                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                                   </section>
 
                                                                                                                                                                                                                                   <section class="cv-section">
-                                                                                                                                                                                                                                    <h2 class="section-title">Odak Alanları &amp; Beceriler</h2>
+                                                                                                                                                                                                                                    <h2 class="section-title" id="title-skills">Odak Alanları &amp; Beceriler</h2>
       <div class="stack-grid">
         <div>
                                                                                                                                                                                                                                         <p class="stack-label">Cloud &amp; DevOps</p>
@@ -1302,18 +1333,18 @@
 
                                                                                                                                                                                                                                     <div class="meta-row">
                                                                                                                                                                                                                                       <div class="meta-block">
-                                                                                                                                                                                                                                        <p class="meta-label">Diller</p>
+                                                                                                                                                                                                                                        <p class="meta-label" id="label-languages">Diller</p>
                                                                                                                                                                                                                                         <div class="meta-tags">
-                                                                                                                                                                                                                                          <span class="meta-tag">Türkçe (Ana Dil)</span>
-                                                                                                                                                                                                                                          <span class="meta-tag">English</span>
+                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-lang-tr">Türkçe (Ana Dil)</span>
+                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-lang-en">English</span>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                       </div>
                                                                                                                                                                                                                                       <div class="meta-block">
-                                                                                                                                                                                                                                        <p class="meta-label">Sertifikalar</p>
+                                                                                                                                                                                                                                        <p class="meta-label" id="label-certs">Sertifikalar</p>
                                                                                                                                                                                                                                         <div class="meta-tags">
-                                                                                                                                                                                                                                          <span class="meta-tag">AWS Cloud 101</span>
-                                                                                                                                                                                                                                          <span class="meta-tag">Siber Vatan Etik Hacker</span>
-                                                                                                                                                                                                                                          <span class="meta-tag">GitLab CI Fundamentals</span>
+                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-cert-aws">AWS Cloud 101</span>
+                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-cert-ethical">Siber Vatan Etik Hacker</span>
+                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-cert-gitlab">GitLab CI Fundamentals</span>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                       </div>
                                                                                                                                                                                                                                     </div>
@@ -1322,7 +1353,7 @@
                                     <!-- Scroll Hint (sadece web/desktop için) -->
                                     <div class="cv-scroll-hint">
                                       <span class="scroll-hint">
-                                        <span>CV detayları için aşağı kaydır</span>
+                                        <span id="scroll-hint-text">CV detayları için aşağı kaydır</span>
                                         <span class="scroll-hint-arrow">↓</span>
                                       </span>
                                     </div>
@@ -1331,10 +1362,10 @@
       <footer class="contact-footer">
         <div class="cta-row">
           <a class="btn btn-outline" href="https://linkedin.com/in/yigitemreturkkan" target="_blank" rel="noreferrer">
-            LinkedIn
+            <span id="footer-linkedin">LinkedIn</span>
           </a>
           <a class="btn btn-primary" href="mailto:yigit.turkkan@gmail.com">
-            E-posta ile iletişim
+            <span id="footer-email">E-posta ile iletişim</span>
           </a>
         </div>
       </footer>
@@ -1346,7 +1377,7 @@
       <header class="chat-header-row">
         <div>
           <div class="chat-title">
-                                                                                                                                                                                                                                        Yiğit Emre Türkkan'ın AI CV Asistanı
+                                                                                                                                                                                                                                        <span id="chat-title">Yiğit Emre Türkkan'ın AI CV Asistanı</span>
           </div>
         </div>
         <div class="chat-badge">
@@ -1368,6 +1399,7 @@
             class="chat-input"
             rows="1"
                                                                                                                                                                                                                                         placeholder="Mesajınızı buraya yazın..."
+                                                                                                                                                                                                                                        data-i18n-placeholder="chat-placeholder"
           ></textarea>
         </div>
         <button id="send-btn" class="chat-send-btn" type="button" aria-label="Send message">
@@ -1390,22 +1422,204 @@
                                                                                                                                                                                                                                 const cvContent = document.getElementById("cv-content");
                                                                                                                                                                                                                                 const aiCard = document.getElementById("ai-card");
                                                                                                                                                                                                                                 const cvCard = document.getElementById("cv-card");
+      const langButtons = document.querySelectorAll(".lang-btn");
 
-      let currentLang = "tr"; // "tr" | "en"
+      const translations = {
+        "badge-role": { tr: "Cloud & DevOps Engineer", en: "Cloud & DevOps Engineer" },
+        subheading: {
+          tr: "Üretken yapay zeka meraklısı ve problem çözmeyi seven bir Cloud & DevOps Engineer.",
+          en: "A Cloud & DevOps Engineer who loves problem-solving and exploring generative AI.",
+        },
+        "cv-toggle-text": {
+          tr: "CV'yi Aç",
+          en: "Expand Full CV",
+        },
+        "pill-active": {
+          tr: "Aktif olarak CloudFlex’te Jr. Cloud Engineer",
+          en: "Currently a Jr. Cloud Engineer at CloudFlex",
+        },
+        "pill-remote": {
+          tr: "🌐 Remote & Hybrid Capable",
+          en: "🌐 Remote & Hybrid Capable",
+        },
+        "title-summary": { tr: "Özet", en: "Summary" },
+        "summary-body": {
+          tr: "Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.",
+          en: "I am an engineer-minded Cloud professional passionate about building scalable and reliable systems. I have experience with DevOps culture, cloud architectures, and software delivery practices. Comfortable in agile environments, a fast learner, and adaptable to changing technologies, I focus on continuous improvement while delivering resilient systems.",
+        },
+        "title-experience": { tr: "Deneyim", en: "Experience" },
+        "exp1-title": { tr: "Jr. Cloud Engineer, CloudFlex", en: "Jr. Cloud Engineer, CloudFlex" },
+        "exp1-meta": { tr: "Eylül 2025 - Halen", en: "Sep 2025 - Present" },
+        "exp1-li1": {
+          tr: "AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.",
+          en: "Managing and optimizing cloud infrastructure on AWS and Azure.",
+        },
+        "exp1-li2": {
+          tr: "Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.",
+          en: "Deploying containerized apps and contributing to CI/CD pipelines.",
+        },
+        "exp1-li3": {
+          tr: "Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.",
+          en: "Handling backup, monitoring, and reliability-focused operations.",
+        },
+        "exp2-title": {
+          tr: "Jr. DevOps & Platform Mühendisi, Eteration",
+          en: "Jr. DevOps & Platform Engineer, Eteration",
+        },
+        "exp2-meta": { tr: "Ocak 2025 - Temmuz 2025", en: "Jan 2025 - Jul 2025" },
+        "exp2-li1": {
+          tr: "GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.",
+          en: "Supported pipeline design, optimization, and maintenance with GitLab CI.",
+        },
+        "exp2-li2": {
+          tr: "Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.",
+          en: "Containerization and orchestration with Docker and Kubernetes.",
+        },
+        "exp2-li3": {
+          tr: "Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.",
+          en: "Infrastructure operations support with Kubernetes ecosystem tools.",
+        },
+        "exp3-title": { tr: "Intern Java Developer, Hitit", en: "Intern Java Developer, Hitit" },
+        "exp3-meta": { tr: "Temmuz 2023 - Ağustos 2023", en: "Jul 2023 - Aug 2023" },
+        "exp3-li1": {
+          tr: "Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.",
+          en: "Worked on the Crane software suite for the aviation sector.",
+        },
+        "exp3-li2": {
+          tr: "Kurumsal Java projelerinde pratik deneyim kazanımı.",
+          en: "Gained hands-on experience in enterprise Java projects.",
+        },
+        "exp4-title": { tr: "Intern Full Stack Developer, GET Yazılım", en: "Intern Full Stack Developer, GET Yazılım" },
+        "exp4-meta": { tr: "Aralık 2022 - Mayıs 2023", en: "Dec 2022 - May 2023" },
+        "exp4-li1": {
+          tr: "Web ve mobil projelere full‑stack geliştirici olarak katkı.",
+          en: "Contributed as a full-stack developer to web and mobile projects.",
+        },
+        "exp4-li2": {
+          tr: "React, Android ve backend teknolojileriyle tam yığın geliştirme.",
+          en: "Built with React, Android, and backend technologies.",
+        },
+        "exp5-title": { tr: "IT Asistanı, Muğla Sıtkı Koçman Üniversitesi", en: "IT Assistant, Muğla Sıtkı Koçman University" },
+        "exp5-meta": { tr: "Kasım 2021 - Haziran 2023", en: "Nov 2021 - Jun 2023" },
+        "exp5-li1": {
+          tr: "Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.",
+          en: "Resolved hardware and software issues across campus computers.",
+        },
+        "exp5-li2": {
+          tr: "Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.",
+          en: "Supported end-user processes and infrastructure operations.",
+        },
+        "title-education": { tr: "Eğitim & Projeler", en: "Education & Projects" },
+        "edu1-title": {
+          tr: "Bilişim Sistemleri Mühendisliği, Muğla Sıtkı Koçman Üniversitesi",
+          en: "Information Systems Engineering, Mugla Sitki Kocman University",
+        },
+        "edu1-meta": { tr: "Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00", en: "Sep 2019 - Jun 2025 · GPA: 3.09 / 4.00" },
+        "edu1-li1": {
+          tr: "Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.",
+          en: "Active roles in Google Developer Student Clubs (GDSC) Co-Lead, IEEE, and Siber Vatan communities.",
+        },
+        "edu1-li2": {
+          tr: "Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.",
+          en: "Projects focused on cloud, software development, and cybersecurity.",
+        },
+        "edu2-title": {
+          tr: "Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi",
+          en: "Academic Paper – Personalized Travel Management",
+        },
+        "edu2-meta": { tr: "2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025", en: "2nd International Future Engineers Conference · 2025" },
+        "edu2-li1": {
+          tr: "React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.",
+          en: "Full-stack travel recommendation system with React, Android, Firebase, and Python-based AI.",
+        },
+        "edu2-li2": {
+          tr: "Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.",
+          en: "Recommendation engine that creates personalized travel plans based on user preferences.",
+        },
+        "title-skills": { tr: "Odak Alanları & Beceriler", en: "Focus Areas & Skills" },
+        "label-languages": { tr: "Diller", en: "Languages" },
+        "tag-lang-tr": { tr: "Türkçe (Ana Dil)", en: "Turkish (Native)" },
+        "tag-lang-en": { tr: "English", en: "English" },
+        "label-certs": { tr: "Sertifikalar", en: "Certifications" },
+        "tag-cert-aws": { tr: "AWS Cloud 101", en: "AWS Cloud 101" },
+        "tag-cert-ethical": { tr: "Siber Vatan Etik Hacker", en: "Siber Vatan Ethical Hacker" },
+        "tag-cert-gitlab": { tr: "GitLab CI Fundamentals", en: "GitLab CI Fundamentals" },
+        "scroll-hint-text": { tr: "CV detayları için aşağı kaydır", en: "Scroll down for CV details" },
+        "chat-title": { tr: "Yiğit Emre Türkkan'ın AI CV Asistanı", en: "Yiğit Emre Turkkan's AI CV Assistant" },
+        "footer-linkedin": { tr: "LinkedIn", en: "LinkedIn" },
+        "footer-email": { tr: "E-posta ile iletişim", en: "Contact via email" },
+      };
+
+      const attrTranslations = {
+        "chat-input": {
+          placeholder: {
+            tr: "Mesajınızı buraya yazın...",
+            en: "Type your message here...",
+          },
+        },
+      };
+
+      const toggleLabels = {
+        expand: { tr: "CV'yi Aç", en: "Expand Full CV" },
+        collapse: { tr: "CV'yi Kapat & Sohbete Dön", en: "Collapse CV & Return to Chat" },
+      };
+
+      const introTexts = {
+        tr: "Merhaba! Ben Yiğit'in dijital asistanıyım. Deneyimi, projeleri, teknik becerileri ve donanımımla ilgili merak ettiklerinizi sorabilirsiniz. Tüm bilgilerime erişebilirim, nasıl yardımcı olabilirim?",
+        en: "Hi! I'm Yiğit's digital assistant. Ask about his experience, projects, technical skills, and toolkit. I can access all his info—how can I help?",
+      };
+
+      const introMeta = {
+        tr: "Hoş geldiniz.",
+        en: "Welcome.",
+      };
+
+      let uiLang = "tr"; // UI language, independent of detected message language
       let isBusy = false;
                                                                                                                                                                                                                                 let isFirstMessage = true;
 
-      function detectLanguage(text) {
+      function detectMessageLanguage(text) {
         const hasTrChars = /[çğıöşüÇĞİÖŞÜ]/.test(text);
                                                                                                                                                                                                                                   const hasEnWords = /\b(what|how|why|cloud|devops|experience|team)\b/i.test(text);
         if (hasTrChars && !hasEnWords) return "tr";
         if (hasEnWords && !hasTrChars) return "en";
-        return currentLang;
+        return uiLang;
       }
 
-      function setLang(lang) {
-        currentLang = lang;
+      function applyTranslations() {
+        Object.entries(translations).forEach(([id, val]) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.textContent = val[uiLang] || "";
+        });
+
+        Object.entries(attrTranslations).forEach(([id, attrs]) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          Object.entries(attrs).forEach(([attrName, val]) => {
+            el.setAttribute(attrName, val[uiLang] || "");
+          });
+        });
       }
+
+      function setUiLang(lang) {
+        uiLang = lang;
+        document.documentElement.lang = lang;
+        langButtons.forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.lang === lang);
+        });
+        applyTranslations();
+        updateCvToggleLabel();
+      }
+
+      setUiLang("tr");
+
+      langButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const lang = btn.dataset.lang || "tr";
+          setUiLang(lang);
+        });
+      });
 
       function scrollToBottom() {
         requestAnimationFrame(() => {
@@ -1470,8 +1684,7 @@
         const text = rawText.trim();
         if (!text || isBusy) return;
 
-        const lang = detectLanguage(text);
-        setLang(lang);
+        const msgLang = detectMessageLanguage(text);
 
         isBusy = true;
         addMessage("user", text);
@@ -1490,7 +1703,7 @@
         bubble.innerHTML =
           '<span style="font-size:0.78rem; color:#9ca3af; display:inline-flex; align-items:center; gap:6px;">' +
           '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>' +
-          (lang === "tr" ? " Yanıt hazırlanıyor..." : " Drafting a reply...") +
+          (msgLang === "tr" ? " Yanıt hazırlanıyor..." : " Drafting a reply...") +
           "</span>";
 
         typingRow.appendChild(avatar);
@@ -1504,14 +1717,14 @@
                                                                                                                                                                                                                                   } catch (e) {
                                                                                                                                                                                                                                     console.error("Gemini error", e);
                                                                                                                                                                                                                                     answer =
-                                                                                                                                                                                                                                      lang === "tr"
+                                                                                                                                                                                                                                      msgLang === "tr"
                                                                                                                                                                                                                                         ? "Üzgünüm, şu anda yanıt üretemiyorum. Lütfen daha sonra tekrar dener misin veya LinkedIn üzerinden iletişime geçer misin?"
                                                                                                                                                                                                                                         : "Sorry, I can’t generate a reply right now. Please try again later or reach out via LinkedIn.";
                                                                                                                                                                                                                                   }
 
         typingRow.remove();
         const meta =
-          lang === "tr"
+          msgLang === "tr"
             ? "Profesyonel ama samimi, çözüm odaklı yanıt."
             : "Professional but approachable, solution‑oriented reply.";
         addMessage("ai", answer, meta);
@@ -1564,8 +1777,10 @@
                                                                                                                                                                                                                                   const arrow = cvToggleBtn.querySelector(".toggle-arrow");
                                                                                                                                                                                                                                   const label = cvToggleBtn.querySelector(".toggle-text");
                                                                                                                                                                                                                                   if (arrow) arrow.textContent = expanded ? "▲" : "▼";
-                                                                                                                                                                                                                                  if (label)
-                                                                                                                                                                                                                                    label.textContent = expanded ? "Collapse CV & Return to Chat" : "Expand Full CV";
+                                                                                                                                                                                                                                 if (label)
+                                                                                                                                                                                                                                   label.textContent = expanded
+                                                                                                                                                                                                                                     ? toggleLabels.collapse[uiLang]
+                                                                                                                                                                                                                                     : toggleLabels.expand[uiLang];
                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                 if (cvToggleBtn) {
@@ -1599,9 +1814,8 @@
 
                                   // 1 sn sonra ilk karşılama mesajını göster
                                   setTimeout(() => {
-                                    const intro =
-                                      "Merhaba! Ben Yiğit'in dijital asistanıyım. Deneyimi, projeleri, teknik becerileri ve donanımımla ilgili merak ettiklerinizi sorabilirsiniz. Tüm bilgilerime erişebilirim, nasıl yardımcı olabilirim?";
-                                    addMessage("ai", intro, "Hoş geldiniz.");
+                                    const intro = introTexts[uiLang] || introTexts.tr;
+                                    addMessage("ai", intro, introMeta[uiLang] || introMeta.tr);
                                   }, 1000);
                                                                                                                                                                                                                                 });
 
