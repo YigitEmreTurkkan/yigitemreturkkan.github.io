@@ -195,8 +195,8 @@
         padding-right: calc(8px + env(safe-area-inset-right, 0px));
         padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px));
         padding-left: calc(8px + env(safe-area-inset-left, 0px));
-        height: 100dvh !important;
-        min-height: 100dvh!important;
+        height: calc(var(--vh, 1vh) * 100) !important;
+        min-height: calc(var(--vh, 1vh) * 100) !important;
         overflow: hidden !important; /* dışarıda scroll tamamen kapalı */
         position: fixed;
         width: 100%;
@@ -207,9 +207,9 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
-        min-height: 100dvh !important; /* tek ekran */
-        height: 100dvh !important;
-        padding-top: 48px; /* mobilde switch için ekstra boşluk */
+        min-height: calc(var(--vh, 1vh) * 100) !important; /* tek ekran */
+        height: calc(var(--vh, 1vh) * 100) !important;
+        padding-top: 32px; /* dil switch küçüldü, üst boşluk azaltıldı */
       }
 
       .lang-switch-global {
@@ -219,24 +219,24 @@
       }
 
       .lang-switch-wrap {
-        padding: 2px 3px;
-        gap: 2px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1px 2px;
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       .lang-switch {
-        gap: 2px;
+        gap: 1px;
       }
 
       .lang-switch-icon,
       .lang-btn {
-        width: 30px;
-        height: 30px;
-        padding: 0 6px;
-        font-size: 0.68rem;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        background: rgba(255, 255, 255, 0.05);
+        width: 24px;
+        height: 24px;
+        padding: 0 4px;
+        font-size: 0.6rem;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.04);
       }
 
                                 /* Mobile: collapsed CV sadece header + buton kadar yer kaplasın */
@@ -245,9 +245,9 @@
                                   height: auto;
                                 }
 
-                                .cv-card .card {
-                                  padding: 8px 10px; /* daha kompakt padding */
-                                }
+        .cv-card .card {
+          padding: 6px 8px; /* daha kompakt padding */
+        }
 
                                 .header-top-row {
                                   flex-wrap: wrap; /* küçük ekranlarda wrap olsun */
@@ -283,13 +283,14 @@
                                 }
 
                                 /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
-                                #ai-card {
-                                  flex: 1 ;
-                                  height: 0; /* daha fazla görünür alan */
-                                  max-height: none;
-                                  display: flex;
-                                  flex-direction: column;
-                                }
+        #ai-card {
+          flex: 1;
+          min-height: 0;
+          height: calc((var(--vh, 1vh) * 100) - 70px); /* daha fazla görünür alan */
+          max-height: none;
+          display: flex;
+          flex-direction: column;
+        }
 
                                 #ai-card .card {
                                   padding: 10px 12px; /* biraz daha ince padding */
@@ -968,7 +969,7 @@
 
 @media (max-width: 880px) {
   .chat-scroll {
-    padding-bottom: 170px; /* Son mesajlar ve input nav bar'ın üstünde kalsın */
+    padding-bottom: 180px; /* Son mesajlar ve input nav bar'ın üstünde kalsın */
   }
 
   .chat-window {
