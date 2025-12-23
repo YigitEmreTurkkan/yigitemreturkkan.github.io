@@ -195,8 +195,8 @@
         padding-right: calc(8px + env(safe-area-inset-right, 0px));
         padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px));
         padding-left: calc(8px + env(safe-area-inset-left, 0px));
-        height: calc(var(--vh, 1vh) * 100) !important;
-        min-height: calc(var(--vh, 1vh) * 100) !important;
+        height: 100dvh !important;
+        min-height: 100dvh!important;
         overflow: hidden !important; /* dışarıda scroll tamamen kapalı */
         position: fixed;
         width: 100%;
@@ -207,7 +207,8 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
-        min-height: calc(var(--vh, 1vh) * 100) !important; /* tek ekran */
+        min-height: 100dvh !important; /* tek ekran */
+        height: 100dvh !important;
         padding-top: 48px; /* mobilde switch için ekstra boşluk */
       }
 
@@ -283,8 +284,8 @@
 
                                 /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
                                 #ai-card {
-                                  flex: 1 1 auto;
-                                  height: calc((var(--vh, 1vh) * 100) - 90px); /* daha fazla görünür alan */
+                                  flex: 1 ;
+                                  height: 0; /* daha fazla görünür alan */
                                   max-height: none;
                                   display: flex;
                                   flex-direction: column;
