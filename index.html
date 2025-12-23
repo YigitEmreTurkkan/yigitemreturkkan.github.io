@@ -39,6 +39,7 @@
       justify-content: stretch;
       padding: 16px;
       overflow: hidden;
+      position: relative;
     }
 
                                                                                                                                                                                                                               /* CV container layout (desktop baseline) */
@@ -65,12 +66,14 @@
     }
 
     .lang-switch {
+      position: absolute;
+      top: calc(10px + env(safe-area-inset-top, 0px));
+      right: calc(10px + env(safe-area-inset-right, 0px));
       display: flex;
-      justify-content: flex-start;
       align-items: center;
+      justify-content: center;
       gap: 4px;
-      margin-top: 4px;
-      margin-left: 0;
+      z-index: 10;
     }
 
     .lang-switch-icon,
