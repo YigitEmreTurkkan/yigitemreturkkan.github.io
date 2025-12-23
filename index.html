@@ -284,8 +284,8 @@
                                 /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
                                 #ai-card {
                                   flex: 1 1 auto;
-                                  min-height: 60vh; /* ekranda görünür yükseklik */
-                                  max-height: calc(100dvh - 220px); /* header + butonlar çıktığında sığsın */
+                                  height: calc(100svh - 140px); /* kart yükseklik sınırı */
+                                  max-height: none;
                                   display: flex;
                                   flex-direction: column;
                                 }
@@ -962,11 +962,29 @@
       flex-direction: column;
       gap: 8px;
       scroll-behavior: smooth;
+      min-height: 0;
     }
 
 @media (max-width: 880px) {
   .chat-scroll {
     padding-bottom: 96px; /* Son mesajlar ve input nav bar'ın üstünde kalsın */
+  }
+
+  .chat-window {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .chat-input-row {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.96);
+    padding: 10px 10px calc(14px + env(safe-area-inset-bottom, 0px));
+    margin-top: 6px;
+    border-radius: 14px;
+    z-index: 5;
   }
     }
 
