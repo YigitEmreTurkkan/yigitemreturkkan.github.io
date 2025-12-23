@@ -885,10 +885,6 @@
       gap: 4px;
     }
 
-    .chat-subtitle {
-                                                                                                                                                                                                                                font-size: 0.78rem;
-      color: var(--muted);
-                                                                                                                                                                                                                              }
 
                                                                                                                                                                                                                               @media (min-width: 881px) {
                                                                                                                                                                                                                                 .mobile-expand-btn {
@@ -1374,7 +1370,7 @@
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
                                                                                                                                                                                                                                           <h3 class="timeline-title" id="exp1-title">Jr. Cloud Engineer, CloudFlex</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp1-meta">Eylül 2025 - Halen</p>
+                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp1-meta">Ekim 2025 - Halen</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
                                                                                                                                                                                                                                           <li id="exp1-li1">AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.</li>
@@ -1612,7 +1608,7 @@
         },
         "title-experience": { tr: "Deneyim", en: "Experience" },
         "exp1-title": { tr: "Jr. Cloud Engineer, CloudFlex", en: "Jr. Cloud Engineer, CloudFlex" },
-        "exp1-meta": { tr: "Eylül 2025 - Halen", en: "Sep 2025 - Present" },
+        "exp1-meta": { tr: "Ekim 2025 - Halen", en: "Oct 2025 - Present" },
         "exp1-li1": {
           tr: "AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.",
           en: "Managing and optimizing cloud infrastructure on AWS and Azure.",
@@ -1728,8 +1724,8 @@
       };
 
       const introTexts = {
-        tr: "Merhaba! Ben Yiğit'in dijital asistanıyım. Deneyimi, projeleri, teknik becerileri ve donanımımla ilgili merak ettiklerinizi sorabilirsiniz. Tüm bilgilerime erişebilirim, nasıl yardımcı olabilirim?",
-        en: "Hi! I'm Yiğit's digital assistant. Ask about his experience, projects, technical skills, and toolkit. I can access all his info—how can I help?",
+        tr: "Merhaba! Ben Yiğit'in dijital asistanıyım. Deneyimi, projeleri, teknik becerileri ve donanımımla ilgili merak ettiklerinizi sorabilirsiniz. Tüm bilgilerime erişebilirim, nasıl yardımcı olabilirim? (You can switch language from the top.)",
+        en: "Hi! I'm Yiğit's digital assistant. Ask about his experience, projects, technical skills, and toolkit. I can access all his info—how can I help? (İstersen üstten dil seçeneğini değiştirip devam edebilirsin.)",
       };
 
       const introMeta = {
@@ -1775,7 +1771,7 @@
         updateCvToggleLabel();
       }
 
-      const storedLang = window.localStorage.getItem("uiLang") || "en";
+      const storedLang = window.localStorage.getItem("uiLang") || "tr";
       setUiLang(storedLang);
 
       langButtons.forEach((btn) => {
