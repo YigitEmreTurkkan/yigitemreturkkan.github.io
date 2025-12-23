@@ -195,21 +195,21 @@
         padding-right: calc(8px + env(safe-area-inset-right, 0px));
         padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
         padding-left: calc(8px + env(safe-area-inset-left, 0px));
-        height: 100svh !important;
-        min-height: 100svh !important;
-                                                                                                                                                                                                                                  overflow: hidden !important; /* dışarıda scroll tamamen kapalı */
-                                                                                                                                                                                                                                  position: fixed;
-                                                                                                                                                                                                                                  width: 100%;
-                                                                                                                                                                                                                                  inset: 0;
-                                                                                                                                                                                                                                }
+        height: calc(var(--vh, 1vh) * 100) !important;
+        min-height: calc(var(--vh, 1vh) * 100) !important;
+        overflow: hidden !important; /* dışarıda scroll tamamen kapalı */
+        position: fixed;
+        width: 100%;
+        inset: 0;
+      }
 
       .app-shell {
-                                  display: flex;
-                                  flex-direction: column;
-                                  gap: 6px;
-                                  min-height: 100svh !important; /* tek ekran */
-                                  padding-top: 48px; /* mobilde switch için ekstra boşluk */
-                                }
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-height: calc(var(--vh, 1vh) * 100) !important; /* tek ekran */
+        padding-top: 48px; /* mobilde switch için ekstra boşluk */
+      }
 
       .lang-switch-global {
         top: calc(6px + env(safe-area-inset-top, 0px));
@@ -284,7 +284,7 @@
                                 /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
                                 #ai-card {
                                   flex: 1 1 auto;
-                                  height: calc(100svh - 110px); /* kart yükseklik sınırı (daha fazla alan) */
+                                  height: calc((var(--vh, 1vh) * 100) - 110px); /* kart yükseklik sınırı */
                                   max-height: none;
                                   display: flex;
                                   flex-direction: column;
@@ -1570,6 +1570,14 @@
   </main>
 
                                                                                                                                                                                                                             <script type="module">
+    // Mobile viewport fix: set --vh based on innerHeight to avoid nav/URL bar issues
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+    setVh();
+    window.addEventListener("resize", setVh);
+    window.addEventListener("orientationchange", setVh);
                                                                                                                                                                                                                               import { sendMessageToGemini } from "./gemini-chat.js?v=5555";
 
     (function () {
