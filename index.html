@@ -39,15 +39,17 @@
       justify-content: stretch;
       padding: 16px;
       overflow: hidden;
-      position: relative;
     }
 
                                                                                                                                                                                                                               /* CV container layout (desktop baseline) */
                                                                                                                                                                                                                               .cv-card {
                                                                                                                                                                                                                                 display: flex;
                                                                                                                                                                                                                                 flex-direction: column;
-                                                                                                                                                                                                                                position: relative;
                                                                                                                                                                                                                                 height: 100%;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              .cv-card .card-header {
+                                                                                                                                                                                                                                position: relative;
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .cv-content {
@@ -67,8 +69,8 @@
 
     .lang-switch {
       position: absolute;
-      top: calc(10px + env(safe-area-inset-top, 0px));
-      right: calc(10px + env(safe-area-inset-right, 0px));
+      top: 10px;
+      right: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
