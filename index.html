@@ -142,14 +142,10 @@
                                   height: 100dvh !important; /* tek ekran */
                                 }
 
-      .cv-card .card-header {
-        position: relative;
-      }
-
       .lang-switch {
         position: absolute;
-        top: 8px;
-        right: 10px;
+        top: 10px;
+        right: 12px;
         margin-left: 0;
       }
 
@@ -386,7 +382,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-      margin-top: 4px;
+      margin-top: 12px;
 }
 
 @media (min-width: 881px) {
@@ -1373,7 +1369,7 @@
       <header class="chat-header-row">
         <div>
           <div class="chat-title">
-                                                                                                                                                                                                                                        <span id="chat-title">Yiğit Emre Türkkan'ın AI CV Asistanı</span>
+                                                                                                                                                                                                                                        <span id="chat-title">Yiğit Emre Türkkan'ın Dijital Asistanı</span>
           </div>
         </div>
         <div class="chat-badge">
@@ -1541,7 +1537,7 @@
         "tag-cert-ethical": { tr: "Siber Vatan Etik Hacker", en: "Siber Vatan Ethical Hacker" },
         "tag-cert-gitlab": { tr: "GitLab CI Fundamentals", en: "GitLab CI Fundamentals" },
         "scroll-hint-text": { tr: "CV detayları için aşağı kaydır", en: "Scroll down for CV details" },
-        "chat-title": { tr: "Yiğit Emre Türkkan'ın AI CV Asistanı", en: "Yiğit Emre Turkkan's AI CV Assistant" },
+        "chat-title": { tr: "Yiğit Emre Türkkan'ın Dijital Asistanı", en: "Yiğit Emre Turkkan's Digital Assistant" },
         "footer-linkedin": { tr: "LinkedIn", en: "LinkedIn" },
         "footer-email": { tr: "E-posta ile iletişim", en: "Contact via email" },
       };
@@ -1608,7 +1604,7 @@
         updateCvToggleLabel();
       }
 
-      const storedLang = window.localStorage.getItem("uiLang") || "tr";
+      const storedLang = window.localStorage.getItem("uiLang") || "en";
       setUiLang(storedLang);
 
       langButtons.forEach((btn) => {
