@@ -110,14 +110,20 @@
       height: calc(100vh - 32px);
     }
 
-    .lang-switch {
-      position: static;
+    .lang-switch-wrap {
       display: flex;
-      align-items: center;
       justify-content: flex-start;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       gap: 6px;
       z-index: 10;
-      margin-top: 6px;
+      position: relative;
     }
 
     .lang-switch-icon,
@@ -189,11 +195,18 @@
                                   height: 100dvh !important; /* tek ekran */
                                 }
 
-      .lang-switch {
+      .lang-switch-wrap {
         position: absolute;
         top: 8px;
         right: 10px;
-        margin: 0;
+        padding: 2px 4px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        gap: 4px;
+      }
+
+      .lang-switch {
         gap: 4px;
       }
 
