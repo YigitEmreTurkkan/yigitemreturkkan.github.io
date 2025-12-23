@@ -835,6 +835,7 @@
       flex: 1 1 auto;
       min-height: 0;
       height: auto;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
     }
 
     @media (min-width: 881px) {
@@ -1083,6 +1084,7 @@
       display: flex;
       gap: 8px;
       align-items: flex-end;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
     }
 
     .chat-input-wrap {
@@ -1108,7 +1110,7 @@
 
 @media (max-width: 880px) {
   .chat-input-row {
-    padding-bottom: env(safe-area-inset-bottom, 0px); /* gesture bar altında kalmasın */
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); /* gesture bar altında kalmasın */
   }
     }
 
