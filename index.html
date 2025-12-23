@@ -110,21 +110,31 @@
       height: calc(100vh - 32px);
     }
 
+    .lang-switch-global {
+      position: fixed;
+      top: calc(8px + env(safe-area-inset-top, 0px));
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      pointer-events: auto;
+    }
+
     .lang-switch-wrap {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: flex-start;
-      margin-top: 4px;
-      gap: 4px;
-      position: relative;
+      justify-content: center;
+      padding: 2px 4px;
+      gap: 3px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
     }
 
     .lang-switch {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      z-index: 10;
+      gap: 3px;
     }
 
     .lang-switch-icon,
@@ -132,10 +142,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
+      width: 30px;
+      height: 30px;
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 0.7rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .lang-switch-icon {
@@ -196,15 +208,17 @@
                                   height: 100dvh !important; /* tek ekran */
                                 }
 
+      .lang-switch-global {
+        top: calc(6px + env(safe-area-inset-top, 0px));
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
       .lang-switch-wrap {
-        position: absolute;
-        top: 6px;
-        right: 8px;
         padding: 2px 3px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 999px;
         gap: 2px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .lang-switch {
@@ -217,7 +231,6 @@
         height: 30px;
         padding: 0 6px;
         font-size: 0.68rem;
-        border-radius: 999px;
         border: 1px solid rgba(255, 255, 255, 0.18);
         background: rgba(255, 255, 255, 0.05);
       }
@@ -1241,6 +1254,27 @@
   </style>
 </head>
 <body>
+  <div class="lang-switch-global">
+    <div class="lang-switch-wrap" aria-label="Dil seçici / Language selector">
+      <div class="lang-switch">
+        <span class="lang-switch-icon" aria-hidden="true">
+          <!-- Basit globe ikonu (fa-globe benzeri) -->
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path
+              fill="currentColor"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+                 10-4.48 10-10S17.52 2 12 2zm6.93 9h-2.46a15.37 15.37 0 0 0-1.21-5.19
+                 8.03 8.03 0 0 1 3.67 5.19zM12 4c.84 0 2.32 1.97 2.86 5H9.14C9.68 5.97 11.16 4 12 4zM8.74 5.81
+                 A15.37 15.37 0 0 0 7.53 11H5.07a8.03 8.03 0 0 1 3.67-5.19zM5.07 13h2.46c.25 1.9.86 3.63 1.81 5.19A8.03 8.03 0 0 1 5.07 13zm3.07 0h7.72
+                 c-.54 3.03-2.02 5-2.86 5s-2.32-1.97-2.86-5zm5.99 5.19c.95-1.56 1.56-3.29 1.81-5.19h2.46a8.03 8.03 0 0 1-3.67 5.19z"
+            />
+          </svg>
+        </span>
+        <button class="lang-btn active" type="button" data-lang="tr">TR</button>
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
   <main class="app-shell">
                                                                                                                                                                                                                                <section class="card cv-card" id="cv-card">
                                                                                                                                                                                                                                 <div class="card-inner">
@@ -1255,23 +1289,6 @@
                                           <span class="cv-name">Yiğit Emre Türkkan</span>
                                           <span class="badge-role" id="badge-role">Cloud &amp; DevOps Engineer</span>
                                         </div>
-                                        <div class="lang-switch" aria-label="Dil seçici / Language selector">
-                                          <span class="lang-switch-icon" aria-hidden="true">
-                                            <!-- Basit globe ikonu (fa-globe benzeri) -->
-                                            <svg viewBox="0 0 24 24" width="16" height="16">
-                                              <path
-                                                fill="currentColor"
-                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
-                                                   10-4.48 10-10S17.52 2 12 2zm6.93 9h-2.46a15.37 15.37 0 0 0-1.21-5.19
-                                                   8.03 8.03 0 0 1 3.67 5.19zM12 4c.84 0 2.32 1.97 2.86 5H9.14C9.68 5.97 11.16 4 12 4zM8.74 5.81
-                                                   A15.37 15.37 0 0 0 7.53 11H5.07a8.03 8.03 0 0 1 3.67-5.19zM5.07 13h2.46c.25 1.9.86 3.63 1.81 5.19A8.03 8.03 0 0 1 5.07 13zm3.07 0h7.72
-                                                   c-.54 3.03-2.02 5-2.86 5s-2.32-1.97-2.86-5zm5.99 5.19c.95-1.56 1.56-3.29 1.81-5.19h2.46a8.03 8.03 0 0 1-3.67 5.19z"
-                                              />
-                                            </svg>
-                                          </span>
-                                          <button class="lang-btn active" type="button" data-lang="tr">TR</button>
-                                          <button class="lang-btn" type="button" data-lang="en">EN</button>
-                                          </div>
                                         <p class="subheading" id="subheading">
                                           Üretken yapay zeka meraklısı ve problem çözmeyi seven bir Cloud &amp; DevOps
                                           Engineer.
