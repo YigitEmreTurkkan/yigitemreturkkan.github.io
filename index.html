@@ -111,14 +111,13 @@
     }
 
     .lang-switch {
-      position: absolute;
-      top: 10px;
-      right: 16px;
+      position: static;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 4px;
+      justify-content: flex-start;
+      gap: 6px;
       z-index: 10;
+      margin-top: 6px;
     }
 
     .lang-switch-icon,
@@ -191,10 +190,22 @@
                                 }
 
       .lang-switch {
-        position: static;
-        top: auto;
-        right: auto;
-        margin-left: 8px;
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        margin: 0;
+        gap: 4px;
+      }
+
+      .lang-switch-icon,
+      .lang-btn {
+        width: 32px;
+        height: 32px;
+        padding: 0 8px;
+        font-size: 0.7rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.06);
       }
 
                                 /* Mobile: collapsed CV sadece header + buton kadar yer kaplasın */
@@ -204,26 +215,26 @@
                                 }
 
                                 .cv-card .card {
-                                  padding: 10px 14px; /* ultra kompakt padding */
+                                  padding: 8px 10px; /* daha kompakt padding */
                                 }
 
                                 .header-top-row {
                                   flex-wrap: wrap; /* küçük ekranlarda wrap olsun */
-                                  gap: 8px;
+                                  gap: 6px;
                                 }
 
                                 .cv-name {
-                                  font-size: 0.95rem; /* mobilde daha küçük */
+                                  font-size: 0.92rem; /* mobilde daha küçük */
                                 }
 
                                 .badge-role {
-                                  font-size: 0.6rem; /* mobilde daha küçük */
-                                  padding: 2px 7px;
+                                  font-size: 0.58rem; /* mobilde daha küçük */
+                                  padding: 2px 6px;
                                 }
 
                                 .subheading {
-                                  font-size: 0.7rem; /* mobilde daha küçük */
-                                  line-height: 1.35;
+                                  font-size: 0.68rem; /* mobilde daha küçük */
+                                  line-height: 1.3;
                                 }
 
                                 .avatar {
@@ -243,7 +254,7 @@
                                 /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
                                 #ai-card {
                                   flex: 1 1 auto;
-                                  min-height: 0; /* kendi çocuğu scroll olabilsin */
+                                  min-height: 60vh; /* ekranda görünür yükseklik */
                                   display: flex;
                                   flex-direction: column;
                                 }
