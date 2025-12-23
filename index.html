@@ -29,16 +29,44 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #1d253b 0, #050816 45%, #020617 100%);
+      background: radial-gradient(circle at top left, #0c1224 0, #050816 45%, #020617 100%);
+      position: relative;
+      overflow: hidden;
       color: var(--text);
       min-height: 100vh;
       display: flex;
       align-items: stretch;
       justify-content: stretch;
       padding: 16px;
-      overflow: hidden;
+    }
+
+    /* Animated mesh gradient overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      background: radial-gradient(45% 45% at 20% 20%, rgba(93, 95, 239, 0.25), transparent),
+        radial-gradient(40% 40% at 80% 30%, rgba(16, 185, 129, 0.18), transparent),
+        radial-gradient(35% 35% at 50% 80%, rgba(59, 130, 246, 0.18), transparent);
+      filter: blur(40px);
+      opacity: 0.8;
+      animation: meshFloat 18s ease-in-out infinite alternate;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes meshFloat {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(-2%, -3%, 0) scale(1.02);
+      }
+      100% {
+        transform: translate3d(2%, 3%, 0) scale(1);
+      }
     }
 
                                                                                                                                                                                                                               /* CV container layout (desktop baseline) */
@@ -58,11 +86,26 @@
                                                                                                                                                                                                                                 min-height: 0;
     }
 
+    .cv-scroll {
+      position: relative;
+    }
+
+    .cv-scroll.is-collapsed::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 80px;
+      pointer-events: none;
+      background: linear-gradient(0deg, rgba(5, 8, 22, 0.9), rgba(5, 8, 22, 0));
+    }
+
     .app-shell {
       width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); /* ~60/40 */
+      gap: 48px;
       align-items: stretch;
       height: calc(100vh - 32px);
     }
@@ -83,10 +126,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 26px;
-      height: 26px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
     }
 
     .lang-switch-icon {
@@ -345,8 +388,8 @@
                               }
 
                               .name-row {
-                                display: flex;
-                                align-items: center;
+      display: flex;
+      align-items: center;
                                 gap: 1px;
                                 flex-wrap: wrap;
                               }
@@ -411,8 +454,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   text-decoration: none;
   cursor: pointer;
@@ -510,6 +553,7 @@
 
                                                                                                                                                                                                                               .cv-section {
                                                                                                                                                                                                                                 margin-top: 18px;
+                                                                                                                                                                                                                                margin-bottom: 40px;
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .cv-text {
@@ -526,10 +570,30 @@
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .timeline-item {
-                                                                                                                                                                                                                                padding: 8px 10px;
-                                                                                                                                                                                                                                border-radius: 14px;
-                                                                                                                                                                                                                                border: 1px solid rgba(148, 163, 184, 0.45);
-                                                                                                                                                                                                                                background: rgba(15, 23, 42, 0.92);
+                                                                                                                                                                                                                                padding: 12px 14px;
+                                                                                                                                                                                                                                border-radius: 16px;
+                                                                                                                                                                                                                                border: 1px solid rgba(255, 255, 255, 0.08);
+                                                                                                                                                                                                                                background: rgba(26, 26, 46, 0.6);
+                                                                                                                                                                                                                                backdrop-filter: blur(12px);
+                                                                                                                                                                                                                                -webkit-backdrop-filter: blur(12px);
+                                                                                                                                                                                                                                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+                                                                                                                                                                                                                                position: relative;
+                                                                                                                                                                                                                                overflow: hidden;
+                                                                                                                                                                                                                                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              .timeline-item::before {
+                                                                                                                                                                                                                                content: "";
+                                                                                                                                                                                                                                position: absolute;
+                                                                                                                                                                                                                                inset: 0;
+                                                                                                                                                                                                                                border-radius: inherit;
+                                                                                                                                                                                                                                border: 1px solid rgba(255, 255, 255, 0.1);
+                                                                                                                                                                                                                                pointer-events: none;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              .timeline-item:hover {
+                                                                                                                                                                                                                                transform: translateY(-4px);
+                                                                                                                                                                                                                                box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4);
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .timeline-item-header {
@@ -560,6 +624,22 @@
                                                                                                                                                                                                                                 font-size: 0.78rem;
                                                                                                                                                                                                                                 color: var(--muted);
                                                                                                                                                                                                                                 line-height: 1.5;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              .tech-pills {
+                                                                                                                                                                                                                                display: flex;
+                                                                                                                                                                                                                                flex-wrap: wrap;
+                                                                                                                                                                                                                                gap: 8px;
+                                                                                                                                                                                                                                margin-top: 10px;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              .tech-pill {
+                                                                                                                                                                                                                                padding: 4px 8px;
+                                                                                                                                                                                                                                border-radius: 999px;
+                                                                                                                                                                                                                                background: rgba(255, 255, 255, 0.06);
+                                                                                                                                                                                                                                border: 1px solid rgba(255, 255, 255, 0.1);
+                                                                                                                                                                                                                                font-size: 0.72rem;
+                                                                                                                                                                                                                                color: rgba(226, 232, 240, 0.88);
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .meta-row {
@@ -712,7 +792,9 @@
     .chat-card {
       display: flex;
       flex-direction: column;
-                                                                                                                                                                                                                                height: 100%;
+      height: 100%;
+      position: sticky;
+      top: 16px;
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .cv-card {
@@ -825,6 +907,30 @@
       position: relative;
     }
 
+    .quick-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 6px 0 4px;
+    }
+
+    .quick-chip {
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.18s ease;
+    }
+
+    .quick-chip:hover {
+      background: rgba(79, 70, 229, 0.15);
+      border-color: rgba(129, 140, 248, 0.35);
+      transform: translateY(-2px);
+    }
+
     .chat-scroll {
       flex: 1;
       overflow-y: auto;
@@ -839,7 +945,7 @@
   .chat-scroll {
     padding-bottom: 96px; /* Son mesajlar ve input nav bar'ın üstünde kalsın */
   }
-}
+    }
 
     .chat-scroll::-webkit-scrollbar {
       width: 6px;
@@ -1081,7 +1187,7 @@
                                                                                                                                                                                                                               @keyframes bounce-down {
                                                                                                                                                                                                                                 0%, 100% { transform: translateY(0); opacity: 0.6; }
                                                                                                                                                                                                                                 50% { transform: translateY(4px); opacity: 1; }
-                                                                                                                                                                                                                              }
+    }
 
     .pill-status {
       display: inline-flex;
@@ -1231,6 +1337,12 @@
                                                                                                                                                                                                                                           <li id="exp1-li2">Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.</li>
                                                                                                                                                                                                                                           <li id="exp1-li3">Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.</li>
                                                                                                                                                                                                                                         </ul>
+                                                                                                                                                                                                                                        <div class="tech-pills">
+                                                                                                                                                                                                                                          <span class="tech-pill">AWS</span>
+                                                                                                                                                                                                                                          <span class="tech-pill">Azure</span>
+                                                                                                                                                                                                                                          <span class="tech-pill">Docker</span>
+                                                                                                                                                                                                                                          <span class="tech-pill">Kubernetes</span>
+                                                                                                                                                                                                                                        </div>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
@@ -1243,6 +1355,11 @@
                                                                                                                                                                                                                                           <li id="exp2-li2">Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.</li>
                                                                                                                                                                                                                                           <li id="exp2-li3">Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.</li>
                                                                                                                                                                                                                                         </ul>
+                                                                                                                                                                                                                                        <div class="tech-pills">
+                                                                                                                                                                                                                                          <span class="tech-pill">GitLab CI</span>
+                                                                                                                                                                                                                                          <span class="tech-pill">Docker</span>
+                                                                                                                                                                                                                                          <span class="tech-pill">Kubernetes</span>
+                                                                                                                                                                                                                                        </div>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
@@ -1387,6 +1504,12 @@
         <div id="chat-scroll" class="chat-scroll"></div>
       </div>
 
+        <div class="quick-row" id="quick-row">
+        <button type="button" class="quick-chip" data-text="Tell me about your projects.">See Projects</button>
+        <button type="button" class="quick-chip" data-text="What is your core tech stack?">Tech Stack</button>
+        <button type="button" class="quick-chip" data-text="Summarize your Kubernetes experience.">Kubernetes Experience</button>
+      </div>
+
       <div class="chat-input-row">
         <div class="chat-input-wrap">
           <textarea
@@ -1417,6 +1540,7 @@
                                                                                                                                                                                                                                 const cvContent = document.getElementById("cv-content");
                                                                                                                                                                                                                                 const aiCard = document.getElementById("ai-card");
                                                                                                                                                                                                                                 const cvCard = document.getElementById("cv-card");
+      const cvScroll = document.querySelector(".cv-scroll");
       const langButtons = document.querySelectorAll(".lang-btn");
 
       const translations = {
@@ -1762,11 +1886,15 @@
                                                                                                                                                                                                                                     document.body.classList.remove("is-cv-expanded");
                                                                                                                                                                                                                                     if (cvContent) cvContent.style.display = "";
                                                                                                                                                                                                                                     if (aiCard) aiCard.style.display = "";
+                                                                                                                                                                                                                                  if (cvScroll) cvScroll.classList.remove("is-collapsed");
                                                                                                                                                                                                                                     return;
                                                                                                                                                                                                                                   }
 
                                                                                                                                                                                                                                   if (cvContent) cvContent.style.display = expanded ? "" : "none";
                                                                                                                                                                                                                                   if (aiCard) aiCard.style.display = expanded ? "none" : "";
+                                                                                                                                                                                                                                  if (cvScroll) {
+                                                                                                                                                                                                                                    cvScroll.classList.toggle("is-collapsed", !expanded);
+                                                                                                                                                                                                                                  }
                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                 function updateCvToggleLabel() {
