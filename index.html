@@ -289,7 +289,7 @@
                                 }
 
                                 #ai-card .card {
-                                  padding: 10px 14px; /* ultra kompakt padding */
+                                  padding: 10px 12px; /* biraz daha ince padding */
                                 }
 
                                 #ai-card .card-inner {
@@ -832,10 +832,17 @@
     .chat-card {
       display: flex;
       flex-direction: column;
-      height: 100%;
-      position: sticky;
-      top: 16px;
-                                                                                                                                                                                                                              }
+      flex: 1 1 auto;
+      min-height: 0;
+      height: auto;
+    }
+
+    @media (min-width: 881px) {
+      .chat-card {
+        position: sticky;
+        top: 16px;
+      }
+    }
 
                                                                                                                                                                                                                               .cv-card {
                                                                                                                                                                                                                                 display: flex;
@@ -943,29 +950,6 @@
       position: relative;
     }
 
-    .quick-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 6px 0 4px;
-    }
-
-    .quick-chip {
-      padding: 8px 12px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: var(--text);
-      cursor: pointer;
-      font-size: 0.82rem;
-      transition: all 0.18s ease;
-    }
-
-    .quick-chip:hover {
-      background: rgba(79, 70, 229, 0.15);
-      border-color: rgba(129, 140, 248, 0.35);
-      transform: translateY(-2px);
-    }
 
     .chat-scroll {
       flex: 1;
@@ -1544,12 +1528,6 @@
         <div id="chat-scroll" class="chat-scroll"></div>
       </div>
 
-        <div class="quick-row" id="quick-row">
-        <button type="button" class="quick-chip" data-text="Tell me about your projects.">See Projects</button>
-        <button type="button" class="quick-chip" data-text="What is your core tech stack?">Tech Stack</button>
-        <button type="button" class="quick-chip" data-text="Summarize your Kubernetes experience.">Kubernetes Experience</button>
-      </div>
-
       <div class="chat-input-row">
         <div class="chat-input-wrap">
           <textarea
@@ -1575,7 +1553,6 @@
       const chatScroll = document.getElementById("chat-scroll");
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
-      const quickRow = document.getElementById("quick-row");
                                                                                                                                                                                                                                 const cvToggleBtn = document.getElementById("mobile-expand");
                                                                                                                                                                                                                                 const cvContent = document.getElementById("cv-content");
                                                                                                                                                                                                                                 const aiCard = document.getElementById("ai-card");
@@ -1908,15 +1885,6 @@
           handleUserMessage(val);
         }
       });
-
-                                                                                                                                                                                                                                if (quickRow) {
-      quickRow.addEventListener("click", (e) => {
-        const btn = e.target.closest("[data-text]");
-        if (!btn) return;
-        const txt = btn.getAttribute("data-text") || "";
-        handleUserMessage(txt);
-      });
-                                                                                                                                                                                                                                }
 
                                                                                                                                                                                                                                 function applyMobileCvState() {
                                                                                                                                                                                                                                   const isMobile = window.matchMedia("(max-width: 880px)").matches;
