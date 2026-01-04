@@ -5,6 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yiğit Emre Türkkan – AI Portfolio Chat</title>
   <style>
+    .lang-toggle-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1000;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.94);
+      color: #e5e7eb;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .lang-toggle-btn:hover {
+      border-color: rgba(248, 250, 252, 0.9);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    @media (max-width: 880px) {
+      .lang-toggle-btn {
+        top: 8px;
+        right: 8px;
+        padding: 6px 11px;
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+  <style>
     :root {
       color-scheme: dark;
       --bg: #050816;
@@ -29,55 +63,24 @@
     }
 
     body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #0c1224 0, #050816 45%, #020617 100%);
-      position: relative;
-      overflow: hidden;
+      background: radial-gradient(circle at top left, #1d253b 0, #050816 45%, #020617 100%);
       color: var(--text);
       min-height: 100vh;
       display: flex;
       align-items: stretch;
       justify-content: stretch;
       padding: 16px;
-    }
-
-    /* Animated mesh gradient overlay */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -20%;
-      background: radial-gradient(45% 45% at 20% 20%, rgba(93, 95, 239, 0.25), transparent),
-        radial-gradient(40% 40% at 80% 30%, rgba(16, 185, 129, 0.18), transparent),
-        radial-gradient(35% 35% at 50% 80%, rgba(59, 130, 246, 0.18), transparent);
-      filter: blur(40px);
-      opacity: 0.8;
-      animation: meshFloat 18s ease-in-out infinite alternate;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    @keyframes meshFloat {
-      0% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      50% {
-        transform: translate3d(-2%, -3%, 0) scale(1.02);
-      }
-      100% {
-        transform: translate3d(2%, 3%, 0) scale(1);
-      }
+      overflow: hidden;
     }
 
                                                                                                                                                                                                                               /* CV container layout (desktop baseline) */
                                                                                                                                                                                                                               .cv-card {
                                                                                                                                                                                                                                 display: flex;
                                                                                                                                                                                                                                 flex-direction: column;
-                                                                                                                                                                                                                                height: 100%;
-                                                                                                                                                                                                                              }
-
-                                                                                                                                                                                                                              .cv-card .card-header {
                                                                                                                                                                                                                                 position: relative;
+                                                                                                                                                                                                                                height: 100%;
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .cv-content {
@@ -86,91 +89,13 @@
                                                                                                                                                                                                                                 min-height: 0;
     }
 
-    .cv-scroll {
-      position: relative;
-    }
-
-    .cv-scroll.is-collapsed::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 80px;
-      pointer-events: none;
-      background: linear-gradient(0deg, rgba(5, 8, 22, 0.9), rgba(5, 8, 22, 0));
-    }
-
     .app-shell {
       width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); /* ~60/40 */
-      gap: 48px;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 24px;
       align-items: stretch;
       height: calc(100vh - 32px);
-      padding-top: 40px; /* global dil switch için boşluk */
-    }
-
-    .lang-switch-global {
-      position: fixed;
-      top: calc(8px + env(safe-area-inset-top, 0px));
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
-      pointer-events: auto;
-    }
-
-    .lang-switch-wrap {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px 4px;
-      gap: 3px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 999px;
-    }
-
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-    }
-
-    .lang-switch-icon,
-    .lang-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .lang-switch-icon {
-      color: var(--muted);
-      opacity: 0.9;
-    }
-
-    .lang-btn {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      padding: 0;
-    }
-
-    .lang-btn.active {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      border-color: rgba(255, 255, 255, 0.35);
-      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
     }
 
     @media (min-width: 881px) {
@@ -193,51 +118,21 @@
         justify-content: flex-start;
         padding-top: calc(8px + env(safe-area-inset-top, 0px));
         padding-right: calc(8px + env(safe-area-inset-right, 0px));
-        padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
         padding-left: calc(8px + env(safe-area-inset-left, 0px));
-        height: calc(var(--vh, 1vh) * 100) !important;
-        min-height: calc(var(--vh, 1vh) * 100) !important;
-        overflow: hidden !important; /* dışarıda scroll tamamen kapalı */
-        position: fixed;
-        width: 100%;
-        inset: 0;
-      }
+        height: 100dvh !important;
+                                                                                                                                                                                                                                  overflow: hidden !important; /* dışarıda scroll tamamen kapalı */
+                                                                                                                                                                                                                                  position: fixed;
+                                                                                                                                                                                                                                  width: 100%;
+                                                                                                                                                                                                                                  inset: 0;
+                                                                                                                                                                                                                                }
 
       .app-shell {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        min-height: calc(var(--vh, 1vh) * 100) !important; /* tek ekran */
-        height: calc(var(--vh, 1vh) * 100) !important;
-        padding-top: 32px; /* dil switch küçüldü, üst boşluk azaltıldı */
-      }
-
-      .lang-switch-global {
-        top: calc(6px + env(safe-area-inset-top, 0px));
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .lang-switch-wrap {
-        padding: 1px 2px;
-        gap: 1px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .lang-switch {
-        gap: 1px;
-      }
-
-      .lang-switch-icon,
-      .lang-btn {
-        width: 24px;
-        height: 24px;
-        padding: 0 4px;
-        font-size: 0.6rem;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        background: rgba(255, 255, 255, 0.04);
-      }
+                                  display: flex;
+                                  flex-direction: column;
+                                  gap: 6px;
+                                  height: 100dvh !important; /* tek ekran */
+                                }
 
                                 /* Mobile: collapsed CV sadece header + buton kadar yer kaplasın */
                                 .cv-card {
@@ -245,32 +140,32 @@
                                   height: auto;
                                 }
 
-        .cv-card .card {
-          padding: 6px 8px; /* daha kompakt padding */
-        }
+                                .cv-card .card {
+                                  padding: 10px 14px; /* ultra kompakt padding */
+                                }
 
                                 .header-top-row {
                                   flex-wrap: wrap; /* küçük ekranlarda wrap olsun */
-                                  gap: 6px;
+                                  gap: 8px;
                                 }
 
                                 .cv-name {
-                                  font-size: 0.92rem; /* mobilde daha küçük */
+                                  font-size: 0.95rem; /* mobilde daha küçük */
                                 }
 
                                 .badge-role {
-                                  font-size: 0.58rem; /* mobilde daha küçük */
-                                  padding: 2px 6px;
+                                  font-size: 0.6rem; /* mobilde daha küçük */
+                                  padding: 2px 7px;
                                 }
 
                                 .subheading {
-                                  font-size: 0.68rem; /* mobilde daha küçük */
-                                  line-height: 1.3;
+                                  font-size: 0.7rem; /* mobilde daha küçük */
+                                  line-height: 1.35;
                                 }
 
                                 .avatar {
-                                  width: 72px; /* mobilde biraz daha büyük */
-                                  height: 72px;
+                                  width: 64px; /* mobilde daha küçük */
+                                  height: 64px;
                                 }
 
                                 .cv-contact-row {
@@ -283,17 +178,15 @@
                                 }
 
                                 /* Chat kartı kalan alanı doldursun; içeriği kendi içinde scroll olsun */
-        #ai-card {
-          flex: 1;
-          min-height: 0;
-          height: calc((var(--vh, 1vh) * 100) - 70px); /* daha fazla görünür alan */
-          max-height: none;
-          display: flex;
-          flex-direction: column;
-        }
+                                #ai-card {
+                                  flex: 1 1 auto;
+                                  min-height: 0; /* kendi çocuğu scroll olabilsin */
+                                  display: flex;
+                                  flex-direction: column;
+                                }
 
                                 #ai-card .card {
-                                  padding: 10px 12px; /* biraz daha ince padding */
+                                  padding: 10px 14px; /* ultra kompakt padding */
                                 }
 
                                 #ai-card .card-inner {
@@ -405,8 +298,8 @@
     }
 
     .avatar {
-                                width: 80px;
-                                height: 80px;
+                                width: 72px;
+                                height: 72px;
       border-radius: 50%;
       background: radial-gradient(circle at 30% 20%, #fef3c7, #4f46e5);
       display: flex;
@@ -432,9 +325,9 @@
                               }
 
                               .name-row {
-      display: flex;
-      align-items: center;
-                                gap: 1px;
+                                display: flex;
+                                align-items: center;
+                                gap: 6px;
                                 flex-wrap: wrap;
                               }
 
@@ -474,23 +367,26 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-      margin-top: 12px;
+      margin-top: 4px;
 }
 
 @media (min-width: 881px) {
+  /* Desktop: avatar + metin solda, ikonlar sağ üstte */
   .cv-card .card-header {
-    padding-right: 0;
+    padding-right: 80px; /* 64px'den 80px'e artırıldı */
     position: relative;
   }
 
   .header-name-badge {
-    max-width: 100%;
+    max-width: calc(100% - 120px); /* Logoların altına taşmasın */
   }
 
   .cv-contact-row {
-    position: static;
-    margin-top: 12px;
-    justify-content: center;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    margin-top: 0;
+    justify-content: flex-end;
   }
 }
 
@@ -498,8 +394,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   text-decoration: none;
   cursor: pointer;
@@ -597,7 +493,6 @@
 
                                                                                                                                                                                                                               .cv-section {
                                                                                                                                                                                                                                 margin-top: 18px;
-                                                                                                                                                                                                                                margin-bottom: 40px;
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .cv-text {
@@ -614,30 +509,10 @@
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .timeline-item {
-                                                                                                                                                                                                                                padding: 12px 14px;
-                                                                                                                                                                                                                                border-radius: 16px;
-                                                                                                                                                                                                                                border: 1px solid rgba(255, 255, 255, 0.08);
-                                                                                                                                                                                                                                background: rgba(26, 26, 46, 0.6);
-                                                                                                                                                                                                                                backdrop-filter: blur(12px);
-                                                                                                                                                                                                                                -webkit-backdrop-filter: blur(12px);
-                                                                                                                                                                                                                                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-                                                                                                                                                                                                                                position: relative;
-                                                                                                                                                                                                                                overflow: hidden;
-                                                                                                                                                                                                                                transition: transform 0.2s ease, box-shadow 0.2s ease;
-                                                                                                                                                                                                                              }
-
-                                                                                                                                                                                                                              .timeline-item::before {
-                                                                                                                                                                                                                                content: "";
-                                                                                                                                                                                                                                position: absolute;
-                                                                                                                                                                                                                                inset: 0;
-                                                                                                                                                                                                                                border-radius: inherit;
-                                                                                                                                                                                                                                border: 1px solid rgba(255, 255, 255, 0.1);
-                                                                                                                                                                                                                                pointer-events: none;
-                                                                                                                                                                                                                              }
-
-                                                                                                                                                                                                                              .timeline-item:hover {
-                                                                                                                                                                                                                                transform: translateY(-4px);
-                                                                                                                                                                                                                                box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4);
+                                                                                                                                                                                                                                padding: 8px 10px;
+                                                                                                                                                                                                                                border-radius: 14px;
+                                                                                                                                                                                                                                border: 1px solid rgba(148, 163, 184, 0.45);
+                                                                                                                                                                                                                                background: rgba(15, 23, 42, 0.92);
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .timeline-item-header {
@@ -668,22 +543,6 @@
                                                                                                                                                                                                                                 font-size: 0.78rem;
                                                                                                                                                                                                                                 color: var(--muted);
                                                                                                                                                                                                                                 line-height: 1.5;
-                                                                                                                                                                                                                              }
-
-                                                                                                                                                                                                                              .tech-pills {
-                                                                                                                                                                                                                                display: flex;
-                                                                                                                                                                                                                                flex-wrap: wrap;
-                                                                                                                                                                                                                                gap: 8px;
-                                                                                                                                                                                                                                margin-top: 10px;
-                                                                                                                                                                                                                              }
-
-                                                                                                                                                                                                                              .tech-pill {
-                                                                                                                                                                                                                                padding: 4px 8px;
-                                                                                                                                                                                                                                border-radius: 999px;
-                                                                                                                                                                                                                                background: rgba(255, 255, 255, 0.06);
-                                                                                                                                                                                                                                border: 1px solid rgba(255, 255, 255, 0.1);
-                                                                                                                                                                                                                                font-size: 0.72rem;
-                                                                                                                                                                                                                                color: rgba(226, 232, 240, 0.88);
                                                                                                                                                                                                                               }
 
                                                                                                                                                                                                                               .meta-row {
@@ -731,7 +590,38 @@
                                                                                                                                                                                                                                 box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.7);
                                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                                            
+                                                                                                                                                                                                                              .cv-scroll-hint {
+                                                                                                                                                                                                                                display: none; /* Mobilde gizli */
+                                                                                                                                                                                                                                text-align: center;
+                                                                                                                                                                                                                                padding: 24px 0;
+                                                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                                                                margin-bottom: 20px;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              @media (min-width: 881px) {
+                                                                                                                                                                                                                                .cv-scroll-hint {
+                                                                                                                                                                                                                                  display: block; /* Sadece web/desktop'ta görünür */
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              .scroll-hint {
+                                                                                                                                                                                                                                display: inline-flex;
+                                                                                                                                                                                                                                align-items: center;
+                                                                                                                                                                                                                                gap: 6px;
+                                                                                                                                                                                                                                font-size: 0.74rem;
+                                                                                                                                                                                                                                color: rgba(156, 163, 175, 0.9);
+                                                                                                                                                                                                                                opacity: 0.9;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              .scroll-hint-arrow {
+                                                                                                                                                                                                                                font-size: 0.9rem;
+                                                                                                                                                                                                                                animation: bounce-down 1.2s infinite ease-in-out;
+                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                              @keyframes bounce-down {
+                                                                                                                                                                                                                                0%, 100% { transform: translateY(0); opacity: 0.6; }
+                                                                                                                                                                                                                                50% { transform: translateY(3px); opacity: 1; }
+                                                                                                                                                                                                                              }
 
     .stack-grid {
       display: grid;
@@ -836,18 +726,8 @@
     .chat-card {
       display: flex;
       flex-direction: column;
-      flex: 1 1 auto;
-      min-height: 0;
-      height: auto;
-      padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    }
-
-    @media (min-width: 881px) {
-      .chat-card {
-        position: sticky;
-        top: 16px;
-      }
-    }
+                                                                                                                                                                                                                                height: 100%;
+                                                                                                                                                                                                                              }
 
                                                                                                                                                                                                                               .cv-card {
                                                                                                                                                                                                                                 display: flex;
@@ -897,6 +777,10 @@
       gap: 4px;
     }
 
+    .chat-subtitle {
+                                                                                                                                                                                                                                font-size: 0.78rem;
+      color: var(--muted);
+                                                                                                                                                                                                                              }
 
                                                                                                                                                                                                                               @media (min-width: 881px) {
                                                                                                                                                                                                                                 .mobile-expand-btn {
@@ -955,7 +839,6 @@
       position: relative;
     }
 
-
     .chat-scroll {
       flex: 1;
       overflow-y: auto;
@@ -964,31 +847,13 @@
       flex-direction: column;
       gap: 8px;
       scroll-behavior: smooth;
-      min-height: 0;
     }
 
 @media (max-width: 880px) {
   .chat-scroll {
-    padding-bottom: 180px; /* Son mesajlar ve input nav bar'ın üstünde kalsın */
+    padding-bottom: 96px; /* Son mesajlar ve input nav bar'ın üstünde kalsın */
   }
-
-  .chat-window {
-    flex: 1 1 auto;
-    min-height: 0;
-  }
-
-  .chat-input-row {
-    position: sticky;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(15, 23, 42, 0.96);
-    padding: 10px 10px calc(16px + env(safe-area-inset-bottom, 0px));
-    margin-top: 6px;
-    border-radius: 14px;
-    z-index: 5;
-  }
-    }
+}
 
     .chat-scroll::-webkit-scrollbar {
       width: 6px;
@@ -1106,8 +971,6 @@
       display: flex;
       gap: 8px;
       align-items: flex-end;
-      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-      flex-shrink: 0;
     }
 
     .chat-input-wrap {
@@ -1133,7 +996,7 @@
 
 @media (max-width: 880px) {
   .chat-input-row {
-    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); /* gesture bar altında kalmasın */
+    padding-bottom: env(safe-area-inset-bottom, 0px); /* gesture bar altında kalmasın */
   }
     }
 
@@ -1232,7 +1095,7 @@
                                                                                                                                                                                                                               @keyframes bounce-down {
                                                                                                                                                                                                                                 0%, 100% { transform: translateY(0); opacity: 0.6; }
                                                                                                                                                                                                                                 50% { transform: translateY(4px); opacity: 1; }
-    }
+                                                                                                                                                                                                                              }
 
     .pill-status {
       display: inline-flex;
@@ -1261,29 +1124,11 @@
   </style>
 </head>
 <body>
-  <div class="lang-switch-global">
-    <div class="lang-switch-wrap" aria-label="Dil seçici / Language selector">
-      <div class="lang-switch">
-        <span class="lang-switch-icon" aria-hidden="true">
-          <!-- Basit globe ikonu (fa-globe benzeri) -->
-          <svg viewBox="0 0 24 24" width="16" height="16">
-            <path
-              fill="currentColor"
-              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
-                 10-4.48 10-10S17.52 2 12 2zm6.93 9h-2.46a15.37 15.37 0 0 0-1.21-5.19
-                 8.03 8.03 0 0 1 3.67 5.19zM12 4c.84 0 2.32 1.97 2.86 5H9.14C9.68 5.97 11.16 4 12 4zM8.74 5.81
-                 A15.37 15.37 0 0 0 7.53 11H5.07a8.03 8.03 0 0 1 3.67-5.19zM5.07 13h2.46c.25 1.9.86 3.63 1.81 5.19A8.03 8.03 0 0 1 5.07 13zm3.07 0h7.72
-                 c-.54 3.03-2.02 5-2.86 5s-2.32-1.97-2.86-5zm5.99 5.19c.95-1.56 1.56-3.29 1.81-5.19h2.46a8.03 8.03 0 0 1-3.67 5.19z"
-            />
-          </svg>
-        </span>
-        <button class="lang-btn active" type="button" data-lang="tr">TR</button>
-        <button class="lang-btn" type="button" data-lang="en">EN</button>
-      </div>
-    </div>
-  </div>
+  <button id="lang-toggle" class="lang-toggle-btn" title="Change language / Dili değiştir">
+    <span id="lang-label">EN</span>
+  </button>
   <main class="app-shell">
-                                                                                                                                                                                                                               <section class="card cv-card" id="cv-card">
+                                                                                                                                                                                                                              <section class="card cv-card" id="cv-card">
                                                                                                                                                                                                                                 <div class="card-inner">
       <header class="card-header">
                                     <!-- Top Row: Avatar + Name + Badge (3-way alignment) -->
@@ -1293,12 +1138,17 @@
           </div>
                                       <div class="header-name-badge">
                                         <div class="name-row">
-                                          <span class="cv-name">Yiğit Emre Türkkan</span>
-                                          <span class="badge-role" id="badge-role">Cloud &amp; DevOps Engineer</span>
+                                          <span class="cv-name" data-lang="tr">Yiğit Emre Türkkan</span>
+                                          <span class="cv-name" data-lang="en" style="display:none;">Yiğit Emre Türkkan</span>
+                                          <span class="badge-role" data-lang="tr">Cloud &amp; DevOps Engineer</span>
+                                          <span class="badge-role" data-lang="en" style="display:none;">Cloud &amp; DevOps Engineer</span>
                                         </div>
-                                        <p class="subheading" id="subheading">
-                                          Üretken yapay zeka meraklısı ve problem çözmeyi seven bir Cloud &amp; DevOps
-                                          Engineer.
+                                        <p class="subheading" data-lang="tr">
+                                          Üretken yapay zeka meraklısı ve problem çözmeyi seven bir
+                                          Cloud &amp; DevOps Engineer.
+                                        </p>
+                                        <p class="subheading" data-lang="en" style="display:none;">
+                                          An innovative AI enthusiast and problem-solving Cloud &amp; DevOps Engineer.
                                         </p>
                                       </div>
                                     </div>
@@ -1351,7 +1201,8 @@
 
                                                                                                                                                                                                                                   <button id="mobile-expand" class="mobile-expand-btn">
                                                                                                                                                                                                                                     <span class="toggle-arrow">▼</span>
-                                                                                                                                                                                                                                   <span class="toggle-text" id="cv-toggle-text">Expand Full CV</span>
+                                                                                                                                                                                                                                    <span class="toggle-text" data-lang="tr">Tam CV'yi Aç</span>
+                                                                                                                                                                                                                                    <span class="toggle-text" data-lang="en" style="display:none;">Expand Full CV</span>
                                                                                                                                                                                                                                   </button>
 
                                                                                                                                                                                                                                 <div id="cv-content" class="cv-content">
@@ -1359,122 +1210,120 @@
       <div class="pill-row">
         <div class="pill">
           <span class="pill-dot"></span>
-          <span id="pill-active">Aktif olarak CloudFlex’te Jr. Cloud Engineer</span>
+          Aktif olarak CloudFlex’te Jr. Cloud Engineer
         </div>
         <div class="pill pill-ghost">
-                                                                                                                                                                                                                                        <span id="pill-remote">🌐 Remote &amp; Hybrid Capable</span>
+                                                                                                                                                                                                                                        🌐 Remote &amp; Hybrid Capable
         </div>
       </div>
 
                                                                                                                                                                                                                                     <section class="cv-section">
-                                                                                                                                                                                                                                    <h2 class="section-title" id="title-summary">Özet</h2>
-                                                                                                                                                                                                                                    <p class="cv-text" id="summary-body">
-                                                                                                                                                                                                                                      Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.
+                                                                                                                                                                                                                                    <h2 class="section-title"><span data-lang="tr">Özet</span><span data-lang="en" style="display:none;">Summary</span></h2>
+                                                                                                                                                                                                                                    <p class="cv-text" data-lang="tr">
+                                                                                                                                                                                                                                      Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji
+                                                                                                                                                                                                                                      tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile
+                                                                                                                                                                                                                                      ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım
+                                                                                                                                                                                                                                      oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.
+                                                                                                                                                                                                                                    </p>
+                                                                                                                                                                                                                                    <p class="cv-text" data-lang="en" style="display:none;">
+                                                                                                                                                                                                                                      A technology enthusiast with an engineering background, continuing my professional career as a Cloud Engineer.
+                                                                                                                                                                                                                                      I have experience in DevOps culture, cloud architectures, and software development processes. Accustomed to working in
+                                                                                                                                                                                                                                      Agile environments, I am a quick learner and a team player who adapts easily to changing technologies. I prioritize
+                                                                                                                                                                                                                                      continuous improvement while building scalable and reliable systems.
                                                                                                                                                                                                                                     </p>
                                                                                                                                                                                                                                   </section>
 
                                                                                                                                                                                                                                   <section class="cv-section">
-                                                                                                                                                                                                                                    <h2 class="section-title" id="title-experience">Deneyim</h2>
+                                                                                                                                                                                                                                    <h2 class="section-title"><span data-lang="tr">Deneyim</span><span data-lang="en" style="display:none;">Experience</span></h2>
                                                                                                                                                                                                                                     <div class="timeline">
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp1-title">Jr. Cloud Engineer, CloudFlex</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp1-meta">Ekim 2025 - Halen</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title">Jr. Cloud Engineer, CloudFlex</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta">Eylül 2025 - Halen</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li id="exp1-li1">AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.</li>
-                                                                                                                                                                                                                                          <li id="exp1-li2">Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.</li>
-                                                                                                                                                                                                                                          <li id="exp1-li3">Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.</li>
-                                                                                                                                                                                                                                        </ul>
-                                                                                                                                                                                                                                        <div class="tech-pills">
-                                                                                                                                                                                                                                          <span class="tech-pill">AWS</span>
-                                                                                                                                                                                                                                          <span class="tech-pill">Azure</span>
-                                                                                                                                                                                                                                          <span class="tech-pill">Docker</span>
-                                                                                                                                                                                                                                          <span class="tech-pill">Kubernetes</span>
-                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                      </article>
-
-                                                                                                                                                                                                                                      <article class="timeline-item">
-                                                                                                                                                                                                                                        <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp2-title">Jr. DevOps &amp; Platform Mühendisi, Eteration</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp2-meta">Ocak 2025 - Temmuz 2025</p>
-                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                        <ul>
-                                                                                                                                                                                                                                          <li id="exp2-li1">GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.</li>
-                                                                                                                                                                                                                                          <li id="exp2-li2">Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.</li>
-                                                                                                                                                                                                                                          <li id="exp2-li3">Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.</li>
-                                                                                                                                                                                                                                        </ul>
-                                                                                                                                                                                                                                        <div class="tech-pills">
-                                                                                                                                                                                                                                          <span class="tech-pill">GitLab CI</span>
-                                                                                                                                                                                                                                          <span class="tech-pill">Docker</span>
-                                                                                                                                                                                                                                          <span class="tech-pill">Kubernetes</span>
-                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                      </article>
-
-                                                                                                                                                                                                                                      <article class="timeline-item">
-                                                                                                                                                                                                                                        <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp3-title">Intern Java Developer, Hitit</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp3-meta">Temmuz 2023 - Ağustos 2023</p>
-                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                        <ul>
-                                                                                                                                                                                                                                          <li id="exp3-li1">Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.</li>
-                                                                                                                                                                                                                                          <li id="exp3-li2">Kurumsal Java projelerinde pratik deneyim kazanımı.</li>
+                                                                                                                                                                                                                                          <li>AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.</li>
+                                                                                                                                                                                                                                          <li>Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.</li>
+                                                                                                                                                                                                                                          <li>Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp4-title">Intern Full Stack Developer, GET Yazılım</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp4-meta">Aralık 2022 - Mayıs 2023</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title">Intern DevOps &amp; Platform Mühendisi, Eteration</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta">Ocak 2025 - Temmuz 2025</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li id="exp4-li1">Web ve mobil projelere full‑stack geliştirici olarak katkı.</li>
-                                                                                                                                                                                                                                          <li id="exp4-li2">React, Android ve backend teknolojileriyle tam yığın geliştirme.</li>
+                                                                                                                                                                                                                                          <li>GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.</li>
+                                                                                                                                                                                                                                          <li>Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.</li>
+                                                                                                                                                                                                                                          <li>Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title" id="exp5-title">IT Asistanı, Muğla Sıtkı Koçman Üniversitesi</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta" id="exp5-meta">Kasım 2021 - Haziran 2023</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title">Intern Java Developer, Hitit</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta">Temmuz 2023 - Ağustos 2023</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li id="exp5-li1">Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.</li>
-                                                                                                                                                                                                                                          <li id="exp5-li2">Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.</li>
+                                                                                                                                                                                                                                          <li>Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.</li>
+                                                                                                                                                                                                                                          <li>Kurumsal Java projelerinde pratik deneyim kazanımı.</li>
+                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                      </article>
+
+                                                                                                                                                                                                                                      <article class="timeline-item">
+                                                                                                                                                                                                                                        <div class="timeline-item-header">
+                                                                                                                                                                                                                                          <h3 class="timeline-title">Intern Full Stack Developer, GET Yazılım</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta">Aralık 2022 - Mayıs 2023</p>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                        <ul>
+                                                                                                                                                                                                                                          <li>Web ve mobil projelere full‑stack geliştirici olarak katkı.</li>
+                                                                                                                                                                                                                                          <li>React, Android ve backend teknolojileriyle tam yığın geliştirme.</li>
+                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                      </article>
+
+                                                                                                                                                                                                                                      <article class="timeline-item">
+                                                                                                                                                                                                                                        <div class="timeline-item-header">
+                                                                                                                                                                                                                                          <h3 class="timeline-title">IT Asistanı, Muğla Sıtkı Koçman Üniversitesi</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta">Kasım 2021 - Haziran 2023</p>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                        <ul>
+                                                                                                                                                                                                                                          <li>Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.</li>
+                                                                                                                                                                                                                                          <li>Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
                                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                                   </section>
 
                                                                                                                                                                                                                                   <section class="cv-section">
-                                                                                                                                                                                                                                    <h2 class="section-title" id="title-education">Eğitim &amp; Projeler</h2>
+                                                                                                                                                                                                                                    <h2 class="section-title">Eğitim &amp; Projeler</h2>
                                                                                                                                                                                                                                     <div class="timeline">
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title" id="edu1-title">Bilişim Sistemleri Mühendisliği, Muğla Sıtkı Koçman Üniversitesi</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta" id="edu1-meta">Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title">Bilişim Sistemleri Mühendisliği, Muğla Sıtkı Koçman Üniversitesi</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta">Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li id="edu1-li1">Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.</li>
-                                                                                                                                                                                                                                          <li id="edu1-li2">Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.</li>
+                                                                                                                                                                                                                                          <li>Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.</li>
+                                                                                                                                                                                                                                          <li>Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
 
                                                                                                                                                                                                                                       <article class="timeline-item">
                                                                                                                                                                                                                                         <div class="timeline-item-header">
-                                                                                                                                                                                                                                          <h3 class="timeline-title" id="edu2-title">Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi</h3>
-                                                                                                                                                                                                                                          <p class="timeline-meta" id="edu2-meta">2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025</p>
+                                                                                                                                                                                                                                          <h3 class="timeline-title">Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi</h3>
+                                                                                                                                                                                                                                          <p class="timeline-meta">2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025</p>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                         <ul>
-                                                                                                                                                                                                                                          <li id="edu2-li1">React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.</li>
-                                                                                                                                                                                                                                          <li id="edu2-li2">Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.</li>
+                                                                                                                                                                                                                                          <li>React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.</li>
+                                                                                                                                                                                                                                          <li>Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.</li>
                                                                                                                                                                                                                                         </ul>
                                                                                                                                                                                                                                       </article>
                                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                                   </section>
 
                                                                                                                                                                                                                                   <section class="cv-section">
-                                                                                                                                                                                                                                    <h2 class="section-title" id="title-skills">Odak Alanları &amp; Beceriler</h2>
+                                                                                                                                                                                                                                    <h2 class="section-title">Odak Alanları &amp; Beceriler</h2>
       <div class="stack-grid">
         <div>
                                                                                                                                                                                                                                         <p class="stack-label">Cloud &amp; DevOps</p>
@@ -1502,31 +1351,42 @@
 
                                                                                                                                                                                                                                     <div class="meta-row">
                                                                                                                                                                                                                                       <div class="meta-block">
-                                                                                                                                                                                                                                        <p class="meta-label" id="label-languages">Diller</p>
+                                                                                                                                                                                                                                        <p class="meta-label">Diller</p>
                                                                                                                                                                                                                                         <div class="meta-tags">
-                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-lang-tr">Türkçe (Ana Dil)</span>
-                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-lang-en">English</span>
+                                                                                                                                                                                                                                          <span class="meta-tag">Türkçe (Ana Dil)</span>
+                                                                                                                                                                                                                                          <span class="meta-tag">English</span>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                       </div>
                                                                                                                                                                                                                                       <div class="meta-block">
-                                                                                                                                                                                                                                        <p class="meta-label" id="label-certs">Sertifikalar</p>
+                                                                                                                                                                                                                                        <p class="meta-label">Sertifikalar</p>
                                                                                                                                                                                                                                         <div class="meta-tags">
-                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-cert-aws">AWS Cloud 101</span>
-                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-cert-ethical">Siber Vatan Etik Hacker</span>
-                                                                                                                                                                                                                                          <span class="meta-tag" id="tag-cert-gitlab">GitLab CI Fundamentals</span>
+                                                                                                                                                                                                                                          <span class="meta-tag">AWS Cloud 101</span>
+                                                                                                                                                                                                                                          <span class="meta-tag">Siber Vatan Etik Hacker</span>
+                                                                                                                                                                                                                                          <span class="meta-tag">GitLab CI Fundamentals</span>
                                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                                       </div>
                                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                                     </section>
+
+                                    <!-- Scroll Hint (sadece web/desktop için) -->
+                                    <div class="cv-scroll-hint">
+                                      <span class="scroll-hint">
+                                        <span data-lang="tr">CV detayları için aşağı kaydır</span>
+                                        <span data-lang="en" style="display:none;">Scroll down for more CV details</span>
+                                        <span class="scroll-hint-arrow">↓</span>
+                                      </span>
+                                    </div>
       </div>
 
       <footer class="contact-footer">
         <div class="cta-row">
           <a class="btn btn-outline" href="https://linkedin.com/in/yigitemreturkkan" target="_blank" rel="noreferrer">
-            <span id="footer-linkedin">LinkedIn</span>
+            <span data-lang="tr">LinkedIn</span>
+            <span data-lang="en" style="display:none;">LinkedIn</span>
           </a>
           <a class="btn btn-primary" href="mailto:yigit.turkkan@gmail.com">
-            <span id="footer-email">E-posta ile iletişim</span>
+            <span data-lang="tr">E-posta ile iletişim</span>
+            <span data-lang="en" style="display:none;">Contact via Email</span>
           </a>
         </div>
       </footer>
@@ -1538,11 +1398,13 @@
       <header class="chat-header-row">
         <div>
           <div class="chat-title">
-                                                                                                                                                                                                                                        <span id="chat-title">Yiğit Emre Türkkan'ın Dijital Asistanı</span>
+            <span data-lang="tr">Yiğit Emre Türkkan'ın AI CV Asistanı</span>
+            <span data-lang="en" style="display:none;">Yiğit Emre Türkkan's AI CV Assistant</span>
           </div>
         </div>
         <div class="chat-badge">
-          <span>Persona: Yiğit</span>
+          <span data-lang="tr">Persona: Yiğit</span>
+          <span data-lang="en" style="display:none;">Persona: Yiğit</span>
           <div class="typing-dot"></div>
           <div class="typing-dot"></div>
           <div class="typing-dot"></div>
@@ -1559,8 +1421,9 @@
             id="chat-input"
             class="chat-input"
             rows="1"
-                                                                                                                                                                                                                                        placeholder="Mesajınızı buraya yazın..."
-                                                                                                                                                                                                                                        data-i18n-placeholder="chat-placeholder"
+            placeholder="Mesajınızı buraya yazın..."
+            data-placeholder-tr="Mesajınızı buraya yazın..."
+            data-placeholder-en="Type your message here..."
           ></textarea>
         </div>
         <button id="send-btn" class="chat-send-btn" type="button" aria-label="Send message">
@@ -1572,226 +1435,71 @@
   </main>
 
                                                                                                                                                                                                                             <script type="module">
-    // Mobile viewport fix: set --vh based on innerHeight to avoid nav/URL bar issues
-    const setVh = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    };
-    setVh();
-    window.addEventListener("resize", setVh);
-    window.addEventListener("orientationchange", setVh);
                                                                                                                                                                                                                               import { sendMessageToGemini } from "./gemini-chat.js?v=5555";
 
     (function () {
       const chatScroll = document.getElementById("chat-scroll");
       const chatInput = document.getElementById("chat-input");
       const sendBtn = document.getElementById("send-btn");
+      const quickRow = document.getElementById("quick-row");
                                                                                                                                                                                                                                 const cvToggleBtn = document.getElementById("mobile-expand");
                                                                                                                                                                                                                                 const cvContent = document.getElementById("cv-content");
                                                                                                                                                                                                                                 const aiCard = document.getElementById("ai-card");
                                                                                                                                                                                                                                 const cvCard = document.getElementById("cv-card");
-      const cvScroll = document.querySelector(".cv-scroll");
-      const langButtons = document.querySelectorAll(".lang-btn");
+      const langToggleBtn = document.getElementById("lang-toggle");
+      const langLabel = document.getElementById("lang-label");
 
-      const translations = {
-        "badge-role": { tr: "Cloud & DevOps Engineer", en: "Cloud & DevOps Engineer" },
-        subheading: {
-          tr: "Üretken yapay zeka meraklısı ve problem çözmeyi seven bir Cloud & DevOps Engineer.",
-          en: "A Cloud & DevOps Engineer who loves problem-solving and exploring generative AI.",
-        },
-        "cv-toggle-text": {
-          tr: "CV'yi Aç",
-          en: "Expand Full CV",
-        },
-        "pill-active": {
-          tr: "Aktif olarak CloudFlex’te Jr. Cloud Engineer",
-          en: "Currently a Jr. Cloud Engineer at CloudFlex",
-        },
-        "pill-remote": {
-          tr: "🌐 Remote & Hybrid Capable",
-          en: "🌐 Remote & Hybrid Capable",
-        },
-        "title-summary": { tr: "Özet", en: "Summary" },
-        "summary-body": {
-          tr: "Mühendislik altyapısına sahip, Cloud Engineer olarak profesyonel kariyerine devam eden bir teknoloji tutkunuyum. DevOps kültürü, bulut mimarileri ve yazılım geliştirme süreçlerinde deneyimliyim. Agile ortamlarda çalışmaya alışkın, hızlı öğrenen ve değişen teknolojilere kolayca uyum sağlayan bir takım oyuncusuyum. Ölçeklenebilir ve güvenilir sistemler inşa ederken sürekli gelişimi önceliklendiriyorum.",
-          en: "I am an engineer-minded Cloud professional passionate about building scalable and reliable systems. I have experience with DevOps culture, cloud architectures, and software delivery practices. Comfortable in agile environments, a fast learner, and adaptable to changing technologies, I focus on continuous improvement while delivering resilient systems.",
-        },
-        "title-experience": { tr: "Deneyim", en: "Experience" },
-        "exp1-title": { tr: "Jr. Cloud Engineer, CloudFlex", en: "Jr. Cloud Engineer, CloudFlex" },
-        "exp1-meta": { tr: "Ekim 2025 - Halen", en: "Oct 2025 - Present" },
-        "exp1-li1": {
-          tr: "AWS ve Azure üzerinde bulut altyapılarının yönetimi ve optimizasyonu.",
-          en: "Managing and optimizing cloud infrastructure on AWS and Azure.",
-        },
-        "exp1-li2": {
-          tr: "Konteyner tabanlı uygulamaların dağıtımı ve CI/CD süreçlerine aktif katkı.",
-          en: "Deploying containerized apps and contributing to CI/CD pipelines.",
-        },
-        "exp1-li3": {
-          tr: "Yedekleme, izleme ve güvenilirlik odaklı operasyonların yönetimi.",
-          en: "Handling backup, monitoring, and reliability-focused operations.",
-        },
-        "exp2-title": {
-          tr: "Jr. DevOps & Platform Mühendisi, Eteration",
-          en: "Jr. DevOps & Platform Engineer, Eteration",
-        },
-        "exp2-meta": { tr: "Ocak 2025 - Temmuz 2025", en: "Jan 2025 - Jul 2025" },
-        "exp2-li1": {
-          tr: "GitLab CI kullanarak pipeline tasarımı, optimizasyonu ve bakımına katkı.",
-          en: "Supported pipeline design, optimization, and maintenance with GitLab CI.",
-        },
-        "exp2-li2": {
-          tr: "Docker ve Kubernetes ile konteynerizasyon ve orkestrasyon.",
-          en: "Containerization and orchestration with Docker and Kubernetes.",
-        },
-        "exp2-li3": {
-          tr: "Kubernetes ekosistemi araçlarıyla altyapı operasyonlarının desteklenmesi.",
-          en: "Infrastructure operations support with Kubernetes ecosystem tools.",
-        },
-        "exp3-title": { tr: "Intern Java Developer, Hitit", en: "Intern Java Developer, Hitit" },
-        "exp3-meta": { tr: "Temmuz 2023 - Ağustos 2023", en: "Jul 2023 - Aug 2023" },
-        "exp3-li1": {
-          tr: "Havacılık sektörü için geliştirilen Crane yazılım suite'i üzerinde çalışma.",
-          en: "Worked on the Crane software suite for the aviation sector.",
-        },
-        "exp3-li2": {
-          tr: "Kurumsal Java projelerinde pratik deneyim kazanımı.",
-          en: "Gained hands-on experience in enterprise Java projects.",
-        },
-        "exp4-title": { tr: "Intern Full Stack Developer, GET Yazılım", en: "Intern Full Stack Developer, GET Yazılım" },
-        "exp4-meta": { tr: "Aralık 2022 - Mayıs 2023", en: "Dec 2022 - May 2023" },
-        "exp4-li1": {
-          tr: "Web ve mobil projelere full‑stack geliştirici olarak katkı.",
-          en: "Contributed as a full-stack developer to web and mobile projects.",
-        },
-        "exp4-li2": {
-          tr: "React, Android ve backend teknolojileriyle tam yığın geliştirme.",
-          en: "Built with React, Android, and backend technologies.",
-        },
-        "exp5-title": { tr: "IT Asistanı, Muğla Sıtkı Koçman Üniversitesi", en: "IT Assistant, Muğla Sıtkı Koçman University" },
-        "exp5-meta": { tr: "Kasım 2021 - Haziran 2023", en: "Nov 2021 - Jun 2023" },
-        "exp5-li1": {
-          tr: "Üniversite genelindeki bilgisayarların donanım ve yazılım sorunlarının giderilmesi.",
-          en: "Resolved hardware and software issues across campus computers.",
-        },
-        "exp5-li2": {
-          tr: "Son kullanıcı destek süreçlerine ve altyapı operasyonlarına katkı.",
-          en: "Supported end-user processes and infrastructure operations.",
-        },
-        "title-education": { tr: "Eğitim & Projeler", en: "Education & Projects" },
-        "edu1-title": {
-          tr: "Bilişim Sistemleri Mühendisliği, Muğla Sıtkı Koçman Üniversitesi",
-          en: "Information Systems Engineering, Mugla Sitki Kocman University",
-        },
-        "edu1-meta": { tr: "Eylül 2019 - Haziran 2025 · AGNO: 3.09 / 4.00", en: "Sep 2019 - Jun 2025 · GPA: 3.09 / 4.00" },
-        "edu1-li1": {
-          tr: "Google Developer Student Clubs (GDSC) Co‑Lead, IEEE ve Siber Vatan topluluklarında aktif rol.",
-          en: "Active roles in Google Developer Student Clubs (GDSC) Co-Lead, IEEE, and Siber Vatan communities.",
-        },
-        "edu1-li2": {
-          tr: "Bulut, yazılım geliştirme ve siber güvenlik odaklı projeler.",
-          en: "Projects focused on cloud, software development, and cybersecurity.",
-        },
-        "edu2-title": {
-          tr: "Akademik Bildiri – Kişiselleştirilmiş Seyahat Yönetimi",
-          en: "Academic Paper – Personalized Travel Management",
-        },
-        "edu2-meta": { tr: "2. Uluslararası Geleceğin Mühendisleri Konferansı · 2025", en: "2nd International Future Engineers Conference · 2025" },
-        "edu2-li1": {
-          tr: "React, Android, Firebase ve Python tabanlı yapay zeka ile full‑stack seyahat öneri sistemi.",
-          en: "Full-stack travel recommendation system with React, Android, Firebase, and Python-based AI.",
-        },
-        "edu2-li2": {
-          tr: "Kullanıcı tercihlerine göre kişiselleştirilmiş seyahat planları üreten öneri motoru.",
-          en: "Recommendation engine that creates personalized travel plans based on user preferences.",
-        },
-        "title-skills": { tr: "Odak Alanları & Beceriler", en: "Focus Areas & Skills" },
-        "label-languages": { tr: "Diller", en: "Languages" },
-        "tag-lang-tr": { tr: "Türkçe (Ana Dil)", en: "Turkish (Native)" },
-        "tag-lang-en": { tr: "English", en: "English" },
-        "label-certs": { tr: "Sertifikalar", en: "Certifications" },
-        "tag-cert-aws": { tr: "AWS Cloud 101", en: "AWS Cloud 101" },
-        "tag-cert-ethical": { tr: "Siber Vatan Etik Hacker", en: "Siber Vatan Ethical Hacker" },
-        "tag-cert-gitlab": { tr: "GitLab CI Fundamentals", en: "GitLab CI Fundamentals" },
-        "scroll-hint-text": { tr: "CV detayları için aşağı kaydır", en: "Scroll down for CV details" },
-        "chat-title": { tr: "Yiğit Emre Türkkan'ın Dijital Asistanı", en: "Yiğit Emre Turkkan's Digital Assistant" },
-        "footer-linkedin": { tr: "LinkedIn", en: "LinkedIn" },
-        "footer-email": { tr: "E-posta ile iletişim", en: "Contact via email" },
-      };
-
-      const attrTranslations = {
-        "chat-input": {
-          placeholder: {
-            tr: "Mesajınızı buraya yazın...",
-            en: "Type your message here...",
-          },
-        },
-      };
-
-      const toggleLabels = {
-        expand: { tr: "CV'yi Aç", en: "Expand Full CV" },
-        collapse: { tr: "CV'yi Kapat & Sohbete Dön", en: "Collapse CV & Return to Chat" },
-      };
-
-      const introTexts = {
-        tr: "Merhaba! Ben Yiğit'in dijital asistanıyım. Deneyimleri, projeleri, teknik becerileri ve araç seti hakkında sorularını yanıtlayabilirim. Güncel bilgilerine erişiyorum; nasıl yardımcı olabilirim? (Dil seçimini üstten değiştirebilirsin.)",
-        en: "Hi! I'm Yiğit's digital assistant. I can answer questions about his experience, projects, technical skills, and toolkit. I have access to his latest info—how can I help? (You can change the language from the top.)",
-      };
-
-      const introMeta = {
-        tr: "Hoş geldiniz.",
-        en: "Welcome.",
-      };
-
-      let uiLang = "tr"; // UI language, independent of detected message language
+      // localStorage'dan dili yükle, varsayılan: tr
+      let currentLang = localStorage.getItem("language") || "tr"; // "tr" | "en"
       let isBusy = false;
                                                                                                                                                                                                                                 let isFirstMessage = true;
 
-      function detectMessageLanguage(text) {
+      // Dil değiştir ve placeholder'ı güncelle
+      function updateChatInputPlaceholder() {
+        const langAttr = currentLang === "tr" ? "data-placeholder-tr" : "data-placeholder-en";
+        const placeholderText = chatInput.getAttribute(langAttr) || "Mesajınızı yazın...";
+        chatInput.setAttribute("placeholder", placeholderText);
+      }
+
+      function applyLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem("language", lang);
+        langLabel.textContent = lang === "tr" ? "EN" : "TR";
+
+        // Tüm data-lang öğelerini kontrol et
+        document.querySelectorAll("[data-lang]").forEach((el) => {
+          const shouldShow = el.dataset.lang === lang;
+          el.style.display = shouldShow ? "" : "none";
+        });
+
+        // Chat input placeholder'ını güncelle
+        updateChatInputPlaceholder();
+      }
+
+      // Dil toggle butonu
+      if (langToggleBtn) {
+        langToggleBtn.addEventListener("click", () => {
+          const newLang = currentLang === "tr" ? "en" : "tr";
+          applyLanguage(newLang);
+        });
+      }
+
+      // Sayfa yükleme sırasında dili uygula
+      window.addEventListener("load", () => {
+        applyLanguage(currentLang);
+      });
+
+      function detectLanguage(text) {
         const hasTrChars = /[çğıöşüÇĞİÖŞÜ]/.test(text);
                                                                                                                                                                                                                                   const hasEnWords = /\b(what|how|why|cloud|devops|experience|team)\b/i.test(text);
         if (hasTrChars && !hasEnWords) return "tr";
         if (hasEnWords && !hasTrChars) return "en";
-        return uiLang;
+        return currentLang;
       }
 
-      function applyTranslations() {
-        Object.entries(translations).forEach(([id, val]) => {
-          const el = document.getElementById(id);
-          if (!el) return;
-          el.textContent = val[uiLang] || "";
-        });
-
-        Object.entries(attrTranslations).forEach(([id, attrs]) => {
-          const el = document.getElementById(id);
-          if (!el) return;
-          Object.entries(attrs).forEach(([attrName, val]) => {
-            el.setAttribute(attrName, val[uiLang] || "");
-          });
-        });
+      function setLang(lang) {
+        currentLang = lang;
       }
-
-      function setUiLang(lang) {
-        uiLang = lang;
-        document.documentElement.lang = lang;
-        langButtons.forEach((btn) => {
-          btn.classList.toggle("active", btn.dataset.lang === lang);
-        });
-        applyTranslations();
-        updateCvToggleLabel();
-      }
-
-      const storedLang = window.localStorage.getItem("uiLang") || "tr";
-      setUiLang(storedLang);
-
-      langButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const lang = btn.dataset.lang || "tr";
-          if (lang === storedLang) return;
-          window.localStorage.setItem("uiLang", lang);
-          window.location.reload();
-        });
-      });
 
       function scrollToBottom() {
         requestAnimationFrame(() => {
@@ -1856,7 +1564,8 @@
         const text = rawText.trim();
         if (!text || isBusy) return;
 
-        const msgLang = detectMessageLanguage(text);
+        const lang = detectLanguage(text);
+        setLang(lang);
 
         isBusy = true;
         addMessage("user", text);
@@ -1875,7 +1584,7 @@
         bubble.innerHTML =
           '<span style="font-size:0.78rem; color:#9ca3af; display:inline-flex; align-items:center; gap:6px;">' +
           '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>' +
-          (msgLang === "tr" ? " Yanıt hazırlanıyor..." : " Drafting a reply...") +
+          (lang === "tr" ? " Yanıt hazırlanıyor..." : " Drafting a reply...") +
           "</span>";
 
         typingRow.appendChild(avatar);
@@ -1889,14 +1598,14 @@
                                                                                                                                                                                                                                   } catch (e) {
                                                                                                                                                                                                                                     console.error("Gemini error", e);
                                                                                                                                                                                                                                     answer =
-                                                                                                                                                                                                                                      msgLang === "tr"
+                                                                                                                                                                                                                                      lang === "tr"
                                                                                                                                                                                                                                         ? "Üzgünüm, şu anda yanıt üretemiyorum. Lütfen daha sonra tekrar dener misin veya LinkedIn üzerinden iletişime geçer misin?"
                                                                                                                                                                                                                                         : "Sorry, I can’t generate a reply right now. Please try again later or reach out via LinkedIn.";
                                                                                                                                                                                                                                   }
 
         typingRow.remove();
         const meta =
-          msgLang === "tr"
+          lang === "tr"
             ? "Profesyonel ama samimi, çözüm odaklı yanıt."
             : "Professional but approachable, solution‑oriented reply.";
         addMessage("ai", answer, meta);
@@ -1919,6 +1628,15 @@
         }
       });
 
+                                                                                                                                                                                                                                if (quickRow) {
+      quickRow.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-text]");
+        if (!btn) return;
+        const txt = btn.getAttribute("data-text") || "";
+        handleUserMessage(txt);
+      });
+                                                                                                                                                                                                                                }
+
                                                                                                                                                                                                                                 function applyMobileCvState() {
                                                                                                                                                                                                                                   const isMobile = window.matchMedia("(max-width: 880px)").matches;
                                                                                                                                                                                                                                   const expanded = document.body.classList.contains("is-cv-expanded");
@@ -1927,15 +1645,11 @@
                                                                                                                                                                                                                                     document.body.classList.remove("is-cv-expanded");
                                                                                                                                                                                                                                     if (cvContent) cvContent.style.display = "";
                                                                                                                                                                                                                                     if (aiCard) aiCard.style.display = "";
-                                                                                                                                                                                                                                  if (cvScroll) cvScroll.classList.remove("is-collapsed");
                                                                                                                                                                                                                                     return;
                                                                                                                                                                                                                                   }
 
                                                                                                                                                                                                                                   if (cvContent) cvContent.style.display = expanded ? "" : "none";
                                                                                                                                                                                                                                   if (aiCard) aiCard.style.display = expanded ? "none" : "";
-                                                                                                                                                                                                                                  if (cvScroll) {
-                                                                                                                                                                                                                                    cvScroll.classList.toggle("is-collapsed", !expanded);
-                                                                                                                                                                                                                                  }
                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                 function updateCvToggleLabel() {
@@ -1944,10 +1658,8 @@
                                                                                                                                                                                                                                   const arrow = cvToggleBtn.querySelector(".toggle-arrow");
                                                                                                                                                                                                                                   const label = cvToggleBtn.querySelector(".toggle-text");
                                                                                                                                                                                                                                   if (arrow) arrow.textContent = expanded ? "▲" : "▼";
-                                                                                                                                                                                                                                 if (label)
-                                                                                                                                                                                                                                   label.textContent = expanded
-                                                                                                                                                                                                                                     ? toggleLabels.collapse[uiLang]
-                                                                                                                                                                                                                                     : toggleLabels.expand[uiLang];
+                                                                                                                                                                                                                                  if (label)
+                                                                                                                                                                                                                                    label.textContent = expanded ? "Collapse CV & Return to Chat" : "Expand Full CV";
                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                 if (cvToggleBtn) {
@@ -1972,19 +1684,24 @@
       });
 
       window.addEventListener("load", () => {
-                                                                                                                                                                                                                                  // Mobil varsayılan: CV kapalı, chat açık
-                                                                                                                                                                                                                                  if (window.matchMedia("(max-width: 880px)").matches) {
-                                                                                                                                                                                                                                    document.body.classList.remove("is-cv-expanded");
-                                                                                                                                                                                                                                  }
-                                                                                                                                                                                                                                  applyMobileCvState();
-                                                                                                                                                                                                                                  updateCvToggleLabel();
+        // Mobil varsayılan: CV kapalı, chat açık
+        if (window.matchMedia("(max-width: 880px)").matches) {
+          document.body.classList.remove("is-cv-expanded");
+        }
+        applyMobileCvState();
+        updateCvToggleLabel();
+        applyLanguage(currentLang);
 
-                                  // 1 sn sonra ilk karşılama mesajını göster
-                                  setTimeout(() => {
-                                    const intro = introTexts[uiLang] || introTexts.tr;
-                                    addMessage("ai", intro, introMeta[uiLang] || introMeta.tr);
-                                  }, 1000);
-                                                                                                                                                                                                                                });
+        // 1 sn sonra ilk karşılama mesajını dil seçimine göre göster
+        setTimeout(() => {
+          const intros = {
+            tr: "Merhaba! Ben Yiğit'in dijital asistanıyım. Deneyimi, projeleri, teknik becerileri ve donanımımla ilgili merak ettiklerinizi sorabilirsiniz. Tüm bilgilerime erişebilirim, nasıl yardımcı olabilirim?",
+            en: "Hello! I'm Yiğit's digital assistant. You can ask me anything about his experience, projects, technical skills, and background. I have access to all his information. How can I help you?"
+          };
+          const meta = currentLang === "tr" ? "Hoş geldiniz." : "Welcome.";
+          addMessage("ai", intros[currentLang], meta);
+        }, 1000);
+      });
 
                                                                                                                                                                                                                                 // Mobil / masaüstü için özel görünüm geçişi yok; kart görünümü CSS ile yönetiliyor.
     })();
