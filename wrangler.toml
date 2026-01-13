@@ -1,0 +1,3 @@
+name = "yigit-gemini-proxy"
+main = "cloudflare-worker.js"
+compatibility_date = "2025-01-06"
