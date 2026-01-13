@@ -3,9 +3,8 @@
  * Replace PROXY_URL with your deployed Worker URL
  */
 
-// ⚠️ IMPORTANT: Replace this with your actual Cloudflare Worker URL after deployment
-// Example: https://yigit-gemini-proxy.your-subdomain.workers.dev
-const PROXY_URL = "https://YOUR-WORKER-URL.workers.dev";
+// Cloudflare Worker URL
+const PROXY_URL = "https://yigit-gemini-proxy.yigit-turkkan.workers.dev";
 
 // Chat history for context
 let chatHistory = [];
