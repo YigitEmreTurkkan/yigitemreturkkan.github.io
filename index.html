@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yiğit Emre Türkkan — DevOps &amp; Cloud Engineer</title>
+<meta name="description" content="Yiğit Emre Türkkan | DevOps & Cloud Engineer. Automation, CI/CD, container orchestration and cloud infrastructure." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☁️%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg: #0a0e14;
+    --bg-alt: #0d1420;
+    --surface: #101826;
+    --surface-2: #131f30;
+    --border: #1e2c3d;
+    --text: #e7edf5;
+    --text-dim: #94a3b8;
+    --text-faint: #5b6b80;
+    --accent: #35e0c2;
+    --accent-2: #4f8dff;
+    --accent-3: #a78bfa;
+    --grad: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 55%, var(--accent-3) 100%);
+    --radius: 14px;
+    --maxw: 1080px;
+    --shadow: 0 20px 50px -20px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(79,141,255,.16), transparent 60%),
+      radial-gradient(700px 460px at 0% 10%, rgba(53,224,194,.10), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(53,224,194,.28);color:#fff}
+  a{color:inherit}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(10,14,20,.72);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px;text-decoration:none;color:var(--text)}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 12px rgba(53,224,194,.7)}
+  nav.links{display:flex;gap:28px}
+  nav.links a{
+    text-decoration:none;color:var(--text-dim);font-size:.92rem;font-weight:500;
+    transition:color .2s ease;
+  }
+  nav.links a:hover{color:var(--text)}
+  .nav-cta{
+    display:flex;gap:10px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 16px;border-radius:10px;font-size:.88rem;font-weight:600;
+    text-decoration:none;border:1px solid var(--border);
+    transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--grad);color:#05121a;border:none}
+  .btn-ghost{color:var(--text);background:var(--surface)}
+  .btn-ghost:hover{border-color:var(--accent)}
+  @media (max-width: 780px){
+    nav.links{display:none}
+  }
+
+  /* Hero */
+  .hero{padding:96px 0 72px;position:relative;overflow:hidden}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border:1px solid var(--border);border-radius:999px;
+    background:var(--surface);color:var(--accent);font-size:.8rem;font-weight:600;
+    margin-bottom:22px;
+  }
+  .kicker .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(53,224,194,.6);animation:pulse 2s infinite}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(53,224,194,.55)}
+    70%{box-shadow:0 0 0 8px rgba(53,224,194,0)}
+    100%{box-shadow:0 0 0 0 rgba(53,224,194,0)}
+  }
+  h1.name{
+    font-size:clamp(2.2rem, 5.6vw, 3.6rem);
+    margin:0 0 10px;font-weight:800;letter-spacing:-.02em;line-height:1.08;
+  }
+  .role{
+    font-size:clamp(1.15rem, 2.6vw, 1.5rem);
+    font-weight:700;margin:0 0 20px;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  p.lede{
+    max-width:640px;color:var(--text-dim);font-size:1.05rem;margin:0 0 32px;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:44px}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:22px;color:var(--text-faint);font-size:.88rem;
+  }
+  .hero-meta span{display:flex;align-items:center;gap:7px}
+  .hero-meta svg{width:15px;height:15px;stroke:var(--text-faint)}
+
+  /* Section shell */
+  section{padding:64px 0}
+  .section-head{margin-bottom:36px}
+  .eyebrow{
+    display:block;font-family:'JetBrains Mono',monospace;color:var(--accent);
+    font-size:.82rem;font-weight:600;margin-bottom:10px;letter-spacing:.03em;
+  }
+  .eyebrow::before{content:'// '}
+  h2{font-size:clamp(1.5rem,3vw,2rem);margin:0;font-weight:800;letter-spacing:-.01em}
+  .section-sub{color:var(--text-dim);margin-top:10px;max-width:620px}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:40px;align-items:start}
+  .about-grid p{color:var(--text-dim);margin:0 0 16px}
+  .fact-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;box-shadow:var(--shadow);
+  }
+  .fact-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--border);font-size:.9rem}
+  .fact-row:last-child{border-bottom:none}
+  .fact-row .k{color:var(--text-faint)}
+  .fact-row .v{color:var(--text);font-weight:600;text-align:right}
+  @media (max-width: 860px){ .about-grid{grid-template-columns:1fr} }
+
+  /* Skills */
+  .skill-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;
+  }
+  .skill{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:16px 14px;display:flex;flex-direction:column;gap:10px;
+    transition:transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .skill:hover{transform:translateY(-4px);border-color:var(--accent);background:var(--surface-2)}
+  .skill .icon{
+    width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+    background:rgba(53,224,194,.10);color:var(--accent);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:.95rem;
+  }
+  .skill .name{font-weight:600;font-size:.92rem}
+  .skill .tag{color:var(--text-faint);font-size:.76rem;font-family:'JetBrains Mono',monospace}
+
+  /* Experience timeline */
+  .timeline{position:relative;padding-left:28px}
+  .timeline::before{
+    content:'';position:absolute;left:6px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(var(--border), var(--border));
+  }
+  .tl-item{position:relative;padding-bottom:36px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{
+    content:'';position:absolute;left:-28px;top:4px;width:13px;height:13px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+  }
+  .tl-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:6px}
+  .tl-role{font-weight:700;font-size:1.02rem}
+  .tl-org{color:var(--accent-2);font-weight:600;font-size:.95rem}
+  .tl-date{margin-left:auto;color:var(--text-faint);font-family:'JetBrains Mono',monospace;font-size:.78rem}
+  .tl-desc{color:var(--text-dim);font-size:.93rem;max-width:620px}
+  .badge{
+    display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.03em;
+    padding:2px 8px;border-radius:999px;background:rgba(167,139,250,.14);color:var(--accent-3);
+    margin-left:8px;vertical-align:middle;text-transform:uppercase;
+  }
+
+  /* Contact */
+  .contact-card{
+    background:linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+    border:1px solid var(--border);border-radius:20px;
+    padding:48px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .contact-card::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(400px 200px at 50% 0%, rgba(53,224,194,.10), transparent 70%);
+    pointer-events:none;
+  }
+  .contact-card h2{margin-bottom:10px}
+  .contact-card p{color:var(--text-dim);margin:0 auto 28px;max-width:480px}
+  .contact-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+
+  footer{
+    border-top:1px solid var(--border);padding:28px 0;color:var(--text-faint);font-size:.82rem;
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;
+  }
+  footer a{text-decoration:none;color:var(--text-faint);transition:color .2s}
+  footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span>Yiğit Emre Türkkan</a>
+    <nav class="links">
+      <a href="#about">Hakkımda</a>
+      <a href="#skills">Yetenekler</a>
+      <a href="#experience">Deneyim</a>
+      <a href="#contact">İletişim</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://github.com/yigitemreturkkan" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/yigitemreturkkan" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <span class="kicker"><span class="pulse"></span>Şu anda DevOps &amp; Platform Engineering üzerine çalışıyorum</span>
+    <h1 class="name">Yiğit Emre Türkkan</h1>
+    <p class="role">DevOps &amp; Cloud Engineer</p>
+    <p class="lede">
+      Bulut altyapısını, otomasyonu ve CI/CD süreçlerini bir araya getirerek
+      sistemleri daha güvenilir, ölçeklenebilir ve tekrarlanabilir hale getirmeye
+      odaklanan bir Information Systems Engineering mezunu / öğrencisiyim.
+      Container orchestration, altyapı otomasyonu (IaC) ve bulut platformları
+      ile pratik deneyim ediniyorum.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact">İletişime Geç</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/yigitemreturkkan" target="_blank" rel="noopener">LinkedIn Profilim ↗</a>
+    </div>
+    <div class="hero-meta">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Muğla, Türkiye
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Zm0 0v6c0 2 4 3.5 10 3.5s10-1.5 10-3.5v-6"/></svg>
+        Information Systems Engineering, Muğla Sıtkı Koçman Üniversitesi
+      </span>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">hakkımda</span>
+      <h2>Kim olduğuma dair kısa bir özet</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>
+          Yazılım geliştirme temelli bir eğitimin ardından ilgimi DevOps ve bulut
+          tarafına yönlendirdim; sistemleri kurmaktan çok, onları güvenilir şekilde
+          <em>çalışır tutmayı, ölçeklendirmeyi ve otomatikleştirmeyi</em> önemsiyorum.
+        </p>
+        <p>
+          Konteynerleştirme, orkestrasyon, altyapının kod olarak yönetilmesi (IaC)
+          ve CI/CD hattı kurulumu üzerine çalışıyorum. Yeni araçlara hızlı adapte
+          olan, problem çözme odaklı ve değişken/dinamik ortamlarda çalışmaktan
+          keyif alan biriyim.
+        </p>
+      </div>
+      <div class="fact-card mono">
+        <div class="fact-row"><span class="k">role</span><span class="v">DevOps &amp; Cloud Engineer</span></div>
+        <div class="fact-row"><span class="k">focus</span><span class="v">CI/CD · IaC · Containers</span></div>
+        <div class="fact-row"><span class="k">location</span><span class="v">Muğla, TR</span></div>
+        <div class="fact-row"><span class="k">education</span><span class="v">ISE, MSKÜ</span></div>
+        <div class="fact-row"><span class="k">status</span><span class="v">Open to opportunities</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">yetenekler</span>
+      <h2>Araçlar &amp; Teknolojiler</h2>
+      <p class="section-sub">Cloud altyapısından dağıtım hattına kadar üzerinde çalıştığım temel teknolojiler.</p>
+    </div>
+    <div class="skill-grid">
+      <div class="skill"><div class="icon">AWS</div><div class="name">Amazon Web Services</div><div class="tag">cloud</div></div>
+      <div class="skill"><div class="icon">🐳</div><div class="name">Docker</div><div class="tag">containers</div></div>
+      <div class="skill"><div class="icon">☸</div><div class="name">Kubernetes</div><div class="tag">orchestration</div></div>
+      <div class="skill"><div class="icon">TF</div><div class="name">Terraform</div><div class="tag">iac</div></div>
+      <div class="skill"><div class="icon">∞</div><div class="name">CI/CD</div><div class="tag">automation</div></div>
+      <div class="skill"><div class="icon">🐧</div><div class="name">Linux</div><div class="tag">systems</div></div>
+      <div class="skill"><div class="icon">git</div><div class="name">Git &amp; GitHub</div><div class="tag">vcs</div></div>
+      <div class="skill"><div class="icon">$_</div><div class="name">Bash / Python</div><div class="tag">scripting</div></div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">deneyim</span>
+      <h2>Yolculuk</h2>
+      <p class="section-sub">LinkedIn profilimden özetlenmiştir — tarih ve detaylar güncellenebilir.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">DevOps &amp; Platform Engineer Intern</span>
+          <span class="tl-org">Hitit</span>
+          <span class="badge">Şu an</span>
+        </div>
+        <p class="tl-desc">
+          Havacılık yazılımları alanında öne çıkan bir şirkette, Crane ürün ailesini
+          geliştiren ekiple birlikte platform ve DevOps süreçlerinde yer alıyorum.
+        </p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">Information Systems Engineering</span>
+          <span class="tl-org">Muğla Sıtkı Koçman Üniversitesi</span>
+        </div>
+        <p class="tl-desc">
+          Yazılım geliştirme, sistem tasarımı ve problem çözme üzerine güçlü bir
+          temel oluşturduğum lisans eğitimim.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="contact-card">
+      <span class="eyebrow" style="justify-content:center;display:flex">iletişim</span>
+      <h2>Birlikte çalışalım</h2>
+      <p>DevOps, bulut altyapısı veya otomasyon üzerine konuşmak ister misiniz? Mesaj atmaktan çekinmeyin.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/yigitemreturkkan" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/yigitemreturkkan" target="_blank" rel="noopener">GitHub</a>
+        <!-- TODO: gerçek e-posta adresinizle güncelleyin -->
+        <a class="btn btn-ghost" href="mailto:your-email@example.com">E-posta Gönder</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© <span id="year"></span> Yiğit Emre Türkkan</span>
+  <span>Built with care · <a href="https://github.com/yigitemreturkkan/yigitemreturkkan.github.io" target="_blank" rel="noopener">source</a></span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
