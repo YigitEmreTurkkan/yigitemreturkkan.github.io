@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Yiğit Emre Türkkan — DevOps &amp; Cloud Engineer</title>
-<meta name="description" content="Yiğit Emre Türkkan | DevOps & Cloud Engineer. Automation, CI/CD, container orchestration and cloud infrastructure." />
+<meta name="description" content="Yiğit Emre Türkkan | DevOps & Cloud Engineer at i2i Systems. Automation, CI/CD, container orchestration and cloud infrastructure." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☁️%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -156,6 +156,24 @@
   .skill .name{font-weight:600;font-size:.92rem}
   .skill .tag{color:var(--text-faint);font-size:.76rem;font-family:'JetBrains Mono',monospace}
 
+  /* Projects */
+  .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .project-card{
+    display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;text-decoration:none;color:var(--text);
+    transition:transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  a.project-card:hover{transform:translateY(-4px);border-color:var(--accent);background:var(--surface-2)}
+  .project-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .project-name{font-weight:700;font-size:1.02rem}
+  .project-arrow{color:var(--accent);font-weight:700}
+  .project-desc{color:var(--text-dim);font-size:.9rem;margin:0 0 16px}
+  .project-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .project-tags span{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--accent-2);
+    background:rgba(79,141,255,.10);border:1px solid var(--border);border-radius:999px;padding:3px 9px;
+  }
+
   /* Experience timeline */
   .timeline{position:relative;padding-left:28px}
   .timeline::before{
@@ -210,6 +228,7 @@
     <nav class="links">
       <a href="#about">Hakkımda</a>
       <a href="#skills">Yetenekler</a>
+      <a href="#projects">Projeler</a>
       <a href="#experience">Deneyim</a>
       <a href="#contact">İletişim</a>
     </nav>
@@ -222,15 +241,15 @@
 
 <main id="top">
   <section class="hero wrap">
-    <span class="kicker"><span class="pulse"></span>Şu anda DevOps &amp; Platform Engineering üzerine çalışıyorum</span>
+    <span class="kicker"><span class="pulse"></span>Şu anda i2i Systems'te DevOps &amp; Cloud Engineer olarak çalışıyorum</span>
     <h1 class="name">Yiğit Emre Türkkan</h1>
     <p class="role">DevOps &amp; Cloud Engineer</p>
     <p class="lede">
       Bulut altyapısını, otomasyonu ve CI/CD süreçlerini bir araya getirerek
-      sistemleri daha güvenilir, ölçeklenebilir ve tekrarlanabilir hale getirmeye
-      odaklanan bir Information Systems Engineering mezunu / öğrencisiyim.
-      Container orchestration, altyapı otomasyonu (IaC) ve bulut platformları
-      ile pratik deneyim ediniyorum.
+      sistemleri daha güvenilir, ölçeklenebilir ve tekrarlanabilir hale getiren
+      bir DevOps &amp; Cloud Engineer'ım. AWS, Azure ve Firebase üzerinde
+      serverless mimariler, Kubernetes ile container orchestration ve
+      Terraform ile altyapı otomasyonu (IaC) konularında pratik deneyime sahibim.
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#contact">İletişime Geç</a>
@@ -239,7 +258,7 @@
     <div class="hero-meta">
       <span>
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        Muğla, Türkiye
+        İstanbul, Türkiye
       </span>
       <span>
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Zm0 0v6c0 2 4 3.5 10 3.5s10-1.5 10-3.5v-6"/></svg>
@@ -256,23 +275,28 @@
     <div class="about-grid">
       <div>
         <p>
-          Yazılım geliştirme temelli bir eğitimin ardından ilgimi DevOps ve bulut
-          tarafına yönlendirdim; sistemleri kurmaktan çok, onları güvenilir şekilde
-          <em>çalışır tutmayı, ölçeklendirmeyi ve otomatikleştirmeyi</em> önemsiyorum.
+          Yazılım geliştirme temelli bir eğitimin ardından kariyerimi DevOps ve
+          bulut mühendisliği tarafına yönlendirdim; sistemleri kurmaktan çok,
+          onları güvenilir şekilde <em>çalışır tutmayı, ölçeklendirmeyi ve
+          otomatikleştirmeyi</em> önemsiyorum. Şu anda i2i Systems'te DevOps
+          &amp; Cloud Engineer olarak çalışıyorum; bundan önce CloudFlex,
+          Produstra ve Eteration'da cloud/platform mühendisliği üzerine
+          deneyim kazandım.
         </p>
         <p>
-          Konteynerleştirme, orkestrasyon, altyapının kod olarak yönetilmesi (IaC)
-          ve CI/CD hattı kurulumu üzerine çalışıyorum. Yeni araçlara hızlı adapte
-          olan, problem çözme odaklı ve değişken/dinamik ortamlarda çalışmaktan
+          Konteynerleştirme, Kubernetes ile orkestrasyon, serverless mimariler
+          (Firebase), altyapının kod olarak yönetilmesi (IaC) ve CI/CD hattı
+          kurulumu üzerine çalışıyorum. Yeni araçlara hızlı adapte olan,
+          problem çözme odaklı ve değişken/dinamik ortamlarda çalışmaktan
           keyif alan biriyim.
         </p>
       </div>
       <div class="fact-card mono">
         <div class="fact-row"><span class="k">role</span><span class="v">DevOps &amp; Cloud Engineer</span></div>
+        <div class="fact-row"><span class="k">company</span><span class="v">i2i Systems</span></div>
         <div class="fact-row"><span class="k">focus</span><span class="v">CI/CD · IaC · Containers</span></div>
-        <div class="fact-row"><span class="k">location</span><span class="v">Muğla, TR</span></div>
+        <div class="fact-row"><span class="k">location</span><span class="v">İstanbul, TR</span></div>
         <div class="fact-row"><span class="k">education</span><span class="v">ISE, MSKÜ</span></div>
-        <div class="fact-row"><span class="k">status</span><span class="v">Open to opportunities</span></div>
       </div>
     </div>
   </section>
@@ -285,6 +309,8 @@
     </div>
     <div class="skill-grid">
       <div class="skill"><div class="icon">AWS</div><div class="name">Amazon Web Services</div><div class="tag">cloud</div></div>
+      <div class="skill"><div class="icon">Az</div><div class="name">Microsoft Azure</div><div class="tag">cloud</div></div>
+      <div class="skill"><div class="icon">🔥</div><div class="name">Firebase</div><div class="tag">serverless</div></div>
       <div class="skill"><div class="icon">🐳</div><div class="name">Docker</div><div class="tag">containers</div></div>
       <div class="skill"><div class="icon">☸</div><div class="name">Kubernetes</div><div class="tag">orchestration</div></div>
       <div class="skill"><div class="icon">TF</div><div class="name">Terraform</div><div class="tag">iac</div></div>
@@ -295,22 +321,131 @@
     </div>
   </section>
 
+  <section id="projects" class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">projeler</span>
+      <h2>Üzerinde Çalıştığım Ürünler</h2>
+      <p class="section-sub">Fikirden yayına, ürün mimarisi ve MVP geliştirme dahil sahiplendiğim projeler.</p>
+    </div>
+    <div class="project-grid">
+      <a class="project-card" href="https://hizlisozlesme.com" target="_blank" rel="noopener">
+        <div class="project-top">
+          <span class="project-name">hizlisozlesme.com</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-desc">
+          Türkiye'de standart sözleşme şablonlarını otomatikleştiren, yerelleştirilmiş
+          bir legal-tech platformu. Ürün mimarisi, MVP geliştirme ve hukuki iş
+          akışlarını dijital otomasyona bağlama üzerine odaklandım.
+        </p>
+        <div class="project-tags">
+          <span>Legal-Tech</span><span>Product Architecture</span><span>MVP</span>
+        </div>
+      </a>
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-name">Chainbud</span>
+        </div>
+        <p class="project-desc">
+          Hem Android hem iOS platformlarında yayınlanan bir mobil uygulama.
+        </p>
+        <div class="project-tags">
+          <span>Android</span><span>iOS</span><span>Mobile</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="experience" class="wrap">
     <div class="section-head">
       <span class="eyebrow">deneyim</span>
       <h2>Yolculuk</h2>
-      <p class="section-sub">LinkedIn profilimden özetlenmiştir — tarih ve detaylar güncellenebilir.</p>
+      <p class="section-sub">Sondan başa doğru profesyonel deneyimim.</p>
     </div>
     <div class="timeline">
       <div class="tl-item">
         <div class="tl-head">
-          <span class="tl-role">DevOps &amp; Platform Engineer Intern</span>
-          <span class="tl-org">Hitit</span>
+          <span class="tl-role">DevOps and Cloud Engineer</span>
+          <span class="tl-org">i2i Systems · Full-time</span>
           <span class="badge">Şu an</span>
+          <span class="tl-date">Eyl 2026 – Günümüz · İstanbul, On-site</span>
         </div>
         <p class="tl-desc">
-          Havacılık yazılımları alanında öne çıkan bir şirkette, Crane ürün ailesini
-          geliştiren ekiple birlikte platform ve DevOps süreçlerinde yer alıyorum.
+          Cloud altyapısı ve DevOps süreçlerinin uçtan uca yönetiminde görev alıyorum.
+        </p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">DevOps &amp; Platform Engineer</span>
+          <span class="tl-org">Produstra Türkiye · Freelance</span>
+          <span class="tl-date">Mar 2026 – Ağu 2026 · İstanbul</span>
+        </div>
+        <p class="tl-desc">
+          Firebase ekosistemi üzerinde yüksek erişilebilirlikli, serverless altyapılar
+          ve dahili kontrol panelleri tasarladım. Cloud Functions ile backend
+          iş akışlarını otomatikleştirdim; Firestore / Realtime Database üzerinde
+          NoSQL veri modelleri ve Firebase Security Rules ile RBAC tabanlı erişim
+          kontrolleri kurdum. Firebase Authentication &amp; IAM ile güvenli oturum
+          yönetimi sağladım, Firebase Hosting üzerinde CD hatlarını sadeleştirdim.
+        </p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">Cloud Engineer</span>
+          <span class="tl-org">CloudFlex · Contract</span>
+          <span class="tl-date">Eyl 2025 – Mar 2026 · İstanbul, On-site</span>
+        </div>
+        <p class="tl-desc">
+          AWS/Azure üzerinde cloud ortamlarını yönetip izledim; Kubernetes ve Docker
+          ile konteynerleştirilmiş uygulamaları orkestre ettim. Altyapı sorunlarını
+          giderdim, geliştirme ekipleriyle CI/CD hatlarını iyileştirdim ve IaC
+          pratiklerini uyguladım.
+        </p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">DevOps and Platform Engineer</span>
+          <span class="tl-org">Eteration · Internship</span>
+          <span class="tl-date">Oca 2025 – Tem 2025</span>
+        </div>
+        <p class="tl-desc">
+          GitLab ile CI/CD hatlarının yönetimi ve iyileştirilmesine katkı sağladım;
+          Docker ile konteynerleştirme ve Kubernetes ekosistemi üzerinde deneyim
+          kazandım. Agile/Scrum süreçlerine dahil oldum.
+        </p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">Software Engineer Intern</span>
+          <span class="tl-org">Hitit · Internship</span>
+          <span class="tl-date">Tem 2023 – Ağu 2023 · İstanbul, Hybrid</span>
+        </div>
+        <p class="tl-desc">
+          Havacılık yazılımları alanında öne çıkan Hitit'te, Crane ürün ailesini
+          (19 farklı havacılık yönetim yazılımı) geliştiren ekiple çalıştım; Java
+          geliştirme becerilerimi güçlendirdim.
+        </p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">Full Stack Developer Intern</span>
+          <span class="tl-org">GET Software Company · Internship</span>
+          <span class="tl-date">Kas 2022 – Haz 2023 · Muğla, Hybrid</span>
+        </div>
+        <p class="tl-desc">
+          Müşteri projelerinden sorumlu ekipte web ve mobil geliştirme süreçlerine
+          katkı sağladım; front-end ve back-end becerilerimi geliştirdim.
+        </p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-role">IT Technician</span>
+          <span class="tl-org">Muğla Sıtkı Koçman Üniversitesi · Part-time</span>
+          <span class="tl-date">Kas 2021 – Haz 2023</span>
+        </div>
+        <p class="tl-desc">
+          Üniversitenin bilgisayar sistemlerinin bakım ve onarımından sorumlu ekiple
+          çalıştım; donanım/yazılım sorunlarını teşhis edip çözdüm.
         </p>
       </div>
       <div class="tl-item">
